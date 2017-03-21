@@ -1,0 +1,26 @@
+{
+  "name": "v2js",
+  "version": "1.0.0",
+  "description": "toxichl's blog",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "docsify serve ./docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toxichl/FED-blog.git"
+  },
+  "keywords": [
+    "blog", "docsify"
+  ],
+  "author": "toxichl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toxichl/FED-blog/issues"
+  },
+  "homepage": "https://github.com/toxichl/FED-blog#readme"
+}
