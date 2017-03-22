@@ -3,18 +3,19 @@
 ---
 
 - 前端部分
-	- [JavaScript（1）](/JavaScript/)
-	- [TypeScript(0)](/TypeScript/)
+	- [JavaScript（5）](/JavaScript/)
+	- [TypeScript(1)](/TypeScript/)
 	- [Design（0）](/Design/)
 	- [Vue（0）](/Vue/)
 	- [React（1）](/React/)
+	- [AngularJS（3）](/AngularJS/)
 	- [Node.js（0）](/Node/)
 	- [DDD（0）](/DDD/)
 	- [CSS（0）](/CSS/)
-	- [AngularJS（3）](/AngularJS/)
+	- [Git（1）](/Git/)
 	- [RegExp（2）](/RegExp/)
-	- [单元测试(1)](/UnitTest/)
-	- [书签(2)](/Bookmarks/)
+	- [Unit Test(1)](/UnitTest/)
+	- [Bookmarks(2)](/Bookmarks/)
 
 ---
 
