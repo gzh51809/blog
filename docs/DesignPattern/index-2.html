@@ -7,13 +7,209 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<title>Document</title>
+	<style>
+		#observer {
+			padding: 100px;
+		}
+	</style>
+	<script>
+		if (!NodeList.prototype.forEach) {
+
+			NodeList.prototype.forEach = function (callback/*, thisArg*/) {
+
+				var T, k;
+
+				if (this == null) {
+					throw new TypeError('this is null or not defined');
+				}
+
+				// 1. Let O be the result of calling toObject() passing the
+				// |this| value as the argument.
+				var O = Object(this);
+
+				// 2. Let lenValue be the result of calling the Get() internal
+				// method of O with the argument "length".
+				// 3. Let len be toUint32(lenValue).
+				var len = O.length >>> 0;
+
+				// 4. If isCallable(callback) is false, throw a TypeError exception.
+				// See: http://es5.github.com/#x9.11
+				if (typeof callback !== 'function') {
+					throw new TypeError(callback + ' is not a function');
+				}
+
+				// 5. If thisArg was supplied, let T be thisArg; else let
+				// T be undefined.
+				if (arguments.length > 1) {
+					T = arguments[1];
+				}
+
+				// 6. Let k be 0
+				k = 0;
+
+				// 7. Repeat, while k < len
+				while (k < len) {
+
+					var kValue;
+
+					// a. Let Pk be ToString(k).
+					//    This is implicit for LHS operands of the in operator
+					// b. Let kPresent be the result of calling the HasProperty
+					//    internal method of O with argument Pk.
+					//    This step can be combined with c
+					// c. If kPresent is true, then
+					if (k in O) {
+
+						// i. Let kValue be the result of calling the Get internal
+						// method of O with argument Pk.
+						kValue = O[k];
+
+						// ii. Call the Call internal method of callback with T as
+						// the this value and argument list containing kValue, k, and O.
+						callback.call(T, kValue, k, O);
+					}
+					// d. Increase k by 1.
+					k++;
+				}
+				// 8. return undefined
+			};
+		}
+	</script>
 </head>
 <body>
 
-<a class="btn btn-default" href="#" role="button">Link</a>
+<div id="observer">
+	<input class="input" ng-model="ob">
+	<button class="span" ng-bind="ob"></button>
+	<br>
+	<input class="input" ng-model="pattern">
+	<button class="span" ng-bind="pattern"></button>
+</div>
 
 <script>
 
+
+	console.log(Array.prototype.forEach)
+
+	var ob = '观察者'
+	var pattern = '模式'
+
+	var Observer = function (value) {
+		this.value = value
+		this.subscribers = new Array()
+	}
+
+	Observer.prototype = {
+		publish: function () {
+			this.subscribers.forEach(function (subscriber) {
+				subscriber.update(this.value)
+			}.bind(this))
+		},
+		subscribe: function (subscriber) {
+			var isSubcribed = this.subscribers.some(function (_subcriber) {
+				if (_subcriber === subscriber) {
+					return true
+				}
+			})
+			if (!isSubcribed) {
+				this.subscribers.push(subscriber)
+			}
+			return this
+		}
+	}
+
+	var Subscriber = function (el) {
+		this.el = el
+	}
+
+	Subscriber.prototype.update = function (value) {
+		this.el.innerHTML = value
+	}
+
+	var modelList = document.querySelectorAll("[ng-model]");
+	var bindingList = document.querySelectorAll("[ng-bind]");
+
+	//	function update(modelName, value) {
+	//		bindingList.forEach(function (bindEl) {
+	//			var _bindName = bindEl.getAttribute('ng-bind')
+	//			console.log(_bindName)
+	//			if (modelName === _bindName) {
+	//				bindEl.innerHTML = value
+	//			}
+	//		})
+	//	}
+
+	function update(modelName, value) {
+		for (var i = 0, l = bindingList.length; i < l; i++) {
+			var _bindName = bindingList[i].getAttribute('ng-bind')
+			if (modelName === _bindName) {
+				bindingList[i].innerHTML = value
+			}
+		}
+	}
+
+	//	function init() {
+	//		bindingList.forEach(function (bindEle) {
+	//			var _bindName = bindEle.getAttribute('ng-bind')
+	//			if(window[_bindName]){
+	//				bindEle.innerHTML = window[_bindName]
+	//			}
+	//		})
+	//		modelList.forEach(function (modelEle) {
+	//			var _modelName = modelEle.getAttribute('ng-model')
+	//			if(window[_modelName]){
+	//				modelEle.value = window[_modelName]
+	//			}
+	//		})
+	//	}
+
+	function init() {
+
+		for (var i = 0, l = bindingList.length; i < l; i++) {
+			var _bindName = bindingList[i].getAttribute('ng-bind')
+			if (window[_bindName]) {
+				bindingList[i].innerHTML = window[_bindName]
+			}
+		}
+
+		for (var i = 0, l = modelList.length; i < l; i++) {
+			var _modelName = modelList[i].getAttribute('ng-model')
+			if (window[_modelName]) {
+				modelList[i].value = window[_modelName]
+			}
+		}
+
+	}
+
+
+	init()
+
+
+
+	console.log(modelList)
+		modelList.forEach(function (el) {
+
+			var _modelName = el.getAttribute('ng-model')
+			el.addEventListener('keypress', function () {
+				update(_modelName, el.value)
+			}, false)
+		})
+
+//	for (x in modelList) {
+//		var _modelName = modelList[x].getAttribute('ng-model')
+//		modelList[x].addEventListener('keypress', function () {
+//			update(_modelName, modelList[x].value)
+//		}, false)
+//	}
+
+
+	//	var _p = new Observer.prototype;
+	//	_p.constructor = Subscriber;
+	//	Subscriber.prototype = _p;
+
+
 </script>
+
+
 </body>
 </html>
