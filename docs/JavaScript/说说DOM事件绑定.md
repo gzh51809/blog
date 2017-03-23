@@ -43,9 +43,7 @@ function addEvent(el, type, fn) {
 - 目标阶段
 - 冒泡阶段
 
-有一张图来描述，就是这样：
 
-<img style="width: 70%" src="./JavaScript/img/js-01.png" alt="">
 
 用一个例子来说明这个三个阶段：
 ```html
@@ -75,6 +73,8 @@ function addEvent(el, type, fn) {
 	addEvent(btn, 'click', triggerEvent)
 ```
 
+
+
 控制台输出如下结果：
 ```markdown
 BUTTON
@@ -94,6 +94,11 @@ BODY
 由此我们可以总结出以下结论：
 
 !> 事件捕获机制决定是否找到目标的原则是“深度优先”，如果元素仍有后代绑定了事件，那么捕获阶段则不会停止，直至找到后代没有绑定事件的那个节点为止。
+
+
+综上，上述的代码可以总结为以下这张图，就是这样：
+
+<img style="width: 70%" src="./JavaScript/img/js-01.png" alt="">
 
 那么，问题来了，如何将上述事件的事件监听函数的执行顺序颠倒过来呢？
 
