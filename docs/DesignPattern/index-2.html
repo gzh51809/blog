@@ -140,6 +140,9 @@
 	//	}
 
 	function update(modelName, value) {
+
+		console.log(value)
+
 		for (var i = 0, l = bindingList.length; i < l; i++) {
 			var _bindName = bindingList[i].getAttribute('ng-bind')
 			if (modelName === _bindName) {
@@ -188,11 +191,11 @@
 
 	console.log(modelList)
 		modelList.forEach(function (el) {
-
 			var _modelName = el.getAttribute('ng-model')
 			el.addEventListener('keypress', function () {
 				update(_modelName, el.value)
 			}, false)
+
 		})
 
 //	for (x in modelList) {
