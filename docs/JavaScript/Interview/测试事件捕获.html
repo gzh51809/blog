@@ -30,15 +30,14 @@
 	console.log(document.getElementsByTagName('body'))
 
 	// HTMLCollection
-	let body = document.getElementsByTagName('body')[0]
+	var body = document.getElementsByTagName('body')[0]
 	// HTMLDivElement - HTMLElement -  Element
-	let btnWrapper = document.getElementById('btn-wrapper')
-	let btn = document.getElementById('btn')
-
+	var btnWrapper = document.getElementById('btn-wrapper')
+	var btn = document.getElementById('btn')
 
 	function triggerEvent(event) {
-		let tagName = event.currentTarget.tagName
-		let stage = event.eventPhase
+		var tagName = event.currentTarget.tagName
+		var stage = event.eventPhase
 		console.log(tagName)
 		console.log(stage)
 	}
@@ -46,7 +45,6 @@
 	addEvent(body, 'click', triggerEvent)
 	addEvent(btnWrapper, 'click', triggerEvent)
 	addEvent(btn, 'click', triggerEvent)
-
 
 
 </script>

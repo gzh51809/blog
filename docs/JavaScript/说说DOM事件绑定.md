@@ -44,6 +44,33 @@ function addEvent(el, type, fn) {
 
 
 
+用一个例子来说明这个三个阶段：
+```html
+<div id="btn-wrapper">
+	<button id="btn">BUTTON</button>
+</div>
+```
+
+```js
+// HTMLCollection
+	var body = document.getElementsByTagName('body')[0]
+	// HTMLDivElement - HTMLElement -  Element
+	var btnWrapper = document.getElementById('btn-wrapper')
+	var btn = document.getElementById('btn')
+
+	function triggerEvent(event) {
+		let tagName = event.currentTarget.tagName
+		let stage = event.eventPhase
+		console.log(tagName)
+		console.log(stage)
+	}
+
+	addEvent(body, 'click', triggerEvent)
+	addEvent(btnWrapper, 'click', triggerEvent)
+	addEvent(btn, 'click', triggerEvent)
+```
+
+
 
 
 
