@@ -41,8 +41,9 @@ function addEvent(el, type, fn) {
 - 目标阶段
 - 冒泡阶段
 
+有一张图来描述，就是这样：
 
-
+<img style="width: 70%" src="/JavaScript/img/js-01.png" alt="">
 
 用一个例子来说明这个三个阶段：
 ```html
@@ -70,7 +71,9 @@ function addEvent(el, type, fn) {
 	addEvent(btn, 'click', triggerEvent)
 ```
 
-<img style="width: 70%" src="/JavaScript/img/js-01.png" alt="">
+
+
+
 
 
 
