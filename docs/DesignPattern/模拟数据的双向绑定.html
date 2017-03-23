@@ -184,26 +184,22 @@
 
 	}
 
-
 	init()
 
-
-
 	console.log(modelList)
-		modelList.forEach(function (el) {
-			var _modelName = el.getAttribute('ng-model')
-			el.addEventListener('keypress', function () {
-				update(_modelName, el.value)
-			}, false)
+	modelList.forEach(function (el) {
+		var _modelName = el.getAttribute('ng-model')
+		el.addEventListener('keypress', function () {
+			update(_modelName, el.value)
+		}, false)
+	})
 
-		})
-
-//	for (x in modelList) {
-//		var _modelName = modelList[x].getAttribute('ng-model')
-//		modelList[x].addEventListener('keypress', function () {
-//			update(_modelName, modelList[x].value)
-//		}, false)
-//	}
+	//	for (x in modelList) {
+	//		var _modelName = modelList[x].getAttribute('ng-model')
+	//		modelList[x].addEventListener('keypress', function () {
+	//			update(_modelName, modelList[x].value)
+	//		}, false)
+	//	}
 
 
 	//	var _p = new Observer.prototype;
