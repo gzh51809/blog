@@ -111,13 +111,17 @@ BODY
 
 ## 事件截获
 
+在移动端开发时，我们常常会遇到这样一种需求：在一个`list`的`item`中，点击`item`本身进入查看详情，点击右侧的`button`执行某个业务相关的功能，如下图：
 
-我们常常会遇到这样一种需求
+<img style="width: 70%" src="./JavaScript/img/js-02.png" alt="">
+
+但是由于右侧的`button`位于`item`中，因此，当点击了右侧的`button`后，初学者往往会感到郁闷，我只是想触发一个事件，为什么连`item`的事件也触发了。
+
 
 
 事件的这种`捕获 - 目标 - 冒泡`机制为我们截获事件提供了极大的便利。
 
-<img style="width: 70%" src="./JavaScript/img/js-02.png" alt="">
+
 
 DOM提供了以下几种标准的2级DOM事件（也就是IE不支持）的方法：
 
