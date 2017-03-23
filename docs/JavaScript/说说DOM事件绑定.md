@@ -64,7 +64,8 @@ function addEvent(el, type, fn) {
 		let stage = event.eventPhase
 		console.log(tagName)
 		console.log(stage)
-		event.preventDefault()
+		// 终止事件在传播过程的捕获、目标处理或起泡阶段进一步传播。
+		event.stopPropagation()
 	}
 
 	addEvent(body, 'click', triggerEvent)
