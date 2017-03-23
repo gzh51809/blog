@@ -76,7 +76,7 @@ function addEvent(el, type, fn) {
 
 
 控制台输出如下结果：
-```markdown
+```console
 BUTTON
 2 
 DIV
@@ -122,23 +122,25 @@ BODY
 那么，如何截获事件呢？DOM2级事件为我们提供了一个阻止事件冒泡的函数——`preventDefault()`
 
 
+在上一节事件的处理函数的最后一行加上以下代码：
+
+```js
+	event.preventDefault()
+```
+
+在此点击按钮，控制台便得到了以下输出：
+
+```console
+BUTTON
+2 
+```
+
+是不是很好地解决了开始的需求？
 
 
-事件的这种`捕获 - 目标 - 冒泡`机制为我们截获事件提供了极大的便利。
+?> 再次强调兼容性问题，这种只适用于`DOM2`级事件，`DOM0`的事件请绕道。此外，IE对应的阻止事件冒泡的方法是`event.cancelbubble()`
 
 
-
-DOM提供了以下几种标准的2级DOM事件（也就是IE不支持）的方法：
-
-方法|描述
----|---
-`initEvent()`|初始化新创建的 Event 对象的属性
-`preventDefault()`|通知浏览器不要执行与事件关联的默认动作
-`stopPropagation()`|不再派发事件,阻止事件的冒泡
-
-实际开发中，我们用得较多的就是`preventDefault()`和`stopPropagation()`，因此这里只演示这两者的区别。
-
-倘若我们在上一节的
 
 
 
