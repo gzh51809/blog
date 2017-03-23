@@ -53,9 +53,9 @@ function addEvent(el, type, fn) {
 ```
 
 ```js
-// HTMLCollection
+	// HTMLCollection
 	var body = document.getElementsByTagName('body')[0]
-	// HTMLDivElement - HTMLElement -  Element
+	// HTMLDivElement <- HTMLElement <-  Element
 	var btnWrapper = document.getElementById('btn-wrapper')
 	var btn = document.getElementById('btn')
 
@@ -64,12 +64,27 @@ function addEvent(el, type, fn) {
 		let stage = event.eventPhase
 		console.log(tagName)
 		console.log(stage)
+		event.preventDefault()
 	}
 
 	addEvent(body, 'click', triggerEvent)
 	addEvent(btnWrapper, 'click', triggerEvent)
 	addEvent(btn, 'click', triggerEvent)
 ```
+
+浏览器的运行结果如下：
+```markdown
+BUTTON
+2
+DIV
+3
+BODY
+3
+```
+
+
+
+
 
 
 
