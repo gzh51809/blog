@@ -117,7 +117,7 @@ BODY
 
 事件的这种`捕获 - 目标 - 冒泡`机制为我们截获事件提供了极大的便利。
 
-<img style="width: 70%" src="" alt="">
+<img style="width: 70%" src="./JavaScript/img/js-02.png" alt="">
 
 DOM提供了以下几种标准的2级DOM事件（也就是IE不支持）的方法：
 
