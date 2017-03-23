@@ -22,6 +22,8 @@
 function addEvent(el, type, fn) {
 	// 对于支持DOM2事件优先用DOM2
   if(el.addEventListener){
+  	// 第三个参数为false表示事件的监听函数将在冒泡阶段执行
+  	// 为true的话则，会在冒泡阶段执行
   	el.addEventListener(type, fn, false)
   	// 对于不支持addEventListener但支持attachEvent的
   } else if(el.attachEvent){
@@ -60,12 +62,12 @@ function addEvent(el, type, fn) {
 	var btn = document.getElementById('btn')
 
 	function triggerEvent(event) {
+		// 获取当前事件捕获/目标/冒泡的DOM元素的tagName
 		let tagName = event.currentTarget.tagName
+		// 获取当前事件的阶段
 		let stage = event.eventPhase
 		console.log(tagName)
 		console.log(stage)
-		// 终止事件在传播过程的捕获、目标处理或起泡阶段进一步传播。
-		event.stopPropagation()
 	}
 
 	addEvent(body, 'click', triggerEvent)
@@ -73,7 +75,7 @@ function addEvent(el, type, fn) {
 	addEvent(btn, 'click', triggerEvent)
 ```
 
-浏览器的运行结果如下：
+控制台输出如下结果：
 ```markdown
 BUTTON
 2
@@ -82,6 +84,11 @@ DIV
 BODY
 3
 ```
+
+由此我们可以总结出以下结论：
+1. 当制定
+
+
 
 
 
