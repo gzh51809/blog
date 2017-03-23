@@ -78,15 +78,22 @@ function addEvent(el, type, fn) {
 控制台输出如下结果：
 ```markdown
 BUTTON
-2
+2 
 DIV
 3
 BODY
 3
 ```
 
+首先，关于`event.eventPhase`与当前事件的阶段的对应关系如下：
+ 
+- 1: 捕获阶段
+- 2: 目标阶段
+- 3: 冒泡阶段
+
 由此我们可以总结出以下结论：
-1. 当制定
+
+1. 事件捕获机制决定是否找到目标的原则是“深度优先”，如果子元素仍
 
 
 
@@ -101,11 +108,7 @@ BODY
 
 
 
-eventPhase 
 
-- 1 捕获阶段
-- 2 目标阶段
-- 3 冒泡阶段
 
 currentTarget
 
