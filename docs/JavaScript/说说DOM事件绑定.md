@@ -45,7 +45,7 @@ function addEvent(el, type, fn) {
 
 有一张图来描述，就是这样：
 
-<img style="width: 70%" src="./img/js-01.png" alt="">
+<img style="width: 70%" src="./JavaScript/img/js-01.png" alt="">
 
 用一个例子来说明这个三个阶段：
 ```html
@@ -101,6 +101,13 @@ BODY
 
 ## 事件截获
 
+DOM提供了标准的2级DOM事件（也就是IE不支持）的方法：
+
+方法|	描述
+---|---
+initEvent()	|初始化新创建的 Event 对象的属性。
+preventDefault()	|通知浏览器不要执行与事件关联的默认动作。
+stopPropagation()	|不再派发事件。
 
 
 
