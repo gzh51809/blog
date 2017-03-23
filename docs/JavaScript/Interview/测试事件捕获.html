@@ -6,5 +6,50 @@
 </head>
 <body>
 
+	<div id="btn-wrapper">
+		<button id="btn"></button>
+	</div>
+
+	<script src="//cdn.bootcss.com/babel-core/5.8.38/browser.js"></script>
+	<script src="//cdn.bootcss.com/lodash.js/4.17.4/lodash.js"></script>
+	<script>
+
+		function addEvent(el, type, fn) {
+			// 对于支持DOM2事件优先用DOM2
+			if(el.addEventListener){
+				el.addEventListener(type, fn, false)
+				// 对于不支持addEventListener但支持attachEvent的
+			} else if(el.attachEvent){
+				el.attachEvent('on'+type, fn)
+				// 对于不支持addEventListener也不支持attachEvent的
+			} else {
+				el['on'+type] = fn;
+			}
+		}
+
+		Element.prototype.addEvent = addEvent;
+
+		// HTMLCollection
+		let body = document.getElementsByTagName('body')
+		// HTMLDivElement - HTMLElement -  Element
+		let btnWrapper = document.getElementById('btn-wrapper')
+		let btn = document.getElementById('btn')
+
+
+		function triggerEvent(event) {
+			let tagName = event.currentTarget.tagName
+			let stage = event.eventPhase
+			console.log(tagName)
+			console.log(stage)
+		}
+
+		
+
+
+
+
+
+	</script>
+
 </body>
 </html>
