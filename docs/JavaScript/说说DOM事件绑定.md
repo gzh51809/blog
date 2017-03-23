@@ -45,7 +45,7 @@ function addEvent(el, type, fn) {
 
 有一张图来描述，就是这样：
 
-<img style="width: 70%" src="/JavaScript/img/js-01.png" alt="">
+<img style="width: 70%" src="docs/JavaScript/img/js-01.png" alt="">
 
 用一个例子来说明这个三个阶段：
 ```html
