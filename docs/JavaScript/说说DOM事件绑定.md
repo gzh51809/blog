@@ -104,15 +104,36 @@ BODY
 
 !> 当然这种奇葩的需求，只能在DOM2级事件中，设定`addEventListener`的第三个参数为`true`。
 
+最后再强调一遍`addEventListener`的第三个参数的作用：
+
+- `true` 表示该元素在事件的“捕获阶段”（由外往内传递时）响应事件；
+- `false` 表示该元素在事件的“冒泡阶段”（由内向外传递时）响应事件。
+
 ## 事件截获
 
-DOM提供了标准的2级DOM事件（也就是IE不支持）的方法：
 
-方法|	描述
+我们常常会遇到这样一种需求
+
+
+事件的这种`捕获 - 目标 - 冒泡`机制为我们截获事件提供了极大的便利。
+
+<img style="width: 70%" src="" alt="">
+
+DOM提供了以下几种标准的2级DOM事件（也就是IE不支持）的方法：
+
+方法|描述
 ---|---
-initEvent()	|初始化新创建的 Event 对象的属性。
-preventDefault()	|通知浏览器不要执行与事件关联的默认动作。
-stopPropagation()	|不再派发事件。
+`initEvent()`|初始化新创建的 Event 对象的属性
+`preventDefault()`|通知浏览器不要执行与事件关联的默认动作
+`stopPropagation()`|不再派发事件,阻止事件的冒泡
+
+实际开发中，我们用得较多的就是`preventDefault()`和`stopPropagation()`，因此这里只演示这两者的区别。
+
+倘若我们在上一节的
+
+
+
+
 
 
 
