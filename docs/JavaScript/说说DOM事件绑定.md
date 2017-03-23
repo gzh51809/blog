@@ -70,7 +70,7 @@ function addEvent(el, type, fn) {
 	addEvent(btn, 'click', triggerEvent)
 ```
 
-
+<img style="width: 70%" src="/JavaScript/img/js-01.png" alt="">
 
 
 
