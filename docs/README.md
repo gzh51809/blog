@@ -3,7 +3,7 @@
 ---
 
 - 前端部分
-	- [JavaScript（5）](/JavaScript/)
+	- [JavaScript（6）](/JavaScript/)
 	- [设计模式（1）](/DesignPattern/)
 	- [CSS（0）](/CSS/)
 	- [TypeScript(1)](/TypeScript/)
