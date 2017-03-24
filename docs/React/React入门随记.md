@@ -36,7 +36,8 @@
 
 ## React 必备库
 
-- ajax： `axios`, `fetch folyfill`
+- ajax： `axios`, `fetch folyfill`、`superagent`
+
 
 
 
