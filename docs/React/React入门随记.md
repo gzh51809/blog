@@ -46,11 +46,11 @@
 
 钩子函数|注释
 ---|---
-getDefaultProps()|作用于组件类，只调用一次，返回对象用于设置默认的props，对于引用值，会在实例中共享。
-getInitialState()|作用于组件的实例，在实例创建时调用一次，用于初始化每个实例的state，此时可以访问this.props。
-componentWillMount()|在完成首次渲染之前调用，此时仍可以修改组件的state。
-render()|必选的方法，创建虚拟DOM
-componentDidMount|真实的DOM被渲染出来后调用，在该方法中可通过this.getDOMNode()访问到真实的DOM元素。此时已可以使用其他类库来操作这个DOM。在服务端中，该方法不会被调用。
+`getDefaultProps()`|作用于组件类，只调用一次，返回对象用于设置默认的props，对于引用值，会在实例中共享。
+`getInitialState()`|作用于组件的实例，在实例创建时调用一次，用于初始化每个实例的state，此时可以访问this.props。
+`componentWillMount()`|在完成首次渲染之前调用，此时仍可以修改组件的state。
+`render()`|必选的方法，创建虚拟DOM
+`componentDidMount()`|真实的DOM被渲染出来后调用，在该方法中可通过this.getDOMNode()访问到真实的DOM元素。此时已可以使用其他类库来操作这个DOM。在服务端中，该方法不会被调用。
 
 ### updating阶段
 钩子函数|注释
