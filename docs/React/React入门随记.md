@@ -41,13 +41,15 @@
 
 
 ## React 生命周期
-s
+
 ### Mount阶段
 a|b
 ---|---
 getDefaultProps()|d
 getInitialState()|d
-ComponentWillMount|d
+componentWillMount()|d
+render()|d
+componentDidMount|d
 
 
 
