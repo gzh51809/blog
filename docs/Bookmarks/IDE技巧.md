@@ -19,8 +19,12 @@ gitconfig=vi C:\Users\Administrator\.gitconfig
 cmdalias=vim D:\Electron Program Files\Cmder\config\user-aliases.cmd
 ```
 
+## cmder默认启动目录
 
-## 
+`win + alt + p`打开设置，进入`Startup > Tasks`:
+```
+cmd /k "%ConEmuDir%\..\init.bat"  -new_console:d:%USERPROFILE%
+```
 
 
 
