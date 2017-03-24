@@ -43,13 +43,16 @@
 ## React 生命周期
 
 ### Mount阶段
-a|b
+
+钩子函数|注释
 ---|---
 getDefaultProps()|d
 getInitialState()|d
 componentWillMount()|d
 render()|d
 componentDidMount|d
+
+### Mount阶段
 
 
 
