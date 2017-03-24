@@ -57,6 +57,15 @@ a|b
 ---|---
 componentWillReceiveProps()|
 shouldComponentUpdate()|d
+componentWillupdate()|d
+render()|
+componentDidUpdate()|
+
+### Unmountin阶段
+a|b
+---|---
+c|d
+c|d
 c|d
 
 
