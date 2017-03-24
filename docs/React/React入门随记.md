@@ -64,9 +64,8 @@ componentDidUpdate()|
 ### Unmountin阶段
 a|b
 ---|---
-c|d
-c|d
-c|d
+componentWillUnmount()|d
+
 
 
 
