@@ -53,7 +53,7 @@ render()|d
 componentDidMount|d
 
 ### updating阶段
-a|b
+钩子函数|注释
 ---|---
 componentWillReceiveProps()|
 shouldComponentUpdate()|d
@@ -62,7 +62,7 @@ render()|
 componentDidUpdate()|
 
 ### Unmountin阶段
-a|b
+钩子函数|注释
 ---|---
 componentWillUnmount()|d
 
