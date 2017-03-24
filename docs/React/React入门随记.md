@@ -37,6 +37,7 @@
 ## React 必备库
 
 - ajax： `axios`, `fetch folyfill`、`superagent`
+- cli: `create-react-app`
 
 
 ## React 生命周期
@@ -75,6 +76,16 @@
 onClick|点击
 onKeydown|按下按键
 onCopy|复制
+onSubmit|提交表单
+
+
+
+## Less的安装
+
+```markdown
+npm install --save-dev less-loader less
+```
+
 
 
 
