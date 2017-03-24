@@ -48,7 +48,7 @@
 ---|---
 getDefaultProps()|作用于组件类，只调用一次，返回对象用于设置默认的props，对于引用值，会在实例中共享。
 getInitialState()|作用于组件的实例，在实例创建时调用一次，用于初始化每个实例的state，此时可以访问this.props。
-componentWillMount()|d
+componentWillMount()|在完成首次渲染之前调用，此时仍可以修改组件的state。
 render()|d
 componentDidMount|d
 
