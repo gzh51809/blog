@@ -56,7 +56,7 @@ componentDidMount|d
 a|b
 ---|---
 componentWillReceiveProps()|
-c|d
+shouldComponentUpdate()|d
 c|d
 
 
