@@ -144,30 +144,6 @@ BUTTON
 
 
 
+## 其他
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-currentTarget
-
-当前的target
-
-target 和 currentTarget 的区别？
+1. `target` 和 `currentTarget` 有什么区别？
