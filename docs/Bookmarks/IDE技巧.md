@@ -12,12 +12,23 @@ Emmet：HTML/CSS代码快速编写神器|[Click Here](http://www.iteye.com/news/
 解决cmder中文乱码：
 打开设置; Startup-Environment; 添加 set LANG=zh_CN.UTF-8
 
+## cmder Alias
+
+```markdown
+gitconfig=vi C:\Users\Administrator\.gitconfig
+cmdalias=vim D:\Electron Program Files\Cmder\config\user-aliases.cmd
+```
+
+
+## 
+
+
+
 ## Git Alias
 
 ```markdown
 [user]
 	email = 472590061@qq.com
-	mail = 472590061@qq.com
 	name = toxichl
 [alias]
   # readme = "!f(){echo '# New App' > README.md;};f"
@@ -34,3 +45,5 @@ Emmet：HTML/CSS代码快速编写神器|[Click Here](http://www.iteye.com/news/
 	confg = config --global
 	confgls = config --global -l
 ```
+
+
