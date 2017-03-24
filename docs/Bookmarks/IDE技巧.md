@@ -22,8 +22,16 @@ cmdalias=vim D:\Electron Program Files\Cmder\config\user-aliases.cmd
 ## cmder默认启动目录
 
 `win + alt + p`打开设置，进入`Startup > Tasks`:
-```
+
+<img style="width: 70%" src="./Bookmarks/img/bm-01.png" alt="">
+
+修改内容如下：
+```cmd
 cmd /k "%ConEmuDir%\..\init.bat"  -new_console:d:%USERPROFILE%
+```
+
+```cmd
+cmd /k "%ConEmuDir%\..\init.bat"  -new_console:d:D:\
 ```
 
 

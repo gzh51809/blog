@@ -34,6 +34,12 @@
 - TS、CS等等和都类似，最终还是被解析成`JS`
 
 
+## React 必备库
+
+- ajax： `axios`, `fetch folyfill`
+
+
+
 
 
 
