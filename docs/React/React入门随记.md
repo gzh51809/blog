@@ -61,7 +61,7 @@
 `render()`|
 `componentDidUpdate()`|完成渲染新的props或者state后调用，此时可以访问到新的DOM元素。
 
-
+!> 请注意，我在`componentWillUpdate()`写了一个不允许自己写代码去更新`state`或`props`，为什么呢？因为这里手动更新了，又要触发`shouldComponentUpdate` , `componentWillUpdate`等等生命周期函数, 如此便会在`componentWillUpdate`这里陷入死循环。
 
 ### Unmountin阶段
 钩子函数|注释
