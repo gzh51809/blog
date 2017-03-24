@@ -52,7 +52,13 @@ componentWillMount()|d
 render()|d
 componentDidMount|d
 
-### Mount阶段
+### updating阶段
+a|b
+---|---
+componentWillReceiveProps()|
+c|d
+c|d
+
 
 
 
