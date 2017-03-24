@@ -147,3 +147,11 @@ BUTTON
 ## 其他
 
 1. `target` 和 `currentTarget` 有什么区别？
+
+引用自`MDN`的官方解释：
+
+```markdown
+Identifies the current target for the event, as the event traverses the DOM. It always refers to the element to which the event handler has been attached, as opposed to event.target which identifies the element on which the event occurred.
+```
+
+`currentTarget`在事件流的捕获，目标及冒泡阶段。只有当事件流处在目标阶段的时候，两个的指向才是一样的， 而当处于捕获和冒泡阶段的时候，`target`指向被单击的对象而`currentTarget`指向当前事件活动的对象(注册该事件的对象)（一般为父级）。`this`指向永远和`currentTarget`指向一致（只考虑`this`的普通函数调用）。
