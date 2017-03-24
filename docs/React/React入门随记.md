@@ -55,16 +55,18 @@
 ### updating阶段
 钩子函数|注释
 ---|---
-componentWillReceiveProps()|组件接收到新的props时调用，并将其作为参数nextProps使用，此时可以更改组件props及state。
-shouldComponentUpdate()|组件是否应当渲染新的props或state，返回false表示跳过后续的生命周期方法，通常不需要使用以避免出现bug。在出现应用的瓶颈时，可通过该方法进行适当的优化。在首次渲染期间或者调用了forceUpdate方法后，该方法不会被调用
-componentWillupdate()|接收到新的props或者state后，进行渲染之前调用，此时不允许更新props或state。
-render()|
-componentDidUpdate()|完成渲染新的props或者state后调用，此时可以访问到新的DOM元素。
+`componentWillReceiveProps()`|组件接收到新的`props`时调用，并将其作为参数`nextProps`使用，此时可以更改组件`props`及`state`。
+`shouldComponentUpdate()`|组件是否应当渲染新的`props`或`state`，返回`false`表示跳过后续的生命周期方法，通常不需要使用以避免出现bug。在出现应用的瓶颈时，可通过该方法进行适当的优化。在首次渲染期间或者调用了`forceUpdate`方法后，该方法不会被调用
+`componentWillUpdate()`|接收到新的`props`或者`state`后，进行渲染之前调用，此时不允许更新`props`或`state`。
+`render()`|
+`componentDidUpdate()`|完成渲染新的props或者state后调用，此时可以访问到新的DOM元素。
+
+
 
 ### Unmountin阶段
 钩子函数|注释
 ---|---
-componentWillUnmount()|组件被移除之前被调用，可以用于做一些清理工作，在componentDidMount方法中添加的所有任务都需要在该方法中撤销，比如创建的定时器或添加的事件监听器。
+`componentWillUnmount()`|组件被移除之前被调用，可以用于做一些清理工作，在componentDidMount方法中添加的所有任务都需要在该方法中撤销，比如创建的定时器或添加的事件监听器。
 
 
 
