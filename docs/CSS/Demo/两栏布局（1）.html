@@ -4,33 +4,49 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 </head>
-<style>
-	#header, #footer {
+<style type="text/css">
+	html,body{
+		padding: 0;
+		margin: 0;
+	}
+	#header, #footer{
 		height: 100px;
 		background: red;
+		overflow: hidden;
 	}
-
-	#content .main {
-		height: 200px;
-		background: green;
+	#main{
 		overflow: auto;
 	}
-
-	#content .aside {
+	#main .center{
+		height: 200px;
+		width: 100%;
+		float: left;
+	}
+	.center .content{
+		height: 200px;
+		background: green;
+		margin-right: 100px;
+	}
+	#main .aside{
 		height: 200px;
 		width: 100px;
 		background: blue;
 		float: left;
+		margin-left: -100px;
 	}
 </style>
+
+</head>
 <body>
-<div id="header"></div>
-<div id="content">
-	<div class="aside"></div>
-	<div class="main">
-		main main main main main main
+<div id="header">header</div>
+<div id="main">
+	<div class="center">
+		<div class="content">
+			我是主区块 我是主区块 main main  main
+		</div>
 	</div>
+	<div class="aside"></div>
 </div>
-<div id="footer"></div>
+<div id="footer">footer</div>
 </body>
 </html>
