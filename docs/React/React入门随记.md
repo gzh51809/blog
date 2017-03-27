@@ -79,12 +79,29 @@ onCopy|复制
 onSubmit|提交表单
 
 
-
 ## Less的安装
 
 ```markdown
 npm install --save-dev less-loader less
 ```
+
+webpack配置：
+```markdown
+module: {
+        rules: [{
+            test: /\.less$/,
+            use: [{
+                loader: "style-loader" // creates style nodes from JS strings
+            }, {
+                loader: "css-loader" // translates CSS into CommonJS
+            }, {
+                loader: "less-loader" // compiles Less to CSS
+            }]
+        }]
+    }
+```
+
+
 
 
 
