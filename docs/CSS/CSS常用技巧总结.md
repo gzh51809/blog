@@ -7,6 +7,11 @@
 
 ### 方法1 - float
 
+- jsbin： http://jsbin.com/hoqeqolaxe/edit?html,css,output
+- 预览：
+
+<img style="width: 70%" src="/CSS/img/css-01.png" alt="">
+
 ```html
   <header>Header</header>
   <div class="main">
@@ -47,3 +52,7 @@ header {
   overflow: auto;
 }
 ```
+
+修改`.main .nav`的float方向为`right`可以让导航栏靠右摆放：
+
+<img style="width: 70%" src="/CSS/img/css-02.png" alt="">
