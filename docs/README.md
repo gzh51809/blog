@@ -4,6 +4,7 @@
 
 - 前端部分
 	- [JavaScript（6）](/JavaScript/)
+	- [ES6（5）](/ES6/)
 	- [设计模式（1）](/DesignPattern/)
 	- [CSS（1）](/CSS/)
 	- [TypeScript(1)](/TypeScript/)
