@@ -1,4 +1,6 @@
-# toxichl's blog
+# v2js
+
+Welcome to my Blog！ [Qucik Start!](https://toxichl.github.io/v2js)
 
 ## Catelogue
 
@@ -11,11 +13,9 @@
 - [AngularJS（3）](docs/AngularJS/)
 - [RegExp（2）](docs/RegExp/)
 
-> 本博客中内容均为原创，转载请注明出处：https://toxichl.github.io/v2js/#/
+> 
 
-# Links
-
-[`www.v2js.com`](www.v2js.com)
+## 
 
 
 
