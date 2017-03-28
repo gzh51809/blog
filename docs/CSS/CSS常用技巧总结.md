@@ -26,6 +26,7 @@ body {
     font-size: 20px;
     color: #555;
     text-align: center;
+    border-radius: 5px;
 }
 
 header {
