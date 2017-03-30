@@ -172,6 +172,6 @@ function* output(next) {
 let task = output(()=>{ task.next() })
 task.next();
 ```
-!> ⚠ 终于知道为什么 `koa2` 把 `generator` 删掉了 
+!> ⚠ 终于知道为什么 `koa2` 把 `generator` 删掉了!
 
 
