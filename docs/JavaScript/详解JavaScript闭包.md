@@ -4,7 +4,7 @@
 
 ## 前言
 
-`this`、`prototype`和`closure`(闭包)，可能是`JavaScript`成人礼的必备武器，用了这么久，今天，特地来总结一下闭包的概念和它的好处。
+`this`、`prototype`和`closure`(闭包)，可能是`JavaScript`成人礼的必备基础。用了这么久，今天，特地来说一说闭包的概念和它的好处。
 
 ## JS的作用域链
 
