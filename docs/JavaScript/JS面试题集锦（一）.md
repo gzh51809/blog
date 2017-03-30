@@ -1,6 +1,6 @@
 # JS面试题（一）
-
-
+- 标签： `JavaScript`
+- 时间： `2016-3-10`
 
 - 总结自 [`https://zhuanlan.zhihu.com/p/25855075`](https://zhuanlan.zhihu.com/p/25855075) (转载请注明原作者)
 
