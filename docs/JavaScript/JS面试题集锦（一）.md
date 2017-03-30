@@ -147,7 +147,7 @@ const sleep = (timeountMS) => new Promise((resolve) => {
 )()
 ```
 
-## 补充：采用 generator 
+## 补充：采用 generator 完成上述任务
 
 ```js
 const sleep = delay => new Promise(resolve => {
