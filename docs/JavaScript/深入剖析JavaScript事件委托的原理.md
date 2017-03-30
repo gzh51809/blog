@@ -72,5 +72,7 @@ document.getElementById("myDiv").addEventListener("click",function(e) {
 
 ## JQuery的事件委托
 
-- `.bind`: 只能给调用它的时候已经存在的元素绑定事件，不能给未来新增的元素绑定事件（类似于新来的员工收不到快递）
-- `.live`: 解决了.bind的问题，将事件绑定到document对象，能够处理后续添加元素的单击事件
+- on
+- bind
+- live
+- delegate
