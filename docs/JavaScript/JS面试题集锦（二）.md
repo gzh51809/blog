@@ -24,5 +24,11 @@ touchcancel:     //系统取消touch事件的时候触发，这个好像比较�
 在移动端，手指点击一个元素，会经过：touchstart --> touchmove -> touchend --》click。
 所以手机端的click事件会延时300ms
 
-## commonJS实现的大致原因
+## commonJS实现的大致原理
+
+## commonjs和ES6的模块机制有什么区别？
+
+## React Virtual DOM 算法原理
+
+## 
 
