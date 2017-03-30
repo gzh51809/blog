@@ -2,7 +2,14 @@
 
 https://zhuanlan.zhihu.com/p/25991956
 http://www.cnblogs.com/MythLeige/p/6047838.html
+https://zhuanlan.zhihu.com/p/25379917
+https://www.zhihu.com/people/asdzxcweeqw/answers
 
+```html
+第一个splice是数组展开的问题，ES6有扩展运算符就好啦，es5也只能用apply替代。第二个回文字，我觉得代码太冗余了，js的数组可以解决的问题没必要做个堆栈对象。
+```
+## 冒泡，选择，快排，堆排
+## “请问Array#sort”用的什么排序？
 ## 二叉树，字符串排序
 ## 杨辉三角
 ## 快速排序
@@ -14,6 +21,15 @@ http://www.cnblogs.com/MythLeige/p/6047838.html
 ## 去掉一组整型数组重复的值
 ## 统计一个字符串出现最多的字母
 ## 找出下列正数组的最大差值
+## 用JS实现Array的indexOf方法
+## 算法题基本是给一个数据结构(比如链表, 树, 二叉树), 然后去完成某一些操作(比如查找, 计算, 合并等), 也有一些算法是带智力性质的, 
+## 第一道题：找出最久未被使用的记录，不需要遍历。
+
+## 第二道题：连连看找路径，给出N次拐弯（折角次数<=N）的一般算法。
+## matrix
+## 如何实现快排
+## 如何实现一个连连看游戏
+## 回朔
 
 ```html
 输入 [10,5,11,7,8,9]
