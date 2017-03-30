@@ -2,7 +2,7 @@
 - 标签： `JavaScript`
 - 时间： `2016-3-10`
 
-- 题目来自 [`https://zhuanlan.zhihu.com/p/25855075`](https://zhuanlan.zhihu.com/p/25855075) (转载请注明原作者)
+- 题目来 自 [`https://zhuanlan.zhihu.com/p/25855075`](https://zhuanlan.zhihu.com/p/25855075) (转载请注明原作者)
 
 ## 考察定时器
 
@@ -172,6 +172,6 @@ function* output(next) {
 let task = output(()=>{ task.next() })
 task.next();
 ```
-
+!> ⚠ 终于知道为什么 `koa2` 把 `generator` 删掉了 
 
 
