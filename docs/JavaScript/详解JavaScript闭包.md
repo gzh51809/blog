@@ -1,9 +1,12 @@
 # 详解JavaScript闭包
 
 ## 前言
-this、prototype和闭包，可能是JS成人礼的基础，这里，来总结一下闭包的概念。
 
-闭包（`closure`）的形成得益于`JavScript`的链式作用域（`scope chain`）, 什么是链式作用域，我们来看一下：
+this、prototype和closure(闭包)，可能是JS成人礼的基础，今天，特地来总结一下闭包的概念。
+
+## JS的作用域链
+
+闭包（`closure`）的形成得益于`JavScript`的链式作用域（`Scope Chain`）, 什么是链式作用域，我们来看一下：
 
 ```js
 var a = 1;
@@ -21,7 +24,9 @@ function fa() {
 }
 ```
 
-上述代码就形成了一个作用域链：`Scope A -> Scope B -> Scope C`。显而易见，在` Scope B`中可以访问` Scope A`中的变量，在 `Scope C` 中可以访问 `Scope A` 和 `Scope B` 中的变量。反过来则不行。
+上述代码就形成了一个作用域链：`Scope A -> Scope B -> Scope C`。显而易见，在` Scope B`中可以访问` Scope A` 和 `Scope B`中的变量，在 `Scope C` 中可以访问三个作用域中的变量。而在 `Scope A`中只能只能访问 `Scope A`自己的变量。
+
+简单来说
 
 最后一行的`return fb()`很关键，如果我们在外部运行`fa()`，如：
 
