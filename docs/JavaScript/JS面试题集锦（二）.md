@@ -60,6 +60,10 @@
 - 如何实现一个性能优化后的 slider
 - 如何实现一个搜索高亮的文件树
 
+## Vue
+
+- https://github.com/aooy/blog/issues/2
+
 ## JavaScript
 
 - react 的 diff 算法基本原理与源码解释
