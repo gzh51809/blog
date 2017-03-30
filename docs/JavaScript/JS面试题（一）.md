@@ -88,3 +88,15 @@ console.log(new Date, i)
 
 闭包（`closure`）的形成得益于`JavScript`的链式作用域（`scope chain`）, 什么是链式作用域，我们来看一下：
 
+```js
+
+var a = 1;
+// Scope A
+
+function fa() {
+	var b = 2;	
+	// Scope B
+}
+
+
+```
