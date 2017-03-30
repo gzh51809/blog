@@ -11,18 +11,17 @@
 
 以下是四种touch事件
 
-touchstart:     //手指放到屏幕上时触发
-
-touchmove:      //手指在屏幕上滑动式触发
-
-touchend:    //手指离开屏幕时触发
-
-touchcancel:     //系统取消touch事件的时候触发，这个好像比较少用
+- touchstart:     //手指放到屏幕上时触发
+- touchmove:      //手指在屏幕上滑动式触发
+- touchend:    //手指离开屏幕时触发
+- touchcancel:     //系统取消touch事件的时候触发，这个好像比较少用
 
 每个触摸事件被触发后，会生成一个event对象
 
-在移动端，手指点击一个元素，会经过：touchstart --> touchmove -> touchend --》click。
-所以手机端的click事件会延时300ms
+在移动端，手指点击一个元素，会经过：`touchstart --> touchmove -> touchend --> click`。
+所以手机端的`click`事件会延时`300ms`
+
+- 解决方案：`fastclick.js`
 
 ## commonJS实现的大致原理
 
