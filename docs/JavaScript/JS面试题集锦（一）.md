@@ -128,8 +128,50 @@ outputTask().then((iCollection) => {
 
 ## 考察 async
 
+如何用 `ES7` 中的 `async await` 特性来让这段代码变的更简洁？
 
+```js
+const sleep = (timeountMS) => new Promise((resolve) => {
+	// 模拟其他语言中的 sleep，实际上可以是任何异步操作
+    setTimeout(resolve, timeountMS);
+}); // 这个;很关键哦！！
 
+(async ()=> {
+ 	for (var i = 0; i < 5; i++) {
+ 		await sleep(1000)
+ 		console.log(new Date, i);
+ 	}
+	await sleep(1000);
+ 	console.log(new Date, i);
+ }
+)()
+```
+
+## 补充：采用 generator 
+
+```js
+const sleep = delay => new Promise(resolve => {
+	setTimeout(resolve, delay)
+});
+
+function* output(next) {
+    for (var i = 0; i< 5; i++) {
+        yield sleep(1000).then(()=> {
+        	    next()
+        	}
+        )
+        console.log(new Date, i)
+    }
+    yield sleep(1000).then(()=> {
+             next()
+        }
+    )
+    console.log(new Date, i);
+}
+
+let task = output(()=>{ task.next() })
+task.next();
+```
 
 
 
