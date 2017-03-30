@@ -44,7 +44,8 @@ console.log(new Date, i);
 ```js
 	
 	for (var i = 0; i < 5; i++) {
-		// 注：这里我还用到了变量遮蔽效应
+		// 下面是一个 IIFE
+		// 注：这里还用到了变量遮蔽效应
         (function(i) {
             setTimeout(function() {
             	console.log(new Date, i);
