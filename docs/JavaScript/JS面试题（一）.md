@@ -35,11 +35,11 @@ console.log(new Date, i);
 
 
 
-## 三
+## 考察闭包
+
 - 考察点：`闭包`
 
-
-如果期望代码的输出变成：5 -> 0,1,2,3,4，该怎么改造代码
+如果期望代码的输出变成：5 -> 0,1,2,3,4，该怎么改造代码？
 
 ```js
 	
@@ -56,7 +56,7 @@ console.log(new Date, i);
 	
 ```
 
-改造得优雅一点:
+这实际上是`ES5`的写法，我们可以改造得优雅一点:
 
 ```js
 function output(i) {
@@ -83,3 +83,8 @@ console.log(new Date, i)
     
     console.log(new Date, i);
 ```
+
+- 好了，最后来总结一下闭包的概念。
+
+闭包（`closure`）的形成得益于`JavScript`的链式作用域（`scope chain`）, 什么是链式作用域，我们来看一下：
+
