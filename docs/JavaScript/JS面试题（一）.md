@@ -1,5 +1,5 @@
 # JS面试题（一）
-- 总结自 `https://zhuanlan.zhihu.com/p/25855075` (转载请注明原作者)
+- 总结自 [`https://zhuanlan.zhihu.com/p/25855075`](https://zhuanlan.zhihu.com/p/25855075) (转载请注明原作者)
 
 ## 一
 - 考察点：`异步代码`
