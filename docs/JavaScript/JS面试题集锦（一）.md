@@ -90,9 +90,40 @@ console.log(new Date, i)
 
 !> 关于闭包的更多知识，可以看我写的这篇文章：[详解JavaScript闭包](/JavaScript/详解JavaScript闭包.md)
 
+
 ## 考察Promise
 
-如果期望输出
+如果期望输出的结果为`0 -> 1 -> 2 -> 3 -> 4 -> 5`, 并且要求原有的代码块中的循环和两处 `console.log` 不变，该怎么改造代码？
+
+虽然用`setTimeout`可以实现, 这里我们选择使用`ES6`的`promise`来实现：
+
+```js
+function output(i) {
+	return new Promise((resovle)=> {
+		setTimeout(()=> {
+			console.log(new Date, i)
+			resovle(i)
+		}, i*1000)
+	}) 
+}
+
+function outputTask() {
+	const tasks = [];
+	for (let i = 0; i < 5; i++) {
+    	tasks.push(output(i))
+    }
+    return Promise.all(tasks)
+}
+
+outputTask().then((iCollection)=> {
+	let i = iCollection.pop() + 1
+	setTimeout(()=> {
+    	console.log(new Date, i)
+    }, 1000)
+})
+
+```
+
 
 
 
