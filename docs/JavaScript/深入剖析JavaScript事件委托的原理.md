@@ -1,128 +1,66 @@
-# 详解JavaScript闭包
-- 标签： `JavaScript`
-- 时间： `2016-3-30`
+# 深入剖析JavaScript事件委托的原理
 
-## 前言
+一直对这项技术有所耳闻，但没有真正研究过，今天来剖析剖析。
 
-`this`、`prototype`和`closure`(闭包)，可能是`JavaScript`成人礼的必备基础。用了这么久，今天，特地来说一说闭包的概念和它的好处。
+## 原理
 
-## JS的作用域链
+使用事件委托技术能让你避免对特定的每个节点添加事件监听器；相反，事件监听器是被添加到它们的父元素上。事件监听器会分析从子元素冒泡上来的事件，找到是哪个子元素的事件。
 
-闭包（`closure`）的形成得益于`JavScript`的链式作用域（`Scope Chain`）, 什么是链式作用域，我们来看一下：
+## 案例
 
-```js
-var a = 1;
-// Scope A
+假定我们有一个UL元素，它有几个子元素：
 
-function fa() {
-	var b = 2;	
-	// Scope B
-	function fb() {
-		// Scope C
-	    b = b * b;
-	    return b;
+```html
+<ul id="parent-list">
+	<li id="post-1">Item 1</li>
+	<li id="post-2">Item 2</li>
+	<li id="post-3">Item 3</li>
+	<li id="post-4">Item 4</li>
+	<li id="post-5">Item 5</li>
+	<li id="post-6">Item 6</li>
+</ul>
+```
+
+我们还假设，当每个子元素被点击时，将会有各自不同的事件发生。你可以给每个独立的li元素添加事件监听器，但有时这些li元素可能会被删除，可能会有新增，监听它们的新增或删除事件将会是一场噩梦，尤其是当你的监听事件的代码放在应用的另一个地方时。但是，如果你将监听器安放到它们的父元素上呢？你如何能知道是那个子元素被点击了？
+
+简单：当子元素的事件冒泡到父ul元素时，你可以检查事件对象的target属性，捕获真正被点击的节点元素的引用。下面是一段很简单的JavaScript代码，演示了事件委托的过程：
+
+// 找到父元素，添加监听器...
+document.getElementById("parent-list").addEventListener("click",function(e) {
+	// e.target是被点击的元素!
+	// 如果被点击的是li元素
+	if(e.target && e.target.nodeName == "LI") {
+		// 找到目标，输出ID!
+		console.log("List item ",e.target.id.replace("post-")," was clicked!");
 	}
-	return fb()
-}
-```
+});
+第一步是给父元素添加事件监听器。当有事件触发监听器时，检查事件的来源，排除非li子元素事件。如果是一个li元素，我们就找到了目标！如果不是一个li元素，事件将被忽略。这个例子非常简单，UL和li是标准的父子搭配。让我们试验一些差异比较大的元素搭配。假设我们有一个父元素div，里面有很多子元素，但我们关心的是里面的一个带有”classA” CSS类的A标记：
 
-上述代码就形成了一个作用域链：`Scope A -> Scope B -> Scope C`。显而易见，在` Scope B`中可以访问` Scope A` 和 `Scope B`中的变量，在 `Scope C` 中可以访问三个作用域中的所有变量。而在 `Scope A`中只能只能访问 `Scope A`自己的变量。
+// 获得父元素DIV, 添加监听器...
+document.getElementById("myDiv").addEventListener("click",function(e) {
+	// e.target是被点击的元素
+	if(e.target && e.target.nodeName == "A") {
+		// 获得CSS类名
+		var classes = e.target.className.split(" ");
+		// 搜索匹配!
+		if(classes) {
+			// For every CSS class the element has...
+			for(var x = 0; x < classes.length; x++) {
+				// If it has the CSS class we want...
+				if(classes[x] == "classA") {
+					// Bingo!
+					console.log("Anchor element clicked!");
 
-简单来说 —— 越深的子作用与，其访问能力越强。
+					// Now do something here....
 
-最后一行的`return fb()`很关键，如果我们在外部运行`fa()`，如：
+				}
+			}
+		}
 
-```js
-var ins = fa();
-```
-
-那么实际上`ins`就持有了`fb`的引用了，于是，`ins`也就持有了`fa`中局部变量的引用————这就是闭包！！！
-
-其实上述的代码，我们完全可以直接`return b * b;`, 那么采用闭包的好处到底在哪里？
-
-1. 希望一个变量长期驻扎在内存中
-2. 避免全局变量的污染
-3. 私有成员的存在
-
-## 场景
-
-我们通常会遇到一种场景，做一个计时器，函数每运行一次计数器加1。
-
-### 全局变量的写法
-
-我们可能会这样写:
-
-```js
-var count = 0;
-function add() {
-	return ++count;
-}
-
-add()  // 1
-add()  // 2
-```
-
-看似很好地实现了需求，但是定义了一个全局变量`count`——造成了全局污染！！！
-
-
-### 局部变量的写法
-
-好的，那么写成局部变量：
-
-```js
-function add() {
-	var count = 0;
-	return ++count;
-}
-
-add()  // 1
-add()  // 1
-add()  // 1
-```
-
-无论如何都是1，为什么？很显然，这是由于 `Javascript` 的垃圾回收原理:
-
-1. 在javascript中，如果一个对象不再被引用，那么这个对象就会被GC回收；
-1. 如果两个对象互相引用，而不再被第3者所引用，那么这两个互相引用的对象也会被回收。
-
-### 采用闭包的局部变量的写法
-
-
-因此，我们就可以采用闭包来很好地解决这个问题——既定义局部变量，又能达到状态的保存，实现累加。
-
-```js
-function add() {
-	var count = 0;
-	return function () {
-		return ++count;
 	}
-}
+});
+上面这个例子中不仅比较了标签名，而且比较了CSS类名。虽然稍微复杂了一点，但还是很具代表性的。比如，如果某个A标记里有一个span标记，则这个span将会成为target元素。这个时候，我们需要上溯DOM树结构，找到里面是否有一个 A.classA 的元素。
 
-var countAdd = add();
-countAdd(); // 1
-countAdd(); // 2
-```
+因为大部分程序员都会使用jQuery等工具库来处理DOM元素和事件，我建议大家都使用里面的事件委托方法，因为这里工具库里都提供了高级的委托方法和元素甄别方法。
 
-这，就是闭包的神奇之处了！！！
-
-## 缺点
-
-闭包的缺点也很明显，由于被返回的函数会持有父级函数的作用域的变量，这会阻止垃圾回收机制的运行，会带来内存的消耗。尤其在IE中可能导致内存泄露。
-
-解决方法是，在退出函数之前，将不使用的局部变量全部删除。 <sup>[1]</sup>
-
-## 手动回收变量
-
-上一节说到手动清除无需再使用的变量，那么如何清除呢？
-
-js有一个`delete`方法，但这个方法仅仅可以用来删除对象的属性的引用，注意，这个`delete` 操作符与直接释放内存（只能通过解除引用来间接释放）并没有关系。
-
-简单的做法, 将其设置成 `null` 或者 `undefined`。
-
-## 再说一次优点
-
-综上，只要合理把控内存的问题，我们没有理由不使用闭包：
-
-- 避免全局变量
-- 可以实现模块化
-- 可以用来创建类
+希望这篇文章能帮助你理解JavaScript事件委托的幕后原理，希望你也感受到了事件委托的强大用处！
