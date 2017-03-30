@@ -1,8 +1,10 @@
 # 详解JavaScript闭包
+- 标签： `JavaScript`
+- 时间： `2016-3-30`
 
 ## 前言
 
-this、prototype和closure(闭包)，可能是JS成人礼的基础，今天，特地来总结一下闭包的概念。
+`this`、`prototype`和`closure`(闭包)，可能是`JavaScript`成人礼的必备武器，用了这么久，今天，特地来总结一下闭包的概念和它的好处。
 
 ## JS的作用域链
 
@@ -115,8 +117,7 @@ countAdd(); // 2
 
 js有一个`delete`方法，但这个方法仅仅可以用来删除对象的属性的引用，注意，这个`delete` 操作符与直接释放内存（只能通过解除引用来间接释放）并没有关系。
 
-简单的做法, 将其设置成 `null` 或者 `undefined`
-
+简单的做法, 将其设置成 `null` 或者 `undefined`。
 
 ## 再说一次优点
 
