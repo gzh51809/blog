@@ -97,32 +97,36 @@ console.log(new Date, i)
 
 虽然用`setTimeout`可以实现, 这里我们选择使用`ES6`的`promise`来实现：
 
+!> 注: 这里和原作者的答案有些不同，原作者给出的 [答案](https://zhuanlan.zhihu.com/p/25855075) 定义了过多全局变量，我这里把全局变量`tasks`和`i`都放到了闭包里面。
+
 ```js
 function output(i) {
-	return new Promise((resovle)=> {
-		setTimeout(()=> {
+	return new Promise((resovle) => {
+		setTimeout(() => {
 			console.log(new Date, i)
 			resovle(i)
-		}, i*1000)
-	}) 
+		}, i * 1000)
+	})
 }
 
 function outputTask() {
 	const tasks = [];
 	for (let i = 0; i < 5; i++) {
-    	tasks.push(output(i))
-    }
-    return Promise.all(tasks)
+		tasks.push(output(i))
+	}
+	return Promise.all(tasks)
 }
 
-outputTask().then((iCollection)=> {
+outputTask().then((iCollection) => {
 	let i = iCollection.pop() + 1
-	setTimeout(()=> {
-    	console.log(new Date, i)
-    }, 1000)
+	setTimeout(() => {
+		console.log(new Date, i)
+	}, 1000)
 })
 
 ```
+
+## 考察 async
 
 
 
