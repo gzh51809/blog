@@ -25,9 +25,9 @@
 
 - 解决方案：`fastclick.js`
 
-## commonJS实现的大致原理
+## CommonJS实现的大致原理
 
-## commonjs和ES6的模块机制有什么区别？
+## Commonjs和ES6的模块机制有什么区别？
 
 ## React Virtual DOM 算法原理
 
