@@ -95,8 +95,30 @@ var a = 1;
 function fa() {
 	var b = 2;	
 	// Scope B
+	function fb() {
+		// Scope C
+	    b = b * b;
+	    return b;
+	}
+	return fb()
 }
 ```
 
-上述代码就形成了一个作用域链：`Scope A ->  Scope B`。
+上述代码就形成了一个作用域链：`Scope A -> Scope B -> Scope C`。显而易见，在` Scope B`中可以访问` Scope A`中的变量，在 `Scope C` 中可以访问 `Scope A` 和 `Scope B` 中的变量。反过来则不行。
+
+最后一行的`return fb()`很关键，如果我们在外部运行`fa()`，如：
+
+```js
+var ins = fa();
+```
+
+那么实际上`ins`就持有了`fb`的引用了，于是，`ins`也就持有了`fa`中局部变量的引用————这就是闭包！！！
+
+其实上述的代码，我们完全可以直接`return b*b;`, 那么采用闭包的好处到底在哪里？
+
+
+
+
+
+
 
