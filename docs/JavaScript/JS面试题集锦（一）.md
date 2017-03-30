@@ -88,8 +88,11 @@ console.log(new Date, i)
     console.log(new Date, i);
 ```
 
+!> 关于闭包的更多知识，可以看我写的这篇文章：[详解JavaScript闭包](/JavaScript/详解JavaScript闭包.md)
 
+## 考察Promise
 
+如果期望输出
 
 
 
