@@ -123,7 +123,6 @@
 </body>
 ```
 
-
 ## 移动端touch事件和click事件的区别
 
 以下是四种touch事件
@@ -142,7 +141,7 @@
 
 ## CommonJS实现的大致原理
 
-
+请看我写的这个简易版的 CommonJS 的实现： [alone.js](https://github.com/toxichl/alone.js)
 
 ## Commonjs和ES6的模块机制有什么区别？
 
