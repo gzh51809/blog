@@ -5,7 +5,6 @@
 - [Lodash必备技巧](/JavaScript/Lodash必备技巧.md)
 - [forEach循环的一些黑点](/JavaScript/forEach循环的一些黑点.md)
 - [JS面试题集锦（一）](/JavaScript/JS面试题集锦（一）.md)
-- [JS面试题集锦（二）](/JavaScript/JS面试题集锦（二）.md)
 - [深入剖析JavaScript事件委托的原理](/JavaScript/深入剖析JavaScript事件委托的原理.md)
 
 

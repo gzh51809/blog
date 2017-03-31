@@ -4,10 +4,21 @@
 
 ## AngularJS的双向绑定是如何实现的？
 
+脏检查
+
 大致原理：保存数据的新旧值，每当有一些DOM或者网络、定时器之类的事件产生，用这个事件之后的数据去跟之前保存的数据进行比对，如果相同，就不触发界面刷新，否则就刷新。
 
+## Vue的核心
+
+- 响应式的数据绑定系统
+- 组件系统
+
 ## Vue的双向绑定是如何实现的？
-观察者模式
+
+[~](http://www.cnblogs.com/kidney/p/6052935.html?utm_source=gold_browser_extension)
+
+- 观察者模式
+- 代理模式（Object.defineProperty()）
 
 ## 移动端touch事件和click事件的区别
 
