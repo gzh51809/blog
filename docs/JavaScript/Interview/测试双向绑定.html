@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<input v-model="title"></input>
+<div v-bind="title"></div>
+
+<script>
+	var title = 123;
+
+	let refs = document.querySelectorAll('[v-model]')
+	let binds = document.querySelectorAll('[v-bind]')
+
+	refs.forEach(ref => {
+		let _data = ref.getAttribute('v-model')
+		if (this[_data]) {
+			ref.value = this[_data]
+			binds.forEach(bind =>　{
+				if(bind.getAttribute('v-bind') === _data) {
+					bind.innerHTML = this[_data]
+				}
+			})
+		}
+		ref.addEventListener()
+	})
+
+
+</script>
+
+</body>
+</html>

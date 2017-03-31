@@ -15,7 +15,10 @@
 
 ## Vue的双向绑定是如何实现的？
 
-[~](http://www.cnblogs.com/kidney/p/6052935.html?utm_source=gold_browser_extension)
+[~](ttp://www.cnblogs.com/kidney/p/6052935.html?utm_source=gold_browser_extension)
+
+简单来说，就是观察者 + 订阅者 + 模板渲染
+视图模型作为一个订阅者，订阅了视图 
 
 - 观察者模式
 - 代理模式（Object.defineProperty()）
