@@ -23,7 +23,6 @@
 - 观察者模式
 - 代理模式（Object.defineProperty()）
 
-
 一个极其简单的双向绑定演示：
 
 ```html
@@ -125,8 +124,6 @@
 ```
 
 
-
-
 ## 移动端touch事件和click事件的区别
 
 以下是四种touch事件
@@ -145,7 +142,11 @@
 
 ## CommonJS实现的大致原理
 
+
+
 ## Commonjs和ES6的模块机制有什么区别？
+
+最大的区别在于 Commonjs 是运行时加载，ES6是编译时加载
 
 ## React Virtual DOM 算法原理
 
