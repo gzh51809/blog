@@ -10,6 +10,7 @@
 <div v-bind="title"></div>
 
 <script>
+
 	var title = 123;
 
 	let refs = document.querySelectorAll('[v-model]')
@@ -17,6 +18,7 @@
 
 	refs.forEach(ref => {
 		let _data = ref.getAttribute('v-model')
+		// 初始化
 		if (this[_data]) {
 			ref.value = this[_data]
 			binds.forEach(bind =>　{
@@ -25,9 +27,15 @@
 				}
 			})
 		}
-		ref.addEventListener()
+		// 监听数据的变化
+		ref.addEventListener('input', ()=> {
+			binds.forEach(bind =>　{
+				if(bind.getAttribute('v-bind') === _data) {
+					bind.innerHTML = ref.value
+				}
+			})
+		}, false)
 	})
-
 
 </script>
 

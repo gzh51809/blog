@@ -23,6 +23,110 @@
 - 观察者模式
 - 代理模式（Object.defineProperty()）
 
+
+一个极其简单的双向绑定演示：
+
+```html
+<body>
+
+<input v-model="title"></input>
+<div v-bind="title"></div>
+
+<script>
+
+	var title = 123;
+
+	let refs = document.querySelectorAll('[v-model]')
+	let binds = document.querySelectorAll('[v-bind]')
+
+	refs.forEach(ref => {
+		let _data = ref.getAttribute('v-model')
+		// 初始化
+		if (this[_data]) {
+			ref.value = this[_data]
+			binds.forEach(bind =>　{
+				if(bind.getAttribute('v-bind') === _data) {
+					bind.innerHTML = this[_data]
+				}
+			})
+		}
+		// 监听数据的变化
+		ref.addEventListener('input', ()=> {
+			binds.forEach(bind =>　{
+				if(bind.getAttribute('v-bind') === _data) {
+					bind.innerHTML = ref.value
+				}
+			})
+		}, false)
+	})
+
+</script>
+
+</body>
+```
+
+或者采用`ES5`的`getter、setter` 再结合 代理模式:
+
+```html
+<body>
+
+<input v-model="title"/>
+<div v-bind="title"></div>
+<button class="change">Random Change</button>
+<script>
+
+	var title = 123;
+
+	let refs = document.querySelectorAll('[v-model]')
+	let binds = document.querySelectorAll('[v-bind]')
+
+	// 中间代理对象
+	let proxy = {};
+
+	refs.forEach(ref => {
+
+		let _value = ref.getAttribute('v-model')
+
+		Object.defineProperty(proxy, _value, {
+
+			get: function () {
+				return this[_value]
+			}.bind(this),
+
+			set: function (value) {
+				this[_value] = value;
+				ref.value = value;
+				binds.forEach(bind =>　{
+					if(bind.getAttribute('v-bind') === _value) {
+						bind.innerHTML = proxy[_value]
+					}
+				})
+			}.bind(this)
+
+		})
+
+		if(this[_value]) {
+			proxy[_value] = this[_value];
+		}
+
+		// 监听数据的变化
+		ref.addEventListener('input', ()=> {
+			proxy[_value] = ref.value;
+		}, false)
+	})
+
+	document.getElementsByClassName('change')[0].addEventListener('click', ()=> {
+		proxy.title = Math.random() * 1000;
+	}, false)
+
+</script>
+
+</body>
+```
+
+
+
+
 ## 移动端touch事件和click事件的区别
 
 以下是四种touch事件
