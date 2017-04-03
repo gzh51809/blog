@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<script src="//cdn.bootcss.com/lodash.js/4.17.4/lodash.js"></script>
+	<title>JS Bin</title>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+
+<div id="app">
+	<children>
+		<span>12345</span>
+		<!--上面这行不会显示-->
+	</children>
+</div>
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    components: {
+      children: {    //这个无返回值，不会继续派发
+        template: "<button>为了明确作用范围，所以使用button标签</button>"
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
