@@ -11,6 +11,7 @@
     - [AngularJS（3）](/AngularJS/)
 	- [Node.js（1）](/Node/)
 	- [设计模式（1）](/DesignPattern/)
+	- [前端工程化（1）](/FE-Engineering/)
 	- [书签(4)](/Bookmarks/)
 	- [CSS（1）](/CSS/)
 	- [Design（0）](/Design/)
