@@ -9,6 +9,6 @@
 - [前端面试指南](/JavaScript/前端面试指南.md)
 - [深入剖析JavaScript事件委托的原理](/JavaScript/深入剖析JavaScript事件委托的原理.md)
 - [前端工程师应该了解的算法](/JavaScript/前端工程师应该了解的算法.md)
-- [你不需要JQuery(转)](/JavaScript/你不需要JQuery(转).md)
+- [你不需要JQuery(转)](/JavaScript/你不需要JQuery.md)
 
 
