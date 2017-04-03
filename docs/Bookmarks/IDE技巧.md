@@ -51,7 +51,7 @@ cmd /k "%ConEmuDir%\..\init.bat"  -new_console:d:D:\
 	p = push
 	pu = push -u origin master
 	st = status
-  ck = checkout
+    ck = checkout
 	br = branch
 	addre = remote add origin
 	confg = config --global
