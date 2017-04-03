@@ -4,8 +4,8 @@
 
 name|desc|link
 ---|---|---
-lodash|非常实用的库|
-c|d|
+lodash|非常实用的库| [Github](https://github.com/jashkenas/underscore) 
+underscore|同上| [Github](https://github.com/lodash/lodash) 
 c|d|
 
 
