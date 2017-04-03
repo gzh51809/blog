@@ -2,7 +2,7 @@
 - 标签： `JavaScript`
 - 时间： `2016-3-10`
 
-- 题目来 自 [`https://zhuanlan.zhihu.com/p/25855075`](https://zhuanlan.zhihu.com/p/25855075) (转载请注明原作者)
+- 题目来自 [`https://zhuanlan.zhihu.com/p/25855075`](https://zhuanlan.zhihu.com/p/25855075) (转载请注明原作者即可)
 - 本文在在原作者的解答基础上，优化了部分代码。
 
 ## 考察定时器
