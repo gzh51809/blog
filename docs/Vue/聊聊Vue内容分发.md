@@ -60,14 +60,24 @@ var vm = new Vue({
         components: {  
             children: {    
                 template: 
-                   "<div>" +
+                   "<ul>" +
                        "<slot name='header'></slot>" +
                        "<li>I am contet</li>" +
                        "<slot name='footer'></slot>" +
-                    "</div>"
+                    "</ul>"
             }  
         }  
     });  
+```
+
+最终，生成的html如下；
+
+```html
+<ul>
+    <li>I am header</li>
+    <li>I am contet</li>
+    <li>I am footer</li>
+</ul>
 ```
 
 实际上，开源UI库`iview`在其`modal`中就用到了这种思路，可以设置默认的`header`和`footer`,但是用户又可以自定义。这样的功能，对于组件化编程来说，是不是如虎添翼？
