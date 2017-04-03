@@ -4,7 +4,7 @@
 
 简单来说，假如父组件需要在子组件内放一些DOM，那么这些`DOM`哪些显示、不显示，在何处显示、如何显示，就是通过`slot`分发实现。
 
-## 默认情况
+## 起步
 
 默认情况下，父组件在子组件内套的内容，是不显示的。[jsbin在线](http://jsbin.com/xacarey/edit?html,js,output)
 
@@ -22,8 +22,24 @@
         el: '#app',
         components: {  
             children: {  
-                template: "<button>Children Template</button>"  
+                template: "<div>Children Template</div>"  
             }  
         }  
     });  
 ```
+
+那么如何才能够显示呢？修改一下`children`的`template`如下：
+```html
+template: '<div><slot></slot>Children Template</div>'
+```
+
+最终渲染出来的结果将会是这样：
+
+```html
+<div><span>我想要在子组件中显示</span>Children Template</div>
+```
+
+## 具名slot
+
+上述的例子中，我们在子组件中注入`<slot></slot>`非常轻松地实现了内容分发，那么
+
