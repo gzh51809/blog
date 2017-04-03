@@ -9,7 +9,7 @@
 	- [CSS（1）](/CSS/)
 	- [TypeScript(1)](/TypeScript/)
 	- [Design（0）](/Design/)
-	- [Vue（0）](/Vue/)
+	- [Vue（1）](/Vue/)
 	- [React（1）](/React/)
 	- [AngularJS（3）](/AngularJS/)
 	- [Node.js（0）](/Node/)
