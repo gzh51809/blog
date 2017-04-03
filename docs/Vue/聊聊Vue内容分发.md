@@ -84,3 +84,6 @@ var vm = new Vue({
 
 ## 对比AngularJS和React
 
+- `ng1`的自定义指令中有一个`transclude`参数，可以实现类似的功能（但是本人亲测有作用域的坑）。
+- React就更直观了，在子组件中可以通过`this.props.children`来访问父组件分发的内容。
+
