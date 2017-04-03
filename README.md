@@ -1,21 +1,9 @@
-# v2js
+# blog
 
-Welcome to my Blog！ [Qucik Start!](https://toxichl.github.io/v2js)
+## Welcome to my Blog！ [www.v2js.com/blog](https://toxichl.github.io/v2js)
 
-## Catelogue
+本博客遵循：[署名-非商业性使用-禁止演绎 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh)
 
-- [JavaScript（1）](docs/JavaScript/)
-- [Design（0）](docs/Design/)
-- [Vue（0）](docs/Vue/)
-- [Node.js（0）](docs/Node/)
-- [DDD（0）](docs/DDD/)
-- [CSS（0）](docs/CSS/)
-- [AngularJS（3）](docs/AngularJS/)
-- [RegExp（2）](docs/RegExp/)
-
-> 
-
-## 
 
 
 
