@@ -10,9 +10,9 @@
 
 ```html
 <div id="app">  
-    <children>  
-        <span>12345</span>  
-        <!--上面这行不会显示-->  
+    <children>
+        <!--然而你想要显示得子组件允许你显示才行，所以在子组件无任何设置前提下，这里不会显示-->
+        <span>我想要在子组件中显示</span>  
     </children>  
 </div> 
 ```
@@ -21,8 +21,8 @@
  var vm = new Vue({  
         el: '#app',
         components: {  
-            children: {    //这个无返回值，不会继续派发  
-                template: "<button>为了明确作用范围，所以使用button标签</button>"  
+            children: {  
+                template: "<button>Children Template</button>"  
             }  
         }  
     });  
