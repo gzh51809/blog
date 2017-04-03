@@ -66,6 +66,7 @@ document.getElementById("myDiv").addEventListener("click",function(e) {
 	}
 });
 ```
+
 上面这个例子中不仅比较了标签名，而且比较了CSS类名。虽然稍微复杂了一点，但还是很具代表性的。比如，如果某个A标记里有一个span标记，则这个span将会成为target元素。这个时候，我们需要上溯DOM树结构，找到里面是否有一个 A.classA 的元素。
 
 因为大部分程序员都会使用jQuery等工具库来处理DOM元素和事件，我建议大家都使用里面的事件委托方法，因为这里工具库里都提供了高级的委托方法和元素甄别方法。
