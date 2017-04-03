@@ -43,3 +43,34 @@ template: '<div><slot></slot>Children Template</div>'
 
 上述的例子中，我们在子组件中注入`<slot></slot>`非常轻松地实现了内容分发，但是，当我们需要指定分发内容的位置的时候，这种方式就显得无能为力了。此时，我们需要——`具名slot`。
 
+来一个很直观例子：
+
+```html
+<div id="app">  
+    <children>  
+        <li slot="header">I am header</span>  
+        <li slot="footer">I am footer</span>  
+    </children>  
+</div>  
+```
+
+```js
+var vm = new Vue({  
+        el: '#app',  
+        components: {  
+            children: {    
+                template: 
+                   "<div>" +
+                       "<slot name='header'></slot>" +
+                       "<li>I am contet</li>" +
+                       "<slot name='footer'></slot>" +
+                    "</div>"
+            }  
+        }  
+    });  
+```
+
+实际上，开源UI库`iview`在其`modal`中就用到了这种思路，可以设置默认的`header`和`footer`,但是用户又可以自定义。这样的功能，对于组件化编程来说，是不是如虎添翼？
+
+## 对比AngularJS和React
+
