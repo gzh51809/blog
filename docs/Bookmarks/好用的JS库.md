@@ -8,8 +8,7 @@ lodash|非常实用的库| [Github](https://github.com/jashkenas/underscore)
 underscore|同上| [Github](https://github.com/lodash/lodash) 
 
 
-
-## 1
+## canvas相关
 
 a|b
 ---|---
@@ -18,7 +17,6 @@ a|b
 
 
 ## Node.js 相关
-
 
 name|desc|link
 ---|---|---
