@@ -1,6 +1,7 @@
 - [目录](/JavaScript/)
 - [JS原型超详细讲解](/JavaScript/JS原型超详细讲解.md)
 - [详解DOM事件绑定和事件冒泡](/JavaScript/详解DOM事件绑定和事件冒泡.md)
+- [关于JavaScript的类与继承](/JavaScript/关于JavaScript的类与继承.md)
 - [详解JavaScript闭包](/JavaScript/详解JavaScript闭包.md)
 - [Lodash必备技巧](/JavaScript/Lodash必备技巧.md)
 - [forEach循环的一些黑点](/JavaScript/forEach循环的一些黑点.md)
