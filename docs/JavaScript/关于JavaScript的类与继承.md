@@ -138,7 +138,63 @@ var instance = new Child();
 虽然这种方式很好地弥补了上述两种方式的缺陷，但是，本方法很明显执行了两次父类的构造函数，因此，这也不是我们最终想要的继承方式。
 
 
-### 组合式继承
+### 原型继承
+
+原型继承实际上是对类似继承的一种封装，只不过其独特之处在于，定义了一个干净的中间类，如下：
+
+```js
+function protoInherit(o) {
+    function _F() {
+
+    }
+    _F.prototype = o;
+    return new _F();
+}
+```
+
+### 寄生继承
+
+依托于一个对象而生的一种继承方式，谓之寄生。
+
+```js
+var computer = {
+    cpu: 'i7 7700U',
+    ram: '32G'
+}
+
+function CreateComputer(obj) {
+    var o = protoInherit(obj);
+     o.getCpu = function () {
+        return this.cpu;
+    }
+    return o;
+}
+
+var myComputer = new CreateComputer(computer);
+```
+
+### 寄生组合
+
+```js
+// 原型继承
+function protoInherit(object) {
+    function p() {}
+    p.prototype = object;
+    return new p();
+}
+function inherit(child, parent) {
+    // 继承父类的原型
+    var p = protoInherit(parent.prototype);
+    // 重写子类的原型
+    child.prototype = p;
+    // 重写被污染的子类的constructor
+    p.constructor = child;
+}
+```
+
+寄生组合式继承仍然需要结合构造函数式继承。
 
 
+## ES6的继承
 
+ES6
