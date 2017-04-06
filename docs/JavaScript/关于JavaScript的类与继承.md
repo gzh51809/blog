@@ -45,9 +45,18 @@ Coder.work = function() {
 }
 ```
 
+!> 值得注意的是，我们一般都会把共有方法放在类的原型上，因为只有这样，才能让多个实例引用同一个共有方法，从而降低性能的损耗
+
+```js
+// 将共有方法定义在类的原型上
+Coder.prototype.coding = function () {
+	console.log('Coding')
+}
+```
+
 ## 类的继承
 
-如何实现类的继承呢？方法有很多：
+在`JavaScript`中，如何实现类的继承呢？方法有很多，如下：
 
 - 构造函数式继承
 - 类式继承
@@ -56,4 +65,37 @@ Coder.work = function() {
 - 寄生式继承
 - 寄生组合式继承
 
+接下来一一分析：
 
+### 构造函数式继承
+
+由于，若通过`new Parent()`创建了`Child`,则 `Child.__proto__ = Parent.prototype`，而原型链则是顺着`__proto__`依次向上查找。因为，可以通过修改子类的原型为父类的实例来实现继承。如下：
+
+```js
+// 定义一个父类
+function Parent() {
+  this.name = 'Parent'
+}
+// 
+Parent.prototype.getName = function() {
+  return this.name
+}
+function Child() {
+  this.age = 23
+}
+Child.prototype = new Parent()
+```
+
+```js
+{
+  age: 23,
+  __proto__: {
+    name: 'Parent',
+    __proto__: {
+      getName: function() {
+        
+      }
+    }
+  }
+}
+```
