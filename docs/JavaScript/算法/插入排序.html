@@ -8,21 +8,25 @@
 
 <script>
 
-	//
-    var row = 10,
-        array = new Array()
+    var source = [132, 43, 154, 76, 23]
 
-    for (let i = 0; i < row; i++) {
-        array[i] = new Array()
-        for (var j = 0; j < i + 1; j++) {
-            if (i === 0 || j === 0 || j === i) {
-                array[i][j] = 1
-            } else {
-                array[i][j] = array[i - 1][j - 1] + array[i - 1][j]
+    function sort(arr) {
+        var l = arr.length
+        for (var i = 0; i < l - 1; i++) {
+            var index = 0
+            for (var j = 1; j < l - 1; j++) {
+                if (arr[index] < arr[j]) {
+                    index = j
+                }
             }
+            var temp = arr[l - i - 1]
+            arr[l - i - 1] = arr[index]
+            arr[index] = temp
         }
-        console.log(array[i])
+        return a
     }
+
+    console.log(sort(source))
 
 </script>
 </body>
