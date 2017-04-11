@@ -1,4 +1,6 @@
 ## You Don't Need jQuery(转)
+- 标签： `JavaScript`
+- 时间： `2016-3-15`
 
  [原文链接](https://github.com/oneuijs/You-Dont-Need-jQuery/blob/master/README.zh-CN.md)
 

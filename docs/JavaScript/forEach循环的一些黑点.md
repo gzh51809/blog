@@ -1,4 +1,6 @@
 # forEach循环的一些黑点
+- 标签： `JavaScript`
+- 时间： `2016-3-7`
 
 ## forEach
 ```js
