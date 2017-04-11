@@ -14,7 +14,7 @@
         var l = arr.length
         for (var i = 0; i < l - 1; i++) {
             var index = 0
-            for (var j = 1; j < l - 1; j++) {
+            for (var j = 1; j < l - i; j++) {
                 if (arr[index] < arr[j]) {
                     index = j
                 }
@@ -22,8 +22,9 @@
             var temp = arr[l - i - 1]
             arr[l - i - 1] = arr[index]
             arr[index] = temp
+
         }
-        return a
+        return arr
     }
 
     console.log(sort(source))
