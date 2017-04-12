@@ -60,7 +60,29 @@
 .triangle {
     width: 0;
     height: 0;
-    bordet-left: 50px solid transparent;
-    bordet-right: 50px solid transparent;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
     border-bottom: 100px solid red;
+}
+
+.tri-border {
+    width: 100px;
+    height: 100px;
+    border: 50px solid #ddd;
+}
+
+.tri-border-real {
+    width: 100px;
+    height: 100px;
+    border-left: 50px solid #f00;
+    border-right: 50px solid #0f0;
+    border-bottom: 50px solid #00f;
+    border-top: 50px solid #000;
+}
+
+.tri{
+    width: 0px;
+    height: 0px;
+    border-right: 50px solid transparent;
+    border-top: 50px solid #000;
 }
