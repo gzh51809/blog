@@ -1,10 +1,66 @@
-.wrapper{
-
+.item-wrapper {
+    zoom: 1;
 }
+
+.item-wrapper:after {
+    clear: both;
+    display: block;
+    width: 0;
+    height: 0;
+    content: '';
+    visibility: hidden;
+}
+
 .item {
     float: left;
     width: 30%;
     height: 100px;
     background: #aaa;
     margin: 10px;
+}
+
+.square1 {
+    width: 200px;
+    height: 200px;
+    background: #aaaaaa;
+}
+
+.square2 {
+    width: 50%;
+    padding-bottom: 50%;
+    background: #aaaaaa;
+    position: relative;
+    font-size: 0;
+}
+
+.square2 .son {
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    background: #ff8888;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.square3 {
+    width: 25%;
+    overflow: hidden; /* 必须设置，否则视图会塌陷 */
+    background: #ff8888;
+}
+
+.square3:after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    bordet-left: 50px solid transparent;
+    bordet-right: 50px solid transparent;
+    border-bottom: 100px solid red;
 }
