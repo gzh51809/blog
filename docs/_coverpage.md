@@ -16,5 +16,5 @@
 - TypeScript & Vue & ng ... 
 - OpenSource Coding ... 
 
-[GitHub](https://github.com/toxichl/FED-blog)
+[GitHub](https://github.com/toxichl/blog)
 [Get Started](/README.md)
