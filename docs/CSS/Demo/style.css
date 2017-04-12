@@ -1,0 +1,10 @@
+.wrapper{
+
+}
+.item {
+    float: left;
+    width: 30%;
+    height: 100px;
+    background: #aaa;
+    margin: 10px;
+}
