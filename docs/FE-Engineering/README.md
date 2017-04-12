@@ -1,5 +1,5 @@
-# Hybird APP
-本专栏主要研究`React Native`、`Weex`、`Cordova`等`Hibird App`技术。
+# 前端工程化
+本专栏主要研究前端工程化、前端性能优化，以及各大Web开发框架的
 
 !> 更新公告：近期将更新`Weex入坑指南`。
 
