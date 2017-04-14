@@ -109,7 +109,7 @@
 ### 引用类型的赋值 = 浅复制 
 
 ```js
-	// 测试5 - 浅复制
+	// 测试5 - 对象的浅复制
 	
     let obj1 = {
         name: {
@@ -132,19 +132,23 @@
 实际上，我们还可以对`Array`和`Function`进行相同的测试：
 
 ```js
+	// 测试6 - 数组的浅复制
 	let arr1 = [1, 2, 3, 4, 5]
     let arr2 = arr1
     arr2[0] = 0
     console.log(arr1) // [0, 2, 3, 4, 5]
 
-    // 最后，再来测试一下函数
+
+```
+
+```js
+	// 测试7 - 函数的浅复制
     function Fn(name) {
         this.name = name
     }
     Fn.prototype.getName = function () {
         return this.name
-    }
-
+    
     var Fnn = Fn
     Fnn.prototype.getName = function () {
         return `${this.name} - new`
