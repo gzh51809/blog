@@ -8,10 +8,18 @@
 
 <script>
 
+    // 测试值类型的赋值是复制了该值
+
     let num1 = 1994
     let num2 = 1994
 
     console.log(num1 === num2) // true
+
+    // 测试 == 和 === 的差异
+    let str = '1994'
+    let num = 1994
+    console.log(str == num)  // true
+    console.log(str === num) // false
 
     let ob1 = {
         name: 'toxichl'
