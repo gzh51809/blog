@@ -106,10 +106,10 @@
 
 接下来，我们以三个例子来引入今天的话题：
 
-### 引用类型的赋值 = 浅复制 
+### 引用类型的赋值
 
 ```js
-	// 测试5 - 对象的浅复制
+	// 测试5 - 对象的赋值
 	
     let obj1 = {
         name: {
@@ -132,7 +132,7 @@
 实际上，我们还可以对`Array`和`Function`进行相同的测试：
 
 ```js
-	// 测试6 - 数组的浅复制
+	// 测试6 - 数组的赋值
 	let arr1 = [1, 2, 3, 4, 5]
     let arr2 = arr1
     arr2[0] = 0
@@ -142,7 +142,7 @@
 ```
 
 ```js
-	// 测试7 - 函数的浅复制
+	// 测试7 - 函数的赋值
     function Fn(name) {
         this.name = name
     }
@@ -162,8 +162,53 @@
 ```
 
 ### 浅拷贝
+
+为了真正复制一个对象的方法和属性，我们首先可以想到这种方式：
+
+```js
+	// 测试8 - 浅拷贝的第一种写法
+	function clone(object) {
+		let __ob__ = new Object()
+		for (let key in object) {
+			__ob__[key] = object[key]
+		}
+		return __ob__
+	}
+```
+
+此外，如果你习惯了寄生继承，你也可以写出这种方式：
+```js
+	// 测试9 - 浅拷贝的另一种写法
+
+    // 浅拷贝
+    function clone(object) {
+        let fn = function() {}
+        fn.prototype = object
+        return new fn()
+    }
+```
+
 ```js
 
+
+
+    let obj1 = {
+        name: {
+            firstName: 'You',
+            lastName: 'Evan'
+        },
+        age: 29
+    }
+    
+    let obj2 = clone(obj1)
+
+    console.log(obj1 == obj2) // false
+
+    obj2.age = 23
+    console.log(obj1.age) // 29
+
+    obj2.name.firstName = 'Chen'
+    console.log(obj1.name.firstName) // 'Chen'
 ```
 
 
