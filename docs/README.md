@@ -3,7 +3,7 @@
 ---
 
 - 前端部分
-	- [JavaScript（12）](/JavaScript/)
+	- [JavaScript（13）](/JavaScript/)
 	- [ES6（11）](/ES6/)
 	- [TypeScript（1）](/TypeScript/)
 	- [Vue（1）](/Vue/)
