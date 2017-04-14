@@ -2,11 +2,9 @@
 - 标签： `JavaScript`
 - 时间： `2016-4-14`
 
-> 本文主要探讨JavaScript中的引用类型和值类型
-
+> 本文主要探讨JavaScript中的引用类型和值类型，并假设您具有一定的面向对象编程的思维。
 
 ## 前置知识
-
 
 ### JavaScript中的类型
 
@@ -14,10 +12,16 @@
 
 根据`ECMAScript`的标准，JavaScript的类型定义如下：
 
-- `5`种简单的数据类型：string、number、boolean、null、undefined
-- `1`种复杂的数据类型：object
+- `5`种简单的数据类型：String、Number、Boolean、null、undefined
+- `1`种复杂的数据类型：Object
 
+`typeof`操作符可能会返回如下字符串：
 
+- undefined  （`null`）
+- boolean  (`Boolean`的实例)
+- number  (`Number`的实例)
+- object （`Object/Array/RegExp/Date`的实例，或者`null`）
+- function    (`Function`的实例)
 
 
 #### 
