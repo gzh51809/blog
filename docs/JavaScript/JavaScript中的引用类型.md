@@ -188,10 +188,9 @@
     }
 ```
 
+实际上述两种方式的实现是一样的，虽然
+
 ```js
-
-
-
     let obj1 = {
         name: {
             firstName: 'You',
@@ -202,13 +201,13 @@
     
     let obj2 = clone(obj1)
 
-    console.log(obj1 == obj2) // false
+    console.log(obj1 == obj2) // false，确实是重新创建了对象
 
     obj2.age = 23
-    console.log(obj1.age) // 29
+    console.log(obj1.age) // 29，如果第一层的子属性是值类型，因为已经重新创建，所以不存在公用的问题
 
     obj2.name.firstName = 'Chen'
-    console.log(obj1.name.firstName) // 'Chen'
+    console.log(obj1.name.firstName) // 'Chen'，如果第一层的子属性是引用类型，因为已经重新创建，所以不存在公用的问题
 ```
 
 
