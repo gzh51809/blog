@@ -7,21 +7,31 @@
 <body>
 
 <script>
-    let YYX = {
+    let obj1 = {
         name: {
             firstName: 'You',
             lastName: 'Evan'
         },
         age: 29,
         actions: {
-            speak: function() {
+            speak: function () {
                 console.log('Speak')
             },
-            walk: function() {
+            walk: function () {
                 console.log('Walk')
             }
         }
     }
+
+    let obj2 = obj1;
+
+//    console.log(obj1)
+//    console.log(obj2)
+
+    obj2.name.firstName = 'Chen'
+    console.log(obj1.name.firstName) // 对象2无意的修改同时也影响了对象1
+
+
 </script>
 
 </body>
