@@ -10,9 +10,9 @@
 
 #### ECMAScript标准
 
-根据`ECMAScript`的标准，JavaScript的类型定义如下：
+根据`ECMAScript`的标准（参考《JavasCript高级程序设计》），JavaScript的类型定义如下：
 
-- `5`种简单的数据类型：String、Number、Boolean、null、undefined
+- `5`种基本的数据类型：String、Number、Boolean、null、undefined
 - `1`种复杂的数据类型：Object
 
 `typeof`操作符可能会返回如下字符串：
@@ -24,9 +24,9 @@
 - function    (`Function`的实例)
 
 
-#### 
+#### 值类型和引用类型 
 
-- 值类型：
+- 值类型：实际上就是5种基本的数据类型：String、Number、Boolean、null、undefined
 - 引用类型：object、array、function
 
 由于本对于值对象类型，`===`表示两者的值相等，对于引用类型，表示两者所引用的变量所在的内存地址相同，也就是说，即使两个完全相同的对象，他们也不是`===`的关系,请看下述的例子：
