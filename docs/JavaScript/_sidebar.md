@@ -2,7 +2,7 @@
 - [JS原型超详细讲解](/JavaScript/JS原型超详细讲解.md)
 - [前端工程师应该了解的算法](/JavaScript/前端工程师应该了解的算法.md)
 - [关于JavaScript的类与继承](/JavaScript/关于JavaScript的类与继承.md)
-- [JavaScript中的引用类型](/JavaScript/JavaScript中的引用类型.md)
+- [引用类型与深浅克隆问题](/JavaScript/引用类型与深浅克隆问题.md)
 - [函数声明和函数表达式](/JavaScript/函数声明和函数表达式.md)
 - [详解DOM事件绑定和事件冒泡](/JavaScript/详解DOM事件绑定和事件冒泡.md)
 - [详解JavaScript闭包](/JavaScript/详解JavaScript闭包.md)
