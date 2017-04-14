@@ -12,24 +12,16 @@
             firstName: 'You',
             lastName: 'Evan'
         },
-        age: 29,
-        actions: {
-            speak: function () {
-                console.log('Speak')
-            },
-            walk: function () {
-                console.log('Walk')
-            }
-        }
+        age: 29
     }
 
     let obj2 = obj1;
 
-    //    console.log(obj1)
-    //    console.log(obj2)
+    obj2.name.firstName = 'Chen';
 
-    obj2.name.firstName = 'Chen'
-    console.log(obj1.name.firstName) //
+    console.log(obj1 === obj2) // true
+
+    console.log(obj1.name.firstName) // Chen
 
     // 得出结论: 对象的赋值只是浅复制，
 
@@ -44,6 +36,23 @@
     console.log(arr1) // [0, 2, 3, 4, 5]
 
     // 最后，再来测试一下函数
+    function Fn(name) {
+        this.name = name
+    }
+    Fn.prototype.getName = function () {
+        return this.name
+    }
+
+    var Fnn = Fn
+    Fnn.prototype.getName = function () {
+        return `${this.name} - new`
+    }
+
+    console.log(Fnn === Fn) // true
+
+    var ins = new Fn('Chen')
+    console.log(ins.getName()) // Chen - new
+
 
 </script>
 
