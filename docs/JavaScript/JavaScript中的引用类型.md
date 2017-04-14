@@ -148,8 +148,9 @@
     }
     Fn.prototype.getName = function () {
         return this.name
+    }
     
-    var Fnn = Fn
+    let Fnn = Fn
     Fnn.prototype.getName = function () {
         return `${this.name} - new`
     }
@@ -160,6 +161,11 @@
     console.log(ins.getName()) // Chen - new
 ```
 
+### 浅拷贝
+```js
+
+```
 
 
+### 深拷贝
 
