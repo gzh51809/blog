@@ -3,6 +3,7 @@
 - 时间： `2016-3-7`
 
 ## forEach
+
 ```js
 var flagArray = [
   false,
@@ -45,6 +46,7 @@ console.log('result: ' + check(flagArray))
 
 
 ## for循环
+
 ```js
 var flagArray = [
   false,
@@ -86,6 +88,7 @@ console.log(check(flagArray))
 
 
 ## for...in
+
 ```js
 var flagArray = [
   false,
@@ -125,6 +128,7 @@ console.log('result: ' + check(flagArray))
 ```
 
 ## ES6 - for...of
+
 ```js
 var flagArray = [
   false,

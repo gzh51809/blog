@@ -8,9 +8,9 @@
 
 ## 1 引入：普通对象与函数对象
 
-在JavaScript中，一直有这么一种说法，万物皆对象。在此前，我对这句话总是半知半解，直到，我写完这篇文章。
+在`JavaScript`中，一直有这么一种说法，万物皆对象。在此前，我对这句话总是半知半解，直到，我写完这篇文章。
 
-事实上，在JS中，对象也是有区别的，分为`普通对象`和`函数对象`。`Object`和`Function`便是JS自带的两个典型的函数对象
+事实上，在JS中，对象也是有区别的，分为`普通对象`和`函数对象`。`Object`和`Function`便是`JavaScript`自带的两个典型的函数对象。
 
 !> 事实上，以后我们会了解到，所谓的`函数对象`，便是采用`JavaScript`在`模拟类`。
 
@@ -66,15 +66,14 @@ var ob3 = new f1();
  
 !> 原型链最大的目的, 是为了实现`继承`。
 
-
 ---
 
 ## 2 进阶：原型链与原型对象
 
 原型链是如何实现继承的呢？先看一张表：
 
-
 > 表1
+
 对象类型 |`prototype`| `__proto__`
 --- | --- | ----
 普通对象(NO) | × | √
@@ -93,10 +92,7 @@ console.log(fn1.__proto__); // function
 console.log(fn1.prototype); // object
 ```
 
-
 也就是说，JS在创建 `fn1` 的时候，预定义属性 `fn1.prototype` 和 `fn1.__proto__` 会被自动地创建：
-
-
 
 根据输出结果，我们可以看出：
 
@@ -302,6 +298,7 @@ console.log(person.prototype.constructor.prototype.constructor === person) //tru
 为了减少读者敲代码的时间，特给出验证代码，希望能够促进你的理解。
 
 > Array:
+
 ```js
     console.log(arr.__proto__)
     console.log(arr.__proto__ == Array.prototype)   // true 
@@ -310,6 +307,7 @@ console.log(person.prototype.constructor.prototype.constructor === person) //tru
 ```
 
 > RegExp:
+
 ```js
     var reg = new RegExp;
     console.log(reg.__proto__)
@@ -318,6 +316,7 @@ console.log(person.prototype.constructor.prototype.constructor === person) //tru
 ```
 
 > Date:
+
 ```js
     var date = new Date;
     console.log(date.__proto__)
@@ -326,13 +325,16 @@ console.log(person.prototype.constructor.prototype.constructor === person) //tru
 ```
 
 > Boolean:
+
 ```js
     var boo = new Boolean;
     console.log(boo.__proto__)
     console.log(boo.__proto__ == Boolean.prototype) // true 
     console.log(Boolean.prototype.__proto__== Object.prototype) // true 
 ```
+
 > Number:
+
 ```js
     var num = new Number;
     console.log(num.__proto__)
@@ -341,15 +343,13 @@ console.log(person.prototype.constructor.prototype.constructor === person) //tru
 ```
 
 > String:
+
 ```js
     var str = new String;
     console.log(str.__proto__)
     console.log(str.__proto__ == String.prototype)  // true 
     console.log(String.prototype.__proto__== Object.prototype)  // true 
 ```
-
-
-
 
 ---
 
