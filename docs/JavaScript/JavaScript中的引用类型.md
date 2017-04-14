@@ -63,13 +63,23 @@
     console.log(o1 === o3) // false
 ```
 
-
-
-（3）基础类型与高级类型，`==`和`===`是有区别的
-	1. 对于==，将高级转化为基础类型，进行“值”比较
-	2. 因为类型不同，===结果为false
+（3）基础类型与高级类型进行比较时，`==`和`===`是有区别的
+	1. 对于`==`，将高级转化为基础类型，进行“值”比较
+	2. 因为类型不同，`===`结果为`false`
 	
-为了印证上述的观点，进行以下测试：
+```js
+    let array = [1,2,3]
+    let fn = function () {}
+    let object = {
+        name: 'Chen'
+    }
+    let string = '1,2,3'
+    let string2 = `function () {}`
+    
+    console.info(array == string) // true, 天呀，比较时候给我进行了类型的转换
+    console.info(fn == string2) // true
+    console.info(object == '[object Object]') // true
+```
 
 
 
