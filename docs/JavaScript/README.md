@@ -12,5 +12,6 @@
 - [深入剖析JavaScript事件委托的原理](/JavaScript/深入剖析JavaScript事件委托的原理.md)
 - [你不需要JQuery(转)](/JavaScript/你不需要JQuery.md)
 - [函数声明和函数表达式](/JavaScript/函数声明和函数表达式.md)
+- [JavaScript中的引用类型](/JavaScript/JavaScript中的引用类型.md)
 
 

@@ -17,7 +17,7 @@
 
 `typeof`操作符可能会返回如下字符串：
 
-- undefined  （`null`）
+- undefined  （`undefined`）
 - boolean  (`Boolean`的实例)
 - number  (`Number`的实例)
 - object （`Object/Array/RegExp/Date`的实例，或者`null`）
