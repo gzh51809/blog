@@ -21,6 +21,21 @@
     console.log(str == num)  // true
     console.log(str === num) // false
 
+
+    let o1 = {}
+    let o2 = o1
+    let o3 = {}
+
+    console.log(o1 == o2) // true
+    console.log(o1 === o2) // true
+    console.log(o1 == o3) // false
+    console.log(o1 === o3) // false
+
+
+
+
+
+    // 测试对象是引用传递
     let ob1 = {
         name: 'toxichl'
     }
