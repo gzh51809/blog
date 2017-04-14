@@ -18,7 +18,8 @@
 
     // 浅拷贝
     function clone(object) {
-        let fn = function() {}
+        let fn = function () {
+        }
         fn.prototype = object
         return new fn()
     }
@@ -33,11 +34,19 @@
     obj2.name.firstName = 'Chen'
     console.log(obj1.name.firstName) // 'Chen'
 
+    var obj3 = {
+        name: 'Chen',
+        speak: function () {
+            console.log('I am Chen')
+        }
+    }
+
     // 深克隆 - 最粗暴
     function cloneDeep(object) {
-        let __ob__ = new Object()
-
+        return JSON.parse(JSON.stringify(object))
     }
+
+    console.log(cloneDeep(obj3))
 
 </script>
 
