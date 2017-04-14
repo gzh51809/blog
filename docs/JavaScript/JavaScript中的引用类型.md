@@ -68,6 +68,7 @@
 	2. 因为类型不同，`===`结果为`false`
 	
 ```js
+    // 测试3 - 引用类型和值类型进行比较
     let array = [1,2,3]
     let fn = function () {}
     let object = {
@@ -81,36 +82,32 @@
     console.info(object == '[object Object]') // true
 ```
 
+!> 结论：`==`会在转换时强制进行类型转换，因此，当我们需要严格判断两个变量的类型和值相同时，请使用`===`
 
-
-
-
-
-由于本对于值对象类型，`===`表示两者的值相等，对于引用类型，表示两者所引用的变量所在的内存地址相同，也就是说，即使两个完全相同的对象，他们也不是`===`的关系,请看下述的例子：
+此外的一个小插曲，我们会注意到，在执行这一段代码的时候，隐式地执行了: `object.toString()`，由此，我们还可以得出经典的派生对象类型的判断：
 
 ```js
-
-
-    let ob1 = {
-        name: 'toxichl'
-    }
-
-    let ob2 = {
-        name: 'toxichl'
-    }
-
-    console.log(ob1 === ob2) // false
+Object.prototype.toString.call([]) // "[object Array]" 实际上，可以直接用静态方法 Array.isArray 来进行判断
+Object.prototype.toString.call({}) // "[object Object]"
+Object.prototype.toString.call(new Date()) // "[object Date]"
+Object.prototype.toString.call(new RegExp()) // "[object RegExp]"
+Object.prototype.toString.call(new Map()) // "[object Map]"
+Object.prototype.toString.call(new Promise(function() {})) // "[object Promise]"
+Object.prototype.toString.call(Symbol()) // "[object Symbol]"
 ```
 
+## 引用类型带来的问题
 
-## 问题的引入
+`JavaScript`这门语言不同于其他语言的地方也就是：我们无法直接访问对象内存中的位置，也就是说不能直接操作对象的内存空间。所谓的引用类型，存储的只是一个内存地址。那么，由此，我们会遇到很多问题：
 
 在刚刚接触`JavaScript`的开发过程中，我们有时可能会遇到一些困惑，有的时候我们无意修改了某个值，这个值的变化直接导致了另外一个值的变化。
 
 接下来，我们以三个例子来引入今天的话题：
 
-### 对象的赋值
+### 引用类型的赋值 = 浅复制 
+
 ```js
+
     let obj1 = {
         name: {
             firstName: 'You',
@@ -122,9 +119,40 @@
     let obj2 = obj1
 	
     obj2.name.firstName = 'Chen'
-	// 修改了obj2的某个属性，但obj1仍然和
-    console.log(obj1 === obj2) // true
 
+    console.log(obj1 === obj2) // true
+	// 相信这一点比较好理解
+	// 由于对象的赋值赋的是内存地址，因此共享这内存地址的任意一个对象的某个属性发生改变时，都会影响到其他保存该地址的对象
     console.log(obj1.name.firstName) // Chen
 ```
+
+实际上，我们还可以对`Array`和`Function`进行相同的测试：
+
+```
+	let arr1 = [1, 2, 3, 4, 5]
+    let arr2 = arr1
+    arr2[0] = 0
+    console.log(arr1) // [0, 2, 3, 4, 5]
+
+    // 最后，再来测试一下函数
+    function Fn(name) {
+        this.name = name
+    }
+    Fn.prototype.getName = function () {
+        return this.name
+    }
+
+    var Fnn = Fn
+    Fnn.prototype.getName = function () {
+        return `${this.name} - new`
+    }
+
+    console.log(Fnn === Fn) // true
+
+    var ins = new Fn('Chen')
+    console.log(ins.getName()) // Chen - new
+```
+
+
+
 
