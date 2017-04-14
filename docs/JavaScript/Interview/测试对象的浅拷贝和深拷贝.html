@@ -13,8 +13,11 @@
             firstName: 'You',
             lastName: 'Evan'
         },
-        age: 29
+        age: 29,
+        stack: [1, 2, 3, 4, 5]
     }
+
+    obj1.ob = obj1
 
     // 浅拷贝
     function clone(object) {
@@ -47,6 +50,36 @@
     }
 
     console.log(cloneDeep(obj3))
+
+
+    function baseClone(source, target) {
+        for (let key of Object.keys(source)) {
+            // 若存在对象的属性引用对象自身的，为了避免死循环，跳过
+            if(source[key] === source) continue
+            if (typeof source[key] === 'object') {
+                target[key] = source[key].constructor === Array ? [] : {}
+                baseClone(source[key], target[key])
+            } else {
+                target[key] = source[key]
+            }
+        }
+    }
+
+    function deepClone(source) {
+        let __ob__ = new Object()
+        baseClone(source, __ob__)
+        return __ob__
+    }
+
+    let obj4 = deepClone(obj1)
+    console.log(obj4)
+    obj4.name.firstName = 'Tox'
+    obj4.stack[0] = 'X'
+    console.log(obj4.stack)
+    console.log(obj1.stack)
+    obj4.name.firstName = 'Chen'
+    console.info(obj1.name.firstName)
+
 
 </script>
 
