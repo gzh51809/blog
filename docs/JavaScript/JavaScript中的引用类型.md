@@ -87,13 +87,15 @@
 此外的一个小插曲，我们会注意到，在执行这一段代码的时候，隐式地执行了: `object.toString()`，由此，我们还可以得出经典的派生对象类型的判断：
 
 ```js
-Object.prototype.toString.call([]) // "[object Array]" 实际上，可以直接用静态方法 Array.isArray 来进行判断
-Object.prototype.toString.call({}) // "[object Object]"
-Object.prototype.toString.call(new Date()) // "[object Date]"
-Object.prototype.toString.call(new RegExp()) // "[object RegExp]"
-Object.prototype.toString.call(new Map()) // "[object Map]"
-Object.prototype.toString.call(new Promise(function() {})) // "[object Promise]"
-Object.prototype.toString.call(Symbol()) // "[object Symbol]"
+    // 测试4 - 通用的派生对象类型判断方法
+    
+	Object.prototype.toString.call([]) // "[object Array]" 实际上，可以直接用静态方法 Array.isArray 来进行判断
+	Object.prototype.toString.call({}) // "[object Object]"
+	Object.prototype.toString.call(new Date()) // "[object Date]"
+	Object.prototype.toString.call(new RegExp()) // "[object RegExp]"
+	Object.prototype.toString.call(new Map()) // "[object Map]"
+	Object.prototype.toString.call(new Promise(function() {})) // "[object Promise]"
+	Object.prototype.toString.call(Symbol()) // "[object Symbol]"
 ```
 
 ## 引用类型带来的问题
@@ -107,7 +109,8 @@ Object.prototype.toString.call(Symbol()) // "[object Symbol]"
 ### 引用类型的赋值 = 浅复制 
 
 ```js
-
+	// 测试5 - 浅复制
+	
     let obj1 = {
         name: {
             firstName: 'You',
@@ -128,7 +131,7 @@ Object.prototype.toString.call(Symbol()) // "[object Symbol]"
 
 实际上，我们还可以对`Array`和`Function`进行相同的测试：
 
-```
+```js
 	let arr1 = [1, 2, 3, 4, 5]
     let arr2 = arr1
     arr2[0] = 0
