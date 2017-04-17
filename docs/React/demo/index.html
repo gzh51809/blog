@@ -9,48 +9,57 @@
 
 <script>
 
-//    var VELement = function (tagName, props, children) {
-//        if (!this instanceof VELement) {
-//            return new VELement(tagName, props, children)
-//        }
-//        if (Array.isArray(props)) {
-//            children = props
-//            props = {}
-//        }
-//        this.tagName = tagName
-//        this.props = props || {}
-//        this.children = children || {}
-//        this.key = props ? props.key : void 666
+        var VELement = function (tagName, props, children) {
+            if (!this instanceof VELement) {
+                return new VELement(tagName, props, children)
+            }
+            if (Array.isArray(props)) {
+                children = props
+                props = {}
+            }
+            this.tagName = tagName
+            this.props = props || {}
+            this.children = children || {}
+            this.key = props ? props.key : void 666
+
+        }
+
+
+    // 测试 Object.create
+//    var A = function () {
 //
 //    }
+//
+//    var B = function () {
+//
+//    }
+//
+//    B.prototype = Object.create(A.prototype)
+//
+//    console.log(B.prototype)
+//    console.log(A.prototype)
+//    console.log(B.prototype.__proto__ === A.prototype)
 
-    var buz = {
-        fog: 'stack'
-    };
 
-    buz.__proto__.ddd = 'ddd'
-
-    console.log(buz.__proto__)
-
-    for (var name in buz) {
-
-        console.log(name)
-
-        if (buz.hasOwnProperty(name)) {
-
-//            console.log(name)
-//            console.log("this is fog (" + name + ") for sure. Value: " + buz[name]);
-        }
-        else {
-//            console.log(name); // toString or something else
-        }
-    }
-
+// 一个简单的 Object.create() 的实现
+//    function objectCreate(o) {
+//        let _p_ = function() {}
+//        _p_.prototype = o
+//        return new _p_()
+//    }
+//
+//    var C = function () {
+//
+//    }
+//    var D = function () {
+//
+//    }
+//
+//    C.prototype = objectCreate(D.prototype)
+//    console.log(C.prototype.__proto__ === D.prototype)
 
 
 </script>
-
-
 
 
 </body>
