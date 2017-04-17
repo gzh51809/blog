@@ -27,14 +27,17 @@ Secondly, SKG knowledge, which used AngularJS1，is located similar to Baidu Bai
 
 thirdly, SKG official website, which used JQuery and BootStrap. In this project, part of the module using a responsive layout, at the same time, I used the native js to write all the components. Such as drop down box、pop-up modal and automatic fixed navbar.
 
-fourthly, SKG Work APP，a Functional rich business management App. This project has cost our team for half a year，and its technology stack contains AngularJS1、Ionic、cordova and gulp. In this project, I participated in the technical selection, and completed the UI design for all pages, at the same time, I developed a detailed code specification. In the final completion of the project code, The number of js files has reached more than 100. so, I also spent a lot of time to use gulp to complete the entire project automation build.
+fourthly, SKG Work APP，a functional rich business management App. This project has cost our team for half a year，and its technology stack contains AngularJS1、Ionic、cordova and gulp. In this project, I participated in the technical selection, and completed the UI design for all pages, at the same time, I developed a detailed code specification. In the final of the project coding, The number of js files has reached more than 100. so, I also spent a lot of time to use gulp and node to complete the entire project automation build.
 
 In SKG, I also completed the SKG video center, and a simple backstage management project based on Node and MySQL.
 
-fifthly, DDDML, an open source ERP based in Domain-Driven Design. which is also the most complex project I have done. I chose the technical stack as follows: TypeScript、Vue、Webpack and mocha. this project is very demanding on object-oriented programming and data structure; And I have made a high degree of abstraction for routes、web components, domain models, and view models.
+fifthly, DDDML, an open source ERP based in Domain-Driven Design. which is also the most complex project I have done. I chose the technical stack as follows: TypeScript、Vue、Webpack and mocha. this project is very demanding on object-oriented programming、data structure and certain algorithm; And I have made a high degree of abstraction for routes、web components, domain models, and view models.
 
+In addition,I also have a lot of open source project experience. 
 
+At present，I am a contributor for this projects: the ES6 tutorial of Ruan Yifeng、You-dont-need-JQuery and weex. 
 
+I have also submitted issues to many well-known projects, such as typescript、element-UI、typings、stylus、iview、vue-router. 
 
-
+moreover,I also have my own open source projects, such as time processing plugin “chatime” base on ES6 and rollup、a scaffolding tool “dli” base on nodejs 、 a simple and commonly used style library “light-stylus”、A tiny browser-side CommonJS module loader “alone.js”、a gulp-based which tests the async and sync performance of the node.js、A Vue 2.0 UI component library “ISUI” and a framework mixed with characteristics of vue and react. some of these projects are still under construction.
 ```

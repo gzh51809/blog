@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+//    var VELement = function (tagName, props, children) {
+//        if (!this instanceof VELement) {
+//            return new VELement(tagName, props, children)
+//        }
+//        if (Array.isArray(props)) {
+//            children = props
+//            props = {}
+//        }
+//        this.tagName = tagName
+//        this.props = props || {}
+//        this.children = children || {}
+//        this.key = props ? props.key : void 666
+//
+//    }
+
+    var buz = {
+        fog: 'stack'
+    };
+
+    buz.__proto__.ddd = 'ddd'
+
+    console.log(buz.__proto__)
+
+    for (var name in buz) {
+
+        console.log(name)
+
+        if (buz.hasOwnProperty(name)) {
+
+//            console.log(name)
+//            console.log("this is fog (" + name + ") for sure. Value: " + buz[name]);
+        }
+        else {
+//            console.log(name); // toString or something else
+        }
+    }
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
