@@ -6,35 +6,10 @@
 
 ## 继承
 
-首先，我们回顾一下常规的寄生组合式继承。
+首先，我们来回顾一下常规的寄生组合式继承的实现：
 
 ```js
-function inheritProto(ob) {
-	let f = function(){}
-	f.prototype = ob.prototype
-	return new f()
-}
 
-function ClassA(name) {
-	this.name = name
-	this.A = 'A' + name
-}
-ClassA.prototype.getA = function() {
-	return this.A
-}
-
-function B(name) {
-	A.call(this, name)
-	this.name = name
-	this.B = 'B' + name
-}
-
-B.prototype.getB = function() {
-	return this.B
-}
-
-var b = new B()
-console.log(b)
 ```
 
 ## instanceof

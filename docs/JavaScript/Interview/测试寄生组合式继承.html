@@ -7,38 +7,66 @@
 <body>
 
 <script>
+    
+    // 合并
+    function merge(source) {
+        let args = Array.from(arguments)
+        if (args.length === 1) {
+            return source
+        } else {
+            for (let i = 1; i < args.length; i++) {
+                for (let key of Object.keys(args[i])) {
+                    if (!source.hasOwnProperty(key)) {
+                        source[key] = args[i][key]
+                    }
+                }
+            }
+        }
+        return source
+    }
 
+    // 保存对象的原型
     function getProto(ob) {
-        let f = function(){ }
+        let f = function () {
+        }
         f.prototype = ob.prototype
         return new f()
     }
 
+    // 继承对象的原型
     function inheritProto(source, target) {
-        let f = getProto(source)
+        let oldProto
+        if (Object.keys(target.prototype).length !== 0) {
+            oldProto = target.prototype
+        }
+        let f = merge(getProto(source), oldProto)
         f.constructor = target
         target.prototype = f
     }
 
+    // 类A
     function ClassA(name) {
         this.name = name
         this.A = 'A' + name
     }
-    ClassA.prototype.getA = function() {
+    ClassA.prototype.getA = function () {
         return this.A
     }
 
+    // 类B
     function ClassB(name) {
         ClassA.call(this, name) // 继承属性，相当于调用 super
         this.name = name
         this.B = 'B' + name
     }
 
-    inheritProto(ClassA, ClassB)
-
-    ClassB.prototype.getB = function() {
+    // 在类B上重新添加方法
+    ClassB.prototype.getB = function () {
         return this.B
     }
+
+    // 类B 继承 类A原型上的方法
+    inheritProto(ClassA, ClassB)
 
     var b = new ClassB('ddd')
 
@@ -46,8 +74,6 @@
     console.log(b.getB()) // Bddd
     console.log(b instanceof ClassA) // true
     console.log(b instanceof ClassB) // true
-
-
 
 </script>
 
