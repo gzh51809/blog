@@ -9,7 +9,9 @@
 document.ready()|在dom加载完之后执行
 window.onload|dom加载完且所有文件都加载完之后执行
 
+那么，如果来实现这个`document.ready()`呢？
 
+如下：
 
 ```js
      document.ready = function (callback) {
