@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    function getProto(ob) {
+        let f = function(){ }
+        f.prototype = ob.prototype
+        return new f()
+    }
+
+    function inheritProto(source, target) {
+        let f = getProto(source)
+        f.constructor = target
+        target.prototype = f
+    }
+
+    function ClassA(name) {
+        this.name = name
+        this.A = 'A' + name
+    }
+    ClassA.prototype.getA = function() {
+        return this.A
+    }
+
+    function ClassB(name) {
+        ClassA.call(this, name) // 继承属性，相当于调用 super
+        this.name = name
+        this.B = 'B' + name
+    }
+
+    inheritProto(ClassA, ClassB)
+
+    ClassB.prototype.getB = function() {
+        return this.B
+    }
+
+    var b = new ClassB('ddd')
+
+    console.log(b.getA()) // Addd
+    console.log(b.getB()) // Bddd
+    console.log(b instanceof ClassA) // true
+    console.log(b instanceof ClassB) // true
+
+
+
+</script>
+
+</body>
+</html>
