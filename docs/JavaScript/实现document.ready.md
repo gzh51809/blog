@@ -1,4 +1,6 @@
 # 实现document.ready
+- 标签： `JavaScript`
+- 时间： `2016-4-18`
 
 在Jquery里面，我们可以看到两种写法:`$(function(){})` 和`$(document).ready(function(){})`
 

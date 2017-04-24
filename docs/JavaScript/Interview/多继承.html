@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+    function baseMerge(type, source, objs) {
+
+        if (!/^(hard|soft)$/.test(type)) {
+            throw new Error('[Error] The given type must be soft or hard')
+        }
+
+        if (!objs) {
+            return source
+
+        } else {
+
+            for (let i = 0; i < objs.length; i++) {
+                for (let key of Object.keys(objs[i])) {
+                    if (type === 'soft' && source.hasOwnProperty(key)) {
+                        continue
+                    }
+                    source[key] = objs[i][key]
+                }
+            }
+        }
+
+    }
+
+    /**
+     * merge - 本方法不会覆盖源对象上的同名属性
+     * @param source
+     */
+    function softMerge(source) {
+        let objs = Array.from(arguments)
+        objs.splice(0, 1)
+        baseMerge('soft', source, objs)
+    }
+
+    /**
+     * merge - 本方法会覆盖源对象上的同名属性
+     * @param source
+     */
+    function merge(source) {
+        let objs = Array.from(arguments)
+        objs.splice(0, 1)
+        baseMerge('hard', source, objs)
+    }
+
+
+    function createByPrototype(ob) {
+        let f = function () {
+        }
+        f.prototype = ob.prototype
+        return new f()
+    }
+
+    function inherit(child, parent) {
+
+        // 额外要继承的类
+        let adds = Array.from(arguments)
+        adds.splice(0, 2)
+
+        // 若子类的原型可枚举的值不为空
+        // 则先暂存
+        let _ob = createByPrototype(parent)
+
+        if (Object.keys(child.prototype).length !== 0) {
+            merge(_ob, child.prototype)
+            console.log(_ob)
+        }
+
+        for (let add of adds) {
+            merge(_ob.__proto__, createByPrototype(add).__proto__)
+        }
+
+        // 寄生组合式继承
+        // 合并旧的原型和继承的原型
+        let f = _ob
+        console.log(f)
+        f.constructor = child
+        child.prototype = f
+    }
+
+    function A(name) {
+        this.name = name
+        this.a = 'A' + name
+    }
+
+    A.prototype.getA = function () {
+        return this.a
+    }
+
+    // 类B
+    function B(name) {
+        this.name = name
+        this.b = 'B' + name
+    }
+
+    // 在类B上重新添加方法
+    B.prototype.getB = function () {
+        return this.b
+    }
+
+    function C(name) {
+        A.call(this, name)
+        B.call(this, name)
+        this.name = name
+        this.c = 'C' + name
+    }
+
+    C.prototype.getC = function () {
+        return this.c
+    }
+
+    inherit(C, A, B)
+
+    let ins = new C('jeek')
+
+    console.log(ins.constructor === A) // false
+    console.log(ins.constructor === B) // false
+    console.log(ins.constructor === C) // true
+    console.log(ins instanceof A)  // true
+    console.log(ins instanceof B)  // false
+    console.log(ins instanceof C)  // true
+
+</script>
+
+</body>
+</html>
