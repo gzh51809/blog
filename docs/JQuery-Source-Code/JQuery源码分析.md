@@ -49,3 +49,6 @@ jQuery.each( [ "get", "post" ], function( i, method ) {
 ```
 
 In my opinion, jQuery is divided into 5 parts: Selector、DOM Operation、Event、Ajax and Animation.
+
+So why there are 13 modules? Because the most favorite thing that JQuery likes to do is taking out common features, and make them modular.
+
