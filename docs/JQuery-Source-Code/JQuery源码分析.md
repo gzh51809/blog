@@ -14,7 +14,7 @@ The overall structure of recent JQuery version (2.1.1) is show as follows:
 	jQuery.fn = jQuery.prototype = {};
 	// Core method
 	// Callback
-	// Asynchronous Quene
+	// Asynchronous Quene (Deferred)
 	// Data Cache
 	// Quene Operation
 	// Selector
@@ -51,4 +51,12 @@ jQuery.each( [ "get", "post" ], function( i, method ) {
 In my opinion, jQuery is divided into 5 parts: Selector、DOM Operation、Event、Ajax and Animation.
 
 So why there are 13 modules? Because the most favorite thing that JQuery likes to do is taking out common features, and make them modular.
+
+### S.O.L.I.D Five Principles
+
+- Single Responsibility Principle (Important)
+
+Wait for complement...
+
+##
 
