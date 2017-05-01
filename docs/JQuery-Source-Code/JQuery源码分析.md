@@ -79,5 +79,40 @@ Wait for complement...
 
 ```
 
+此种实现略微复杂，来看简化版：
+
+- 写法二
+
+```js
+var factory = function() {
+	return function() {
+		// JQuery 的调用
+	}
+}
+
+var JQuery = factory()
+```
+
+上面的代码效果和写法一是等同的，但是这个factory有点变成了简单的工厂方法模式，需要自己调用，不像是一个单例的jQuery类，所以我们需要改成“自执行”，而不是另外调用。
+
+
+- 写法三
+
+```js
+function(window, undefined) {
+	
+	var jQuery = function() {}
+	window.jQuery = window.$ = jQuery
+	
+}(window)
+```
+
+这种写法的优势：
+
+- 减少了变量（window和undefined）查找所经过的作用域。
+- undefined 不是关键词，而是一个传入的变量，由于没有传值，因此实际上它是实实在在的undefined，此外，在javascript中，undefined不是一个关键词，可以对其进行赋值。
+
+
+
 
 
