@@ -52,7 +52,7 @@ In my opinion, jQuery is divided into 5 parts: Selector、DOM Operation、Event�
 
 So why there are 13 modules? Because the most favorite thing that JQuery likes to do is taking out common features, and make them modular.
 
-!> jQuery接口的设计原理
+!> jQuery接口的设计原理（引用自 [Source](http://www.imooc.com/code/3094) ）
 
 业务逻辑是复杂多变的，jQuery的高层API数量非常多，而且也非常的细致，这样做可以更友好的便于开发者的操作，不需要必须在一个接口上重载太多的动作。我们在深入内部看看Ajax的高层方法其实都是统一调用了一个静态的jQuery.ajax方法。
 
@@ -64,5 +64,20 @@ So why there are 13 modules? Because the most favorite thing that JQuery likes t
 
 Wait for complement...
 
-##
+## 立即执行表达式（IIFE）
+
+- 写法一
+
+```js
+(function(window, factory) {
+  factory(window)
+}(this, function() {
+	return function() {
+		// JQuery 的调用
+	}
+}))
+
+```
+
+
 
