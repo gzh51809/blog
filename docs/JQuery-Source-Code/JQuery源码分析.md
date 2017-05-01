@@ -113,6 +113,9 @@ function(window, undefined) {
 - undefined 不是关键词，而是一个传入的变量，由于没有传值，因此实际上它是实实在在的undefined，此外，在javascript中，undefined不是一个关键词，可以对其进行赋值。
 
 
+## 
+
+
 
 
 
