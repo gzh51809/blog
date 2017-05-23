@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input id="file" type="file">
+
+<script>
+
+    let log = console.log;
+
+    /**
+     * Default options for compress image
+     * @type {{maxSize: number, unit: string, maxWidth: number, maxHeight: number, quality: number}}
+     */
+    const COMPRESS_DEFAULT_OPTS = {
+        maxSize: 512000,
+        unit: 'byte',
+        maxWidth: 1920,
+        maxHeight: 1344,
+        quality: 1
+    }
+
+    class ImageCompressor {
+
+        constructor(options) {
+            this._opts = Object.assign({}, COMPRESS_DEFAULT_OPTS, options);
+            this._imgElement = document.createElement('img');
+            this._fr = new FileReader();
+        }
+
+        compress(file) {
+
+            console.log(file)
+
+            // 1. check params
+            if (file.constructor !== File) {
+                throw new Error(`[Error] Unexpected parameters ${file}, which must be a instance of File`)
+            }
+
+            // 2. get file's size, and check if it needs to compress
+            let fileSizeByte = file.size;
+            let fileMaxSizeByte = this._opts.unit === 'kb' ? this._opts.maxSize * 1000
+                : this._opts.maxSize;
+
+            if (fileSizeByte < fileMaxSizeByte) {
+                return file;
+            }
+
+            log(`[LOG] Size of file [${file.name}] = ${fileSizeByte / 1024} KB`);
+            log(`[LOG] Image's maxinum size is limited by ${fileMaxSizeByte / 1024} KB`);
+
+            // 3. get file's dataURL
+            return this._readAsDataURL(file)
+                .then(dataURL => {
+                    return this._dataURLtoImage(dataURL);
+                })
+                .then(sourceImg => {
+                    let finalSize = this._getCompressedSize(sourceImg);
+                    return this._drawImageInCanvas(finalSize.width, finalSize.height, sourceImg);
+                })
+                .then(canvas => {
+                    return this._canvasToDataUrl(canvas);
+                })
+                .then(dataURL => {
+                    return new File([this._dataURLtoBlob(dataURL)], file.name, {type: file.type});
+                })
+        }
+
+        /**
+         * Get compressed width ang height
+         * @param imgElement
+         * @returns {{width: number, height: number}}
+         * @private
+         */
+        _getCompressedSize(imgElement) {
+            let ratio = 1;
+            if (imgElement.width > this._opts.maxWidth) {
+                ratio = imgElement.width / this._opts.maxWidth;
+            }
+            if (imgElement.height > this._opts.maxHeight) {
+                let _r = imgElement.width / this._opts.maxWidth;
+                if (_r > ratio) {
+                    ratio = _r;
+                }
+            }
+            return {
+                width: imgElement.width / ratio,
+                height: imgElement.height / ratio
+            }
+        }
+
+        /**
+         * Get image element by image's dataURL
+         * @param dataURL
+         * @returns {Promise}
+         * @private
+         */
+        _dataURLtoImage(dataURL) {
+            return new Promise(resolve => {
+                this._imgElement.setAttribute('src', dataURL);
+                this._imgElement.onload = () => {
+                    resolve(this._imgElement);
+                }
+            });
+        }
+
+        /**
+         * Get blob element by image's dataURL
+         * @param dataURL
+         * @returns {Promise}
+         * @private
+         */
+        _dataURLtoBlob(dataurl) {
+            var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new Blob([u8arr], {type: mime});
+        }
+
+        /**
+         * Draw image in canvas
+         * @param width
+         * @param height
+         * @param image
+         * @returns {object}
+         * @private
+         */
+        _drawImageInCanvas(width, height, image) {
+
+            let canvas = document.createElement('canvas');
+            canvas.setAttribute('width', width);
+            canvas.setAttribute('height', height);
+
+            let ctx = canvas.getContext('2d');
+            ctx.drawImage(image, 0, 0, width, height);
+            return canvas;
+        }
+
+        _canvasToDataUrl(canvas) {
+            return canvas.toDataURL("image/jpeg", this._opts.quality);
+        }
+
+        /**
+         * Read file's dataURL
+         * @param file
+         * @returns {Promise}
+         * @private
+         */
+        _readAsDataURL(file) {
+            return new Promise((resolve, reject) => {
+                try {
+                    this._fr.readAsDataURL(file);
+                    this._fr.onloadend = (e) => {
+                        resolve(e.target.result)
+                    }
+                } catch (err) {
+                    reject(err)
+                }
+            })
+        }
+
+    }
+
+    let imageHandler = new ImageCompressor({quality: 0.8});
+
+    document.getElementById('file').addEventListener('change', function () {
+        for (var i = 0, l = this.files.length; i < l; i++) {
+            console.log(this.files[i].constructor)
+            imageHandler
+                .compress(this.files[i])
+                .then(blobdata => {
+                    console.log(blobdata)
+                    // window.location.href = blobdata
+                })
+        }
+    })
+
+</script>
+</body>
+</html>
