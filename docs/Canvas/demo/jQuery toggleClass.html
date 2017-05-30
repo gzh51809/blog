@@ -18,19 +18,26 @@
 <div class="luke big">Luke</div>
 <button class="bigBtn">BIG</button>
 <button class="normalBtn">normal</button>
+<button class="removeBtn">remove</button>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script>
 
 
-    $('.bigBtn').click(()=>{
+    $('.bigBtn').click(() => {
         console.log('big btn')
         $('.luke').toggleClass('big')
     })
 
-    $('.normalBtn').click(()=>{
+    $('.normalBtn').click(() => {
         console.log('normal btn')
         $('.luke').toggleClass('big', false)
     })
+
+    $('.removeBtn').click(() => {
+        $('.luke').removeClass('big')
+    })
+
+
 </script>
 
 </body>

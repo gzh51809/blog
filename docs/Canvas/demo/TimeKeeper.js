@@ -61,7 +61,6 @@ class TimeKeeper {
     }
 
     all() {
-        console.log(this._stack)
         let result = {};
         for (var i = 0, l = this._stack.length - 1; i < l; i++) {
             result[`${i}-->${i + 1}`] = this.diff(i + 1, i);
