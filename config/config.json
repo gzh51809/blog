@@ -1,0 +1,53 @@
+{
+    "docs": {
+        "path": "docs",
+        "tag": [
+            {
+                "name": "标签",
+                "function": ""
+            },
+            {
+                "name": "时间",
+                "function": ""
+            },
+            {
+                "name": "更新",
+                "function": ""
+            }
+        ],
+        "level1": {
+            "ignore": [
+                "__plan__",
+                "__Template__"
+            ]
+        },
+        "level2": {
+            "ignore": [
+                "_navbar.md",
+                "_sidebar.md",
+                "README.md"
+            ],
+            "specialFilesMap": {
+                "README.md": {
+                    "header": "# {{dirName}}\n\n",
+                    "content": "category"
+                },
+                "_sidebar.md": {
+                    "header": "- [Home](/{{dirName}}/)\n",
+                    "content": "category"
+                },
+                "_navbar.md": {
+                    "header": [
+                        "- [Home](/)\n",
+                        "- [Github](https://github.com/toxichl/)"
+                    ],
+                    "content": null
+                }
+            }
+        }
+    },
+    "cache": {
+        "name": "cache",
+        "path": ".cache/_cache.json"
+    }
+}

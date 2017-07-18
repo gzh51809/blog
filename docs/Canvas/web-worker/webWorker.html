@@ -14,6 +14,48 @@
 <script>
 
 
+    function fn() {
+        // do something
+    }
+
+    (function () {
+        function fn() {
+            // do something
+        }
+    })()
+
+    function define() {}
+
+
+    define(["./moduleA", "./moduleB"], function(moduleA, moduleB) {
+        // do something
+    });
+
+
+    define(function(require) {
+        var some_condition
+        if(some_condition) {
+            var moduleA = require('./moduleA')
+        } else {
+            var moduleB = require('./moduleB')
+        }
+        // do something
+    });
+
+
+    // export module
+    exports.fn = function () {
+        
+    }
+    module.exports = {
+        fn: function () {
+            
+        }
+    }
+
+    // import module
+    var fn = require('../fn')
+
 
     /**
      * Get image element by image's dataURL

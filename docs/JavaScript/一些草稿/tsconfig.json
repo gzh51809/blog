@@ -1,0 +1,37 @@
+{
+  "adFeaturesGroups": [
+    {
+      "adId": "1001106534080910000180009",
+      "features": [
+        "hpGallery7",
+        "topAd15",
+        "bumpUpXY-720-5",
+        "highlight7",
+        "urgent7"
+      ]
+    },
+    {
+      "adId": "1001106517020910000180009",
+      "features": [
+        "hpGallery7",
+        "srpGallery31",
+        "topAd15",
+        "bumpUpXY-720-5",
+        "highlight7",
+        "urgent7",
+        "websiteurl"
+      ]
+    }
+  ],
+  "updateAdGroups": [
+    {
+      "adId": "1001106517020910000180009",
+      "properties": [
+        {
+          "name": "WebSiteUrl",
+          "value": "http://www.baidu.com"
+        }
+      ]
+    }
+  ]
+}

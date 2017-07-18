@@ -27,7 +27,7 @@
 
 简单：当子元素的事件冒泡到父`ul`元素时，你可以检查事件对象的`target`属性，捕获真正被点击的节点元素的引用。下面是一段很简单的`JavaScript`代码，演示了事件委托的过程：
 
-```
+```js
 // 找到父元素，添加监听器...
 document.getElementById("parent-list").addEventListener("click",function(e) {
 	// e.target是被点击的元素!

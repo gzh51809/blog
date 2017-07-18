@@ -36,7 +36,12 @@ and add the following line to your .babelrc file:
 
 ### sass-loader
 
+仓库：
+
+	https://github.com/webpack-contrib/sass-loader
+	
 安装：
+
 	npm install sass-loader node-sass webpack --save-dev
 
 常规配置：

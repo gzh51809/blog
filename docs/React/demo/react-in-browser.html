@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body>
+<div id="id"></div>
+<script type="text/babel">
+
+    class HelloMessage extends React.Component {
+        render() {
+            return <ul>{
+                    [1,2,3,4].map(item => <li>{item}</li>)
+                }</ul>;
+        }
+    }
+
+    let name = 'Chen'
+    ReactDOM.render(<HelloMessage name={name} />, document.getElementById('id'));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+{
+  "paymentService": {
+    "version": "1.4",
+    "merchantCode": "GUMTREEZA",
+    "notify": {
+      "orderStatusEvent": {
+        "orderCode": "BT-100000000",
+        "payment": {
+          "paymentMethod": "VISA-SSL",
+          "amount": {
+            "value": "149",
+            "currencyCode": "SGD",
+            "exponent": "2",
+            "debitCreditIndicator": "credit"
+          },
+          "lastEvent": "AUTHORISED",
+          "CVCResultCode": {
+            "description": "NOT SENT TO ACQUIRER"
+          },
+          "balance": {
+            "accountType": "IN_PROCESS_AUTHORISED",
+            "amount": {
+              "value": "149",
+              "currencyCode": "EUR",
+              "exponent": "2",
+              "debitCreditIndicator": "credit"
+            }
+          },
+          "cardNumber": "4444********1111",
+          "riskScore": {
+            "value": "1"
+          }
+        },
+        "token": {
+          "tokenEventReference": "100000000",
+          "tokenReason": "OneTouchPayment",
+          "tokenDetails": {
+            "tokenEvent": "NEW",
+            "paymentTokenID": "9964094657617916004",
+            "paymentTokenExpiry": {
+              "date": {
+                "dayOfMonth": "15",
+                "month": "12",
+                "year": "2018"
+              }
+            },
+            "tokenEventReference": "100000000",
+            "tokenReason": "OneTouchPayment"
+          },
+          "paymentInstrument": {
+            "cardDetails": {
+              "expiryDate": {
+                "date": {
+                  "month": "01",
+                  "year": "2018"
+                }
+              },
+              "cardHolderName": "4444333322221111",
+              "derived": {
+                "cardBrand": "VISA",
+                "cardSubBrand": "VISA_CREDIT",
+                "issuerCountryCode": "N/A",
+                "obfuscatedPAN": "4444********1111"
+              }
+            }
+          }
+        },
+        "journal": {
+          "journalType": "AUTHORISED",
+          "bookingDate": {
+            "date": {
+              "dayOfMonth": "08",
+              "month": "12",
+              "year": "2016"
+            }
+          },
+          "accountTx": {
+            "accountType": "IN_PROCESS_AUTHORISED",
+            "batchId": "75",
+            "amount": {
+              "value": "149",
+              "currencyCode": "EUR",
+              "exponent": "2",
+              "debitCreditIndicator": "credit"
+            }
+          }
+        }
+      }
+    }
+  }
+}

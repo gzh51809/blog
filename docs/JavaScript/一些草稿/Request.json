@@ -1,0 +1,12 @@
+{
+  "selectedPaymentMethodName": "VISA-SSL",
+  "cardNumber": "4444333322221111",
+  "cardholderName": "Luke",
+  "expiryDate.expiryMonth": "02",
+  "expiryDate.expiryYear": "2024",
+  "securityCodeVisibilityType": "MANDATORY",
+  "securityCode": "123",
+  "_csrf": "NOTHING",
+  "ajax": "true"
+}
+
