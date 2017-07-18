@@ -6,14 +6,16 @@
 const requireDir = require('require-dir')
 const runSequence = require('run-sequence')
 const gulp = require('gulp')
+const watch = require('gulp-watch')
+const docsify = require('docsify-cli/lib')
 
-requireDir('./build', {recurse: true})
+requireDir('./build', {recurse: true});
 
 // ***************************************************
 // Base Gulp Task - To Generate Global Variable
 // ***************************************************
 gulp.task('basic', done => {
-    runSequence('prepare', 'getListLevel1', 'checkItemType', 'getListLevel2', 'cacheDocsList', done)
+    runSequence('prepare', 'getListLevel1', 'checkItemType', 'getListLevel2', 'cacheDocsList', done);
 })
 
 // ***************************************************
@@ -21,6 +23,21 @@ gulp.task('basic', done => {
 // ***************************************************
 gulp.task('default', function (done) {
     runSequence('basic', 'generateSpecialFiles', 'updateREADME', done);
+})
+
+
+gulp.task('docsify', done => {
+    return docsify.serve('./docs', true, 3000)
+})
+
+gulp.task('watch', function () {
+    return watch('workSpace/**/*.md', function () {
+        gulp.run('default')
+    })
+});
+
+gulp.task('dev', done => {
+    runSequence(['watch', 'docsify'], done);
 })
 
 // ***************************************************

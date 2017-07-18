@@ -88,7 +88,7 @@ gulp.task('generateSpecialFiles', (done) => {
     docs.filter(item => item.isDirectory)
         .forEach(DIR => {
             DIR.specFiles.forEach(file => {
-                gutil.log(`${gutil.colors.cyan('Created: ')}${DIR.name}/${file.name}`)
+                // gutil.log(`${gutil.colors.cyan('Created: ')}${DIR.name}/${file.name}`)
                 tasks.push(fs.outputFile(file.absolutePath, util.getSpecFileContent(DIR, file)))
             })
         })
@@ -106,7 +106,7 @@ gulp.task('cleanAllSpecialFiles', (done) => {
     docs.filter(item => item.isDirectory)
         .forEach(DIR => {
             DIR.specFiles.forEach(file => {
-                gutil.log(`${gutil.colors.cyan('Remove: ')}${DIR.name}/${file.name}`)
+                // gutil.log(`${gutil.colors.cyan('Remove: ')}${DIR.name}/${file.name}`)
                 tasks.push(fs.remove(file.absolutePath))
             })
             // Should also
