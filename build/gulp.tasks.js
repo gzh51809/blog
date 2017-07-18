@@ -1,17 +1,33 @@
 'use strict';
 
-const getFileList = require('../src/util').getFileList
-const resolve = require('../src/util').resolve
+const getFileList = require('./gulp.utils').getFileList
+const resolve = require('./gulp.utils').resolve
 const config = require('../config/config.json')
 const fs = require('fs-extra')
 const path = require('path')
 const gulp = require('gulp')
 const gutil = require('gulp-util')
 const util = require('./gulp.utils')
-const argv = require('yargs').argv
 
 var docs;
 
+// file type lint
+gulp.task('lint', () => {
+    docs.filter(item => item.isDirectory)
+        .forEach(DIR => {
+            DIR.children
+                .filter(child => !child.isDirectory)
+                .filter(child => !util.isIgnore_Level_2(child.name))
+                .forEach(child => {
+                    if (!util.isMd(child.name)) {
+                        throw new gutil.PluginError('markdwonlint', gutil.colors.red('Unexpected fileType') + ' ' + gutil.colors.gray(child.absolutePath));
+                    }
+                })
+        })
+    gutil.log('[OK]')
+})
+
+// Copy file from worksapce to docs
 gulp.task('prepare', () => {
     return fs.remove(resolve(config.docs.targetPath))
         .then(() => {
@@ -54,8 +70,8 @@ gulp.task('getListLevel2', (done) => {
                         DIR.children = list
                         DIR.category = util.getCategory(DIR)
                         DIR.articleCount = DIR.children
-                                .filter(child => !child.isDirectory)
-                                .filter(child => !util.isIgnore_Level_2(child.name)).length
+                            .filter(child => !child.isDirectory)
+                            .filter(child => !util.isIgnore_Level_2(child.name)).length
                     }
                 )
             }))

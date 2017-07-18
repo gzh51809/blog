@@ -2,6 +2,7 @@
 
 const config = require('../config/config.json')
 const fs = require('fs-extra')
+const path = require('path')
 
 exports.isIgnore_Level_1 = isIgnore_Level_1
 exports.isIgnore_Level_2 = isIgnore_Level_2
@@ -10,6 +11,8 @@ exports.getLine = getLine
 exports.getCategory = getCategory
 exports.getSpecFileContent = getSpecFileContent
 exports.getItem = getItem
+exports.getFileList = getFileList
+exports.resolve = resolve
 
 function isIgnore_Level_1(fileName) {
     var ignoreFiles = config.docs.level1.ignore;
@@ -85,4 +88,32 @@ function getSpecFileContent(dir, file) {
             ;
     }
     return content;
+}
+
+/**
+ * Get file list
+ * @param path
+ * @returns {Promise}
+ */
+function getFileList(dir) {
+    return new Promise(function (resolve, reject) {
+        fs.readdir(dir, function (err, files) {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(
+                    files.map(file => {
+                        return {
+                            name: file,
+                            absolutePath: path.resolve(dir, file)
+                        }
+                    })
+                )
+            }
+        })
+    })
+}
+
+function resolve(p) {
+    return path.resolve(__dirname, '../', p)
 }

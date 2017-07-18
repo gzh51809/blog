@@ -2,11 +2,11 @@
 
 ---
 
-- [AngularJS（4）](/AngularJS/)
+- [AngularJS（3）](/AngularJS/)
 - [Bookmarks（3）](/Bookmarks/)
 - [CSS（6）](/CSS/)
 - [Canvas（0）](/Canvas/)
-- [DesignPattern（3）](/DesignPattern/)
+- [DesignPattern（1）](/DesignPattern/)
 - [ES6（11）](/ES6/)
 - [FE-Engineering（4）](/FE-Engineering/)
 - [Git（1）](/Git/)
@@ -15,11 +15,9 @@
 - [Node（2）](/Node/)
 - [React（2）](/React/)
 - [RegExp（3）](/RegExp/)
-- [Tool（1）](/Tool/)
 - [TypeScript（1）](/TypeScript/)
 - [UnitTest（2）](/UnitTest/)
 - [Vue（1）](/Vue/)
-- [Web-Develop（1）](/Web-Develop/)
 
 	
 ---

@@ -13,4 +13,5 @@ gulp.task('release:github', function () {
     }
     shell.exec('git add .')
     shell.exec('git commit -m "' + argv.commit + '"')
+    shell.exec('git push')
 })

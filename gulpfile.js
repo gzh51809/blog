@@ -9,29 +9,39 @@ const gulp = require('gulp')
 
 requireDir('./build', {recurse: true})
 
-// Default
+// ***************************************************
+// Base Gulp Task - To Generate Global Variable
+// ***************************************************
+gulp.task('basic', done => {
+    runSequence('prepare', 'getListLevel1', 'checkItemType', 'getListLevel2', 'cacheDocsList', done)
+})
+
+// ***************************************************
+// Default - Dev
+// ***************************************************
 gulp.task('default', function (done) {
-    runSequence(
-        'prepare',
-        'getListLevel1',
-        'checkItemType',
-        'getListLevel2',
-        'cacheDocsList',
-        'generateSpecialFiles',
-        'updateREADME'
-        , done);
+    runSequence('basic', 'generateSpecialFiles', 'updateREADME', done);
 })
 
+// ***************************************************
+// Release to github
+// ***************************************************
 gulp.task('github', function (done) {
-    runSequence(
-        'default',
-        'release:github'
-        , done);
+    runSequence('default', 'release:github', done);
 })
 
-// Clean spec files
+// ***************************************************
+// Markdown lint
+// ***************************************************
+gulp.task('mdlint', function (done) {
+    runSequence('basic', 'lint', done);
+})
+
+// ***************************************************
+// Clean all special files
+// ***************************************************
 gulp.task('delSepc', function (done) {
-    runSequence('getListLevel1', 'checkItemType', 'getListLevel2', 'cleanAllSpecialFiles', done);
+    runSequence('basic', 'cleanAllSpecialFiles', done);
 })
 
 
