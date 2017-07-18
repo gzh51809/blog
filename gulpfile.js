@@ -26,7 +26,7 @@ gulp.task('default', function (done) {
 // ***************************************************
 // Release to github
 // ***************************************************
-gulp.task('github', function (done) {
+gulp.task('g', function (done) {
     runSequence('default', 'release:github', done);
 })
 

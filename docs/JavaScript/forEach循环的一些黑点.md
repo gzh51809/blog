@@ -1,6 +1,4 @@
 # forEach循环的一些黑点
-- 标签： `JavaScript`
-- 时间： `2016-3-7`
 
 ## forEach
 
@@ -158,8 +156,6 @@ var check = function(arr) {
 
 console.log('result: ' + check(flagArray))
 
-
-
 // false
 // null
 // 0
@@ -167,3 +163,6 @@ console.log('result: ' + check(flagArray))
 // enter, value = true
 // result: true
 ```
+
+
+  [1]: 2016-6-6

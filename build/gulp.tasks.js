@@ -135,3 +135,10 @@ gulp.task('updateREADME', () => {
     return fs.outputFile(outputPath, content)
 })
 
+
+// update README
+gulp.task('updateTag', () => {
+
+})
+
+

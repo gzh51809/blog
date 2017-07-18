@@ -7,7 +7,6 @@
 - [CSS（6）](/CSS/)
 - [Canvas（0）](/Canvas/)
 - [DesignPattern（1）](/DesignPattern/)
-- [ES6（11）](/ES6/)
 - [FE-Engineering（4）](/FE-Engineering/)
 - [Git（1）](/Git/)
 - [Gulp（1）](/Gulp/)
