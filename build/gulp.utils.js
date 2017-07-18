@@ -9,6 +9,7 @@ exports.isMd = isMd
 exports.getLine = getLine
 exports.getCategory = getCategory
 exports.getSpecFileContent = getSpecFileContent
+exports.getItem = getItem
 
 function isIgnore_Level_1(fileName) {
     var ignoreFiles = config.docs.level1.ignore;
@@ -34,6 +35,10 @@ function getLine(dirName, fileName) {
     return `- [${fileName}](${dirName}/${fileName}.md)\n`;
 }
 
+function getItem(column, count) {
+    return `- [${column}（${count}）](/${column}/)\n`
+}
+
 function getCategory(DIR) {
 
     var category = '';
@@ -56,17 +61,17 @@ function getCategory(DIR) {
             })
         })
 
-        // 2. add File to category
-        if (!isIgnore_Level_2(child.name) && isMd(child.name)) {
-            var stat = fs.lstatSync(child.absolutePath);
-            if (stat.isFile()) {
-                category += getLine(DIR.name, child.name.split('.')[0])
-            }
-            if (stat.isDirectory()) {
-                child.isDirectory = true
-            }
+        var stat = fs.lstatSync(child.absolutePath);
+
+        if (stat.isDirectory()) {
+            child.isDirectory = true
+
+        } else if (!isIgnore_Level_2(child.name) && isMd(child.name)) {
+            category += getLine(DIR.name, child.name.split('.')[0])
+
         }
     })
+
     return category;
 }
 

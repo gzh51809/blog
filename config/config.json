@@ -1,6 +1,7 @@
 {
     "docs": {
-        "path": "docs",
+        "sourcePath": "workSpace",
+        "targetPath": "docs",
         "tag": [
             {
                 "name": "标签",
@@ -17,12 +18,14 @@
         ],
         "level1": {
             "ignore": [
+                ".DS_Store",
                 "__plan__",
                 "__Template__"
             ]
         },
         "level2": {
             "ignore": [
+                ".DS_Store",
                 "_navbar.md",
                 "_sidebar.md",
                 "README.md"
@@ -49,5 +52,10 @@
     "cache": {
         "name": "cache",
         "path": ".cache/_cache.json"
+    },
+    "project": {
+        "README": {
+            "path": "README.md"
+        }
     }
 }

@@ -11,7 +11,22 @@ requireDir('./build', {recurse: true})
 
 // Default
 gulp.task('default', function (done) {
-    runSequence('getListLevel1', 'checkItemType', 'getListLevel2', 'cacheDocsList', 'generateSpecialFiles', done);
+    runSequence(
+        'prepare',
+        'getListLevel1',
+        'checkItemType',
+        'getListLevel2',
+        'cacheDocsList',
+        'generateSpecialFiles',
+        'updateREADME'
+        , done);
+})
+
+gulp.task('github', function (done) {
+    runSequence(
+        'default',
+        'release:github'
+        , done);
 })
 
 // Clean spec files

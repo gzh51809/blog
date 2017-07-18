@@ -1,5 +1,5 @@
 .idea
 .cache
-backup
+workSpace
 node_modules
-
+.DS_Store

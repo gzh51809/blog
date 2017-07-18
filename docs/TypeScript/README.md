@@ -1,0 +1,3 @@
+# TypeScript
+
+- [TypeScript一些零碎的知识点](TypeScript/TypeScript一些零碎的知识点.md)

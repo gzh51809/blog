@@ -12,5 +12,5 @@ gulp.task('release:github', function () {
         throw new gutil.PluginError('release', 'Commit msg length must be greater than ' + gutil.colors.red(10))
     }
     shell.exec('git add .')
-    shell.exec('git commit -m' + argv.commit)
+    shell.exec('git commit -m "' + argv.commit + '"')
 })

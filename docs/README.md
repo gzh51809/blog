@@ -1,36 +1,29 @@
-# 目录
+# Category
 
 ---
 
-- 前端部分
-	- [JavaScript（13）](/JavaScript/)
-	- [ES6（11）](/ES6/)
-	- [TypeScript（1）](/TypeScript/)
-	- [Vue（1）](/Vue/)
-    - [React（1）](/React/)
-    - [AngularJS（3）](/AngularJS/)
-	- [Node.js（1）](/Node/)
-	- [设计模式（1）](/DesignPattern/)
-	- [前端工程化（1）](/FE-Engineering/)
-	- [Hybird APP（1）](/Hybird-APP/)
-	- [JQuery源码分析（1）](/JQuery-Source-Code/)
-	- [书签(3)](/Bookmarks/)
-	- [CSS（1）](/CSS/)
-	- [Design（0）](/Design/)
-	- [DDD（0）](/DDD/)
-	- [Git（1）](/Git/)
-	- [RegExp（2）](/RegExp/)
-	- [Unit Test(1)](/UnitTest/)
+- [AngularJS（4）](/AngularJS/)
+- [Bookmarks（3）](/Bookmarks/)
+- [CSS（6）](/CSS/)
+- [Canvas（0）](/Canvas/)
+- [DesignPattern（3）](/DesignPattern/)
+- [ES6（11）](/ES6/)
+- [FE-Engineering（4）](/FE-Engineering/)
+- [Git（1）](/Git/)
+- [Gulp（1）](/Gulp/)
+- [JavaScript（17）](/JavaScript/)
+- [Node（2）](/Node/)
+- [React（2）](/React/)
+- [RegExp（3）](/RegExp/)
+- [Tool（1）](/Tool/)
+- [TypeScript（1）](/TypeScript/)
+- [UnitTest（2）](/UnitTest/)
+- [Vue（1）](/Vue/)
+- [Web-Develop（1）](/Web-Develop/)
+
 	
 ---
 
 !> 转载请注明出处：http://www.v2js.com/blog
 
 <div style="color:#aaa; font-size: 12px; text-align: right">Special Thanks to <a href="https://github.com/QingWei-Li">@清v</a></div> 
-
-
-
-
-
-
-

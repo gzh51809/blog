@@ -4,15 +4,24 @@ const getFileList = require('../src/util').getFileList
 const resolve = require('../src/util').resolve
 const config = require('../config/config.json')
 const fs = require('fs-extra')
-const gulp = require('gulp');
-const gutil = require('gulp-util');
+const path = require('path')
+const gulp = require('gulp')
+const gutil = require('gulp-util')
 const util = require('./gulp.utils')
+const argv = require('yargs').argv
 
 var docs;
 
+gulp.task('prepare', () => {
+    return fs.remove(resolve(config.docs.targetPath))
+        .then(() => {
+            return fs.copy(config.docs.sourcePath, config.docs.targetPath)
+        })
+})
+
 // Get File list - Level 1
 gulp.task('getListLevel1', () => {
-    return getFileList(resolve(config.docs.path))
+    return getFileList(resolve(config.docs.targetPath))
         .then(list => {
             docs = list.filter(item => !util.isIgnore_Level_1(item.name))
         })
@@ -40,10 +49,13 @@ gulp.task('cacheDocsList', (done) => {
 gulp.task('getListLevel2', (done) => {
     return Promise.all(
         docs.filter(item => item.isDirectory)
-            .map(item => {
-                return getFileList(item.absolutePath).then(list => {
-                        item.children = list
-                        item.category = util.getCategory(item)
+            .map(DIR => {
+                return getFileList(DIR.absolutePath).then(list => {
+                        DIR.children = list
+                        DIR.category = util.getCategory(DIR)
+                        DIR.articleCount = DIR.children
+                                .filter(child => !child.isDirectory)
+                                .filter(child => !util.isIgnore_Level_2(child.name)).length
                     }
                 )
             }))
@@ -89,5 +101,21 @@ gulp.task('cleanAllSpecialFiles', (done) => {
         throw new gutil.PluginError('cleanAllSpecialFiles', err);
     })
 
+})
+
+// update README
+gulp.task('updateREADME', () => {
+
+    let outputPath = path.resolve(config.docs.targetPath, config.project.README.path);
+    let content = fs.readFileSync(outputPath, 'utf-8');
+    let category = '';
+
+    docs.filter(item => item.isDirectory)
+        .forEach(DIR => {
+            category += util.getItem(DIR.name, DIR.articleCount)
+        })
+
+    content = content.replace('{{content}}', category)
+    return fs.outputFile(outputPath, content)
 })
 
