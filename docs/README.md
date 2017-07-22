@@ -9,7 +9,7 @@
 - [DesignPattern（1）](/DesignPattern/)
 - [FE-Engineering（4）](/FE-Engineering/)
 - [Git（1）](/Git/)
-- [Gulp（1）](/Gulp/)
+- [Gulp（2）](/Gulp/)
 - [JavaScript（17）](/JavaScript/)
 - [Node（2）](/Node/)
 - [React（2）](/React/)

@@ -61,4 +61,6 @@ gulp.task('delSepc', function (done) {
     runSequence('basic', 'cleanAllSpecialFiles', done);
 })
 
+module.exports = runSequence.use(gulp)
+
 
