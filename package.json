@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/toxichl/FED-blog#readme",
   "devDependencies": {
+    "@types/fs-extra": "^3.0.3",
     "docsify-cli": "^4.1.9",
     "event-stream": "^3.3.4",
     "gulp": "^3.9.1",

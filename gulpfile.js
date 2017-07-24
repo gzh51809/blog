@@ -27,7 +27,7 @@ gulp.task('default', function (done) {
 
 
 gulp.task('docsify', done => {
-    return docsify.serve('./docs', true, 3000)
+    return docsify.serve('./docs', true, 1995)
 })
 
 gulp.task('watch', function () {

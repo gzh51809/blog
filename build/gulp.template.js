@@ -12,19 +12,23 @@ const argv = require('yargs').argv
 const config = require('../config/template.json')
 const es = require('event-stream');
 
+const TEMPORARY_PATH = path.resolve(__dirname, '../.cache/TEMP/')
+let TARGET_PATH;
+
+// ***************************************************
+// TEMP file
+// ***************************************************
 gulp.task('temp-file', done => {
 
     if (argv._.length === 0) {
         gutil.log(gutil.colors.red('Missing output path'))
     }
 
-    const TEMPORARY_PATH = path.resolve(__dirname, '../.cache/TEMP/')
+    TARGET_PATH = path.resolve(process.cwd(), argv._[0])
 
-    let targetPath = path.resolve(process.cwd(), argv._[0])
-
-    if (fs.existsSync(targetPath) && fs.readdirSync(targetPath).length !== 0) {
+    if (fs.existsSync(TARGET_PATH) && fs.readdirSync(TARGET_PATH).length !== 0) {
         gutil.log(gutil.colors.red('Not an empty directory'))
-        process.exit(2)
+        process.exit(1)
     }
 
     return es.merge(config.files.map(file => {
@@ -35,5 +39,10 @@ gulp.task('temp-file', done => {
 
 })
 
+// ***************************************************
+// OUTPUT file
+// ***************************************************
 
-
+gulp.task('output-file', done => {
+    return fs.copy(TEMPORARY_PATH, TARGET_PATH)
+})
