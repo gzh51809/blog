@@ -1,6 +1,6 @@
 .idea
 .cache
-npm-debug*.log
+*.log
 workSpace
 node_modules
 .DS_Store
