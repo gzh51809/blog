@@ -8,7 +8,6 @@ import {Stream} from 'stream';
 		stream.setMaxListeners(0);
 		stream.writable = stream.readable = true;
 
-
 		// you can use params or array
 		if(streams[0] instanceof Array) {
 			streams = streams[0];
