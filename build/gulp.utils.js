@@ -59,6 +59,8 @@ function getLine(dirName, fileName) {
     if (config.compile.ignoreTag) {
         fileName = fileName.replace(new RegExp(config.compile.ignoreReg), '');
     }
+    console.log(config.compile.ignoreReg)
+    console.log(fileName)
     return `- [${fileName}](${dirName}/${fileName}.md)\n`;
 }
 

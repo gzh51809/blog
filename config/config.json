@@ -1,7 +1,7 @@
 {
     "compile": {
         "ignoreTag": true,
-        "ignoreReg": "\\[[a-zA-Z0-9]\\]"
+        "ignoreReg": "\\[[a-zA-Z0-9]*\\]"
     },
     "docs": {
         "sourcePath": "workSpace",
