@@ -14,6 +14,11 @@ exports.getItem = getItem
 exports.getFileList = getFileList
 exports.resolve = resolve
 
+/**
+ * Is file ignored in level 1
+ * @param {string} fileName
+ * @returns {boolean}
+ */
 function isIgnore_Level_1(fileName) {
     var ignoreFiles = config.docs.level1.ignore;
     if (ignoreFiles.indexOf(fileName) !== -1) {
@@ -22,6 +27,11 @@ function isIgnore_Level_1(fileName) {
     return false
 }
 
+/**
+ * Is file ignored in level 2
+ * @param {string} fileName
+ * @returns {boolean}
+ */
 function isIgnore_Level_2(fileName) {
     var ignoreFiles = config.docs.level2.ignore;
     if (ignoreFiles.indexOf(fileName) !== -1) {
@@ -30,14 +40,34 @@ function isIgnore_Level_2(fileName) {
     return false
 }
 
+/**
+ * Test markdown match
+ * @param fileName
+ * @returns {boolean}
+ */
 function isMd(fileName) {
     return /\.md/.test(fileName)
 }
 
+/**
+ * Get one line for every column to generate category
+ * @param dirName
+ * @param fileName
+ * @returns {string}
+ */
 function getLine(dirName, fileName) {
+    if (config.compile.ignoreTag) {
+        fileName = fileName.replace(new RegExp(config.compile.ignoreReg), '');
+    }
     return `- [${fileName}](${dirName}/${fileName}.md)\n`;
 }
 
+/**
+ * Get one line to generate main README
+ * @param dirName
+ * @param fileName
+ * @returns {string}
+ */
 function getItem(column, count) {
     return `- [${column}（${count}）](/${column}/)\n`
 }

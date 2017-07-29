@@ -1,2 +1,3 @@
 - [Home](/Git/)
-- [SourceTree跳坑攻略](Git/SourceTree跳坑攻略.md)
+- [在gitconfig中写node](Git/在gitconfig中写node.md)
+- [我的Git常用命令](Git/我的Git常用命令.md)

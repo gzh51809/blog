@@ -1,4 +1,4 @@
-# Shell基础
+# Awesome Shell
 
 ## 变量
 
@@ -25,6 +25,8 @@ let index=${index}+1 # 让bash能够进行算数运算的操作：
 
 ## 关系运算符
 
-![](img/relation-operator.png)
+![](Shell/img/relation-operator.png)
+
+
 ￼
 ￼
