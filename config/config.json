@@ -1,6 +1,6 @@
 {
     "compile": {
-        "ignoreTag": true,
+        "ignoreTag": false,
         "ignoreReg": "\\[[a-zA-Z0-9]*\\]"
     },
     "docs": {
