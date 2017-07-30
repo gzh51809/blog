@@ -4,9 +4,11 @@
   </a>
 </p>
 
-> ulivz
+<p style="font-weight: 100; font-size:20px;" align="center">ulivz</p>
 
-这是一条漫长的路
+> 长路漫漫，唯键盘作伴
+
+<br>
 
 [GitHub](https://github.com/toxichl/blog)
 [Get Started](/README.md)
