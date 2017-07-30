@@ -5,5 +5,6 @@
 - [一个基于gulp的App项目构建总结](前端工程化/一个基于gulp的App项目构建总结.md)
 - [一年前端聊聊前端工程化](前端工程化/一年前端聊聊前端工程化.md)
 - [前端三驾马车的对比](前端工程化/前端三驾马车的对比.md)
+- [😎~ Awesome CLI](前端工程化/😎~ Awesome CLI.md)
 - [😎~ Awesome Gulp](前端工程化/😎~ Awesome Gulp.md)
 - [😎~ Awesome Webpack](前端工程化/😎~ Awesome Webpack.md)

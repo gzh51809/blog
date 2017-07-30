@@ -4,6 +4,7 @@
 - [JavaScript中Object类详解](JavaScript/JavaScript中Object类详解.md)
 - [Lodash必备技巧](JavaScript/Lodash必备技巧.md)
 - [jQuery技巧](JavaScript/jQuery技巧.md)
+- [一个简单的Promise的实现](JavaScript/一个简单的Promise的实现.md)
 - [一份JS面试题](JavaScript/一份JS面试题.md)
 - [你不需要JQuery](JavaScript/你不需要JQuery.md)
 - [关于JavaScript的类与继承](JavaScript/关于JavaScript的类与继承.md)

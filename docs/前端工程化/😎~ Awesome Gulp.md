@@ -13,6 +13,7 @@ Name|Link|Desc
 ---|---|---
 gulp-clean|[Github](https://github.com/peter-vilja/gulp-clean)|
 
+
 ## Stream
 
 Name|Link|Desc
@@ -27,14 +28,18 @@ Name|Link|Desc
 gulp-autoprefixer|[Github](https://github.com/sindresorhus/gulp-autoprefixer)|
 gulp-compass|[Github](https://github.com/appleboy/gulp-compass)|
 
+
 ## changelog
 
 Name|Link|Desc
 ---|---|---
 gulp-conventional-changelog|[Github](https://github.com/conventional-changelog-archived-repos/gulp-conventional-changelog)
 
+
 ## 关于gulp的好文
 
 Name|Link
 ---|---
 《解刨gulp中steam pipe的异步并行坑》|[Link](http://www.tangshuang.net/2935.html)
+《gulp教程之gulp-imagemin》|[link](http://blog.csdn.net/zhongguohaoshaonian/article/details/53213657)
+《如何使用Gulp裁剪和压缩图片》|[link](http://geek100.com/2684.html)
