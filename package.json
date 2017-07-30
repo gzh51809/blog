@@ -7,6 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "compile": "gulp",
     "dev": "gulp dev",
     "commit": "gulp release:github"
   },
@@ -26,6 +27,7 @@
   "bugs": {
     "url": "https://github.com/toxichl/FED-blog/issues"
   },
+  "pre-commit": "compile",
   "homepage": "https://github.com/toxichl/FED-blog#readme",
   "devDependencies": {
     "@types/fs-extra": "^3.0.3",
@@ -34,6 +36,7 @@
     "gulp": "^3.9.1",
     "gulp-util": "^3.0.8",
     "gulp-watch": "^4.3.11",
+    "pre-commit": "^1.2.2",
     "require-dir": "^0.3.2",
     "run-sequence": "^2.0.0",
     "shelljs": "^0.7.8",
