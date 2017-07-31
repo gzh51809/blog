@@ -20,6 +20,15 @@ echo $(`cd $(cd \`dirname $0\`; pwd)`; pwd;)    # __dirname 的上一层
 echo $(basename $0)
 ```
 
+## 获取当前文件的绝对路经
+
+```bash
+cd `echo ${0%/*}`
+abspath=`pwd`
+abspath=$abspath/`basename $0`
+echo $abspath
+```
+
 ## 获取文件夹下的所有文件：
 
 ```bash
