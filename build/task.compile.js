@@ -41,7 +41,7 @@ module.exports = function (gulp, docs) {
 
         docs.filter(util.isDirectory).forEach(DIR => {
             DIR.specFiles.forEach(file => {
-                gutil.log(`${gutil.colors.cyan('Created: ')}${DIR.name}/${file.name}`)
+                // gutil.log(`${gutil.colors.cyan('Created: ')}${DIR.name}/${file.name}`)
                 tasks.push(fs.outputFile(file.absolutePath, util.getSpecFileContent(DIR, file)))
             })
         })
