@@ -5,7 +5,6 @@
 - [Bookmarks（2）](/Bookmarks/)
 - [CSS（6）](/CSS/)
 - [Git（2）](/Git/)
-- [HTTP（0）](/HTTP/)
 - [JavaScript（18）](/JavaScript/)
 - [Node（5）](/Node/)
 - [SVGCanvas（1）](/SVGCanvas/)

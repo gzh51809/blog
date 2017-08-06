@@ -8,8 +8,17 @@
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">Loading ...</div>
 </body>
-<script src="config.js"></script>
-<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<script>
+    window.$docsify = {
+        loadSidebar: true,
+        loadNavbar: true,
+        subMaxLevel: 3,
+        repo: 'https://github.com/ulivz',
+        name: 'ulivz',
+        coverpage: true
+    }
+</script>
+<script src="//cdn.jsdelivr.net/npm/docsify@latest/lib/docsify.min.js"></script>
 </html>
