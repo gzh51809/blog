@@ -11,6 +11,7 @@
     "dev": "gulp dev",
     "commit": "gulp release:github"
   },
+  "precommit": "gulp",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/toxichl/FED-blog.git"
@@ -36,11 +37,10 @@
     "gulp": "^3.9.1",
     "gulp-util": "^3.0.8",
     "gulp-watch": "^4.3.11",
-    "pre-commit": "^1.2.2",
+    "javascript-precommit": "0.0.8",
     "require-dir": "^0.3.2",
     "run-sequence": "^2.0.0",
-    "shelljs": "^0.7.8",
-    "yargs": "^8.0.2"
+    "shelljs": "^0.7.8"
   },
   "dependencies": {
     "fs-extra": "^4.0.0",
