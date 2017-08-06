@@ -6,7 +6,7 @@
 
 <p style="font-weight: 100; font-size:20px;" align="center">ulivz</p>
 
-> 长路漫漫，唯键盘作伴
+> front end goes further than that.
 
 <br>
 
