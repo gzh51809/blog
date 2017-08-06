@@ -1,3 +1,0 @@
-# 设计
-
-- [Sketch](设计/Sketch.md)
