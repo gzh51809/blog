@@ -22,7 +22,10 @@ module.exports = function (gulp, docs) {
             .then(() => {
                 return gulp.src(config.docs.sourcePath + '/**/!(*__.md)', { base: './' + config.docs.sourcePath })
                     .pipe(gulp.dest(config.docs.targetPath))
-                    .on('end', done) // gulp.dest is an async operation ...
+                    .on('end', () => {
+                        fs.writeFileSync(config.docs.targetPath + '/.nojekyll', '', 'utf-8')
+                        done()
+                    }) // gulp.dest is an async operation ...
             })
     })
 
