@@ -545,7 +545,7 @@ gulp.task('injectAll', function () {
 (注意：img后不能有子目录)
 
 
-    ng-src="{{item.gender == 1? '../img/women_inside.png' : item.gender == 0? '../img/man_inside.png' : 
+    ng-src="{{item.gender == 1? '../img/women_inside.png' : '../img/man_inside.png'}}"
     ../img/a/b/c/d/e.png
     ../img/a/b/c/d.png
     ../img/a.png
