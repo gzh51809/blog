@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-require('./gulpfile')('temp-file', 'output-file');
+require('./gulpfile')('mirror-work', 'mirror-output');
