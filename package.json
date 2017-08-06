@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "compile": "gulp default",
+    "compile": "gulp",
     "dev": "gulp dev",
     "commit": "gulp release:github"
   },
