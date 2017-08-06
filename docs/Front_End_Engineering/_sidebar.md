@@ -2,7 +2,6 @@
 - [AwesomeES6](Front_End_Engineering/AwesomeES6.md)
 - [Gulp-concat的实现](Front_End_Engineering/Gulp-concat的实现.md)
 - [Webpack配置汇总](Front_End_Engineering/Webpack配置汇总.md)
-- [一个基于gulp的App项目构建总结](Front_End_Engineering/一个基于gulp的App项目构建总结.md)
 - [一年前端聊聊前端工程化](Front_End_Engineering/一年前端聊聊前端工程化.md)
 - [代码风格](Front_End_Engineering/代码风格.md)
 - [前端三驾马车的对比](Front_End_Engineering/前端三驾马车的对比.md)
