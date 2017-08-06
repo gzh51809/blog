@@ -8,7 +8,7 @@ const gulp = require('gulp')
 const watch = require('gulp-watch')
 const docsify = require('docsify-cli/lib')
 
-require('./gulpTasks')(gulp)
+require('./build')(gulp)
 
 // ***************************************************
 // Default
