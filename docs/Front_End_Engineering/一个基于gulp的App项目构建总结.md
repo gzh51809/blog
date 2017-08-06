@@ -544,7 +544,7 @@ gulp.task('injectAll', function () {
 １.图片路径：全部替换成`img/xxx.png`　
 (注意：img后不能有子目录)
 
-```js
+```
     ng-src="{{item.gender == 1? '../img/women_inside.png' : item.gender == 0? '../img/man_inside.png' : 
   ../img/a/b/c/d/e.png
   ../img/a/b/c/d.png
@@ -561,7 +561,7 @@ gulp.task('injectAll', function () {
 
 ２.templates路径：全部替换成`templates/xxx.html` (注意：templates后不能有子目录)
 
-```js
+```
 <div ng-include="'../templates/b.html'"></div>
 <div ng-include="'../a/templates/b.html'"></div>
 <div ng-include="'../a/templates/b/c.html'"></div>
