@@ -544,14 +544,14 @@ gulp.task('injectAll', function () {
 １.图片路径：全部替换成`img/xxx.png`　
 (注意：img后不能有子目录)
 
-```
+
     ng-src="{{item.gender == 1? '../img/women_inside.png' : item.gender == 0? '../img/man_inside.png' : 
-  ../img/a/b/c/d/e.png
-  ../img/a/b/c/d.png
-  ../img/a.png
-  ../a/img/b/c/d.png
-  ../a/b/img/c/d.png
-```
+    ../img/a/b/c/d/e.png
+    ../img/a/b/c/d.png
+    ../img/a.png
+    ../a/img/b/c/d.png
+    ../a/b/img/c/d.png
+
 正则表达式：　
 
 `\.\.\/([a-zA-Z]|\/)*img([a-zA-Z]|\/)*\/`
