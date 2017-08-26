@@ -3,6 +3,7 @@
 ## CSS3基本特性
 
 > 选择器升级，如`tbody: nth-child(even), nth-child(odd)`
+> 选择器升级，如`tbody: nth-child(even), nth-child(odd)`
 
 ```css
 p:nth-child(2){

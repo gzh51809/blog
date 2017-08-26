@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Image Compressor</title>
+    <style>
+        .big {
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="luke">Luke</div>
+<div class="luke big">Luke</div>
+<button class="bigBtn">BIG</button>
+<button class="normalBtn">normal</button>
+<button class="removeBtn">remove</button>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+
+
+    $('.bigBtn').click(() => {
+        console.log('big btn')
+        $('.luke').toggleClass('big')
+    })
+
+    $('.normalBtn').click(() => {
+        console.log('normal btn')
+        $('.luke').toggleClass('big', false)
+    })
+
+    $('.removeBtn').click(() => {
+        $('.luke').removeClass('big')
+    })
+
+
+</script>
+
+</body>
+</html>

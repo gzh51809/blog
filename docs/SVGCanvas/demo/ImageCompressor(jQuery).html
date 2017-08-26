@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Image Compressor</title>
+</head>
+<body>
+
+<input id="file" type="file" multiple>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://unpkg.com/file-saver@1.3.3/FileSaver.js"></script>
+<script src="TimeKeeper.js"></script>
+<script>
+
+    /**
+     * Default options for compress image
+     * @type {{maxSize: number, unit: string, maxWidth: number, maxHeight: number, quality: number}}
+     */
+    const COMPRESS_DEFAULT_OPTS = {
+        maxSize: 512000,
+        unit: 'byte',
+        maxWidth: 1920,
+        maxHeight: 1344,
+        quality: 1
+    }
+
+
+
+    class ImageCompressor {
+
+        constructor(options) {
+            this._opts = $.extend({}, COMPRESS_DEFAULT_OPTS, options);
+            this.maxFileSizeByte = this._opts.unit === 'kb' ? this._opts.maxSize * 1000 : this._opts.maxSize;
+            this.records = [];
+        }
+
+        compress(file) {
+
+            let TK = new TimeKeeper();
+
+            // 1. check params
+            if (file.constructor !== File) {
+                throw new Error(`[Error] Unexpected parameters ${file}, which must be a instance of File`)
+            }
+
+            // 2. get file's size, and check if it needs to compress
+            if (file.size < this.maxFileSizeByte) {
+                return file;
+            }
+
+            // 3. initial record
+            let reocrd = {
+                name: file.name,
+                source: {size: `${parseInt(file.size / 1024)}kb`},
+                final: {}
+            }
+
+            // readable config
+            Object.defineProperty(reocrd, 'config', {
+                get: () => this._opts
+            })
+
+            TK.sign(1);
+
+            // 4. compress image
+            return this._readAsDataURL(file)
+            // source file's dataURL to image
+                .then(dataURL => {
+                    TK.sign(2);
+                    return this._dataURLtoImage(dataURL);
+                })
+                // draw source image in canvas
+                .then(sourceImg => {
+
+                    TK.sign(3);
+                    let finalSize = this._getCompressedSize(sourceImg);
+
+                    $.extend(reocrd.source, {
+                        width: `${sourceImg.width}px`,
+                        height: `${sourceImg.height}px`
+                    });
+                    $.extend(reocrd.final, {
+                        width: `${parseInt(finalSize.width)}px`,
+                        height: `${parseInt(finalSize.height)}px`
+                    });
+
+                    return this._drawImageInCanvas(finalSize.width, finalSize.height, sourceImg);
+                })
+                // convert canvas to File
+                .then(canvas => {
+
+                    TK.sign(4);
+
+                    let dataURL = canvas.toDataURL("image/jpeg", this._opts.quality);
+
+                    TK.sign(5);
+
+                    let finalIMG = new File([this._dataURLtoBlob(dataURL)], file.name, {type: file.type});
+
+                    TK.sign(6);
+
+                    reocrd.final.size = `${parseInt(finalIMG.size / 1024)}kb`;
+                    reocrd.cost = `${TK.diff(6,0)*1000}ms`;
+                    reocrd.performance = TK.all();
+                    this.records.push(reocrd);
+
+                    return finalIMG;
+                })
+                .fail(err => {
+                    throw new Error(err)
+                })
+        }
+
+        /**
+         * Get compressed width ang height
+         * @param imgElement
+         * @returns {{width: number, height: number}}
+         * @private
+         */
+        _getCompressedSize(imgElement) {
+            let ratioW = 1, ratioH = 1, ratio;
+
+            if (imgElement.width > this._opts.maxWidth) {
+                ratioW = imgElement.width / this._opts.maxWidth;
+            }
+            if (imgElement.height > this._opts.maxHeight) {
+                ratioH = imgElement.height / this._opts.maxHeight;
+            }
+            ratio = Math.max(ratioW, ratioH);
+            return {
+                width: Math.floor(imgElement.width / ratio),
+                height: Math.floor(imgElement.height / ratio)
+            }
+        }
+
+        /**
+         * Get image element by image's dataURL
+         * @param dataURL
+         * @returns {Promise}
+         * @private
+         */
+        _dataURLtoImage(dataURL) {
+
+            let imgElement = document.createElement('img');
+            return $.Deferred(ref => {
+                imgElement.setAttribute('src', dataURL);
+                imgElement.onload = () => {
+                    return ref.resolve(imgElement)
+                };
+                imgElement.onerror = err => ref.reject(err);
+            });
+        }
+
+        /**
+         * Get blob element by image's dataURL
+         * @param dataURL
+         * @returns {Promise}
+         * @private
+         */
+        _dataURLtoBlob(dataURL) {
+
+            let arr = dataURL.split(','),
+                bin = atob(arr[1]),
+                mime = arr[0].match(/:(.*?);/)[1],
+                buffer = new Uint8Array(bin.length);
+            for (var i = 0; i < bin.length; i++) {
+                buffer[i] = bin.charCodeAt(i);
+            }
+
+            return new Blob([buffer.buffer], {type: mime});
+        }
+
+        /**
+         * Draw image in canvas
+         * @param width
+         * @param height
+         * @param image
+         * @returns {object}
+         * @private
+         */
+        _drawImageInCanvas(width, height, image) {
+
+            let canvas = document.createElement('canvas'),
+                ctx = canvas.getContext('2d');
+            canvas.setAttribute('width', width);
+            canvas.setAttribute('height', height);
+            ctx.drawImage(image, 0, 0, width, height);
+            return canvas;
+        }
+
+        /**
+         * Read file's dataURL
+         * @param file
+         * @returns {Promise}
+         * @private
+         */
+        _readAsDataURL(file) {
+            let fr = new FileReader();
+            return $.Deferred(def => {
+                fr.readAsDataURL(file);
+                fr.onloadend = e => def.resolve(e.target.result);
+                fr.onerror = err => def.reject(err);
+                return def;
+            });
+        }
+
+    }
+
+    let imageHandler = new ImageCompressor({quality: 0.8});
+
+
+    document.getElementById('file').addEventListener('change', function () {
+
+        let start, end, code, currentIndex = 0;
+        for (let i = 0, l = this.files.length; i < l; i++) {
+
+            if (i === 0) {
+                start = new Date().getTime();
+            }
+
+            imageHandler
+                .compress(this.files[i])
+                .then(file => {
+                    currentIndex++;
+                    if (currentIndex === this.files.length) {
+                        end = new Date().getTime();
+                        console.log('Total cost ' + (end-start) + 's' );
+                        code = document.createElement('pre');
+                        code.innerHTML = JSON.stringify(imageHandler.records, null, 2);
+                        document.querySelector('body').appendChild(code)
+                    }
+                })
+        }
+    })
+
+</script>
+</body>
+</html>

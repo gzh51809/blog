@@ -64,3 +64,16 @@ fs.createReadStream('input.txt')
   .pipe(zlib.createGzip())
   .pipe(fs.createWriteStream('input.txt.gz'));
 ```
+
+## Stream的一些点
+
+- Writeable 和 Readable 流都会将数据存储到内部的储存（Buffer）中；
+
+- 当可读流的实现调用 `stream.push(chunk)`，如果流的消费者没有调用 `stream.read()` ，这些数据会始终存在内部队列中，直到被消费；
+
+- 当可读缓存达到 `highWaterMark` 指定的阈值时，流会停止从底层资源读取数据；
+
+- 同理，可写流调用 `writable.write(chunk)` 也会将数据放到缓存；
+
+- 当可写缓存 < highWaterMark 时，writable.write() 返回true；
+- 当可写缓存 > highWaterMark 时，writable.write() 返回false；__同时在恰当的时机将触发 drain 事件，这时才能继续向流中写入数据。__

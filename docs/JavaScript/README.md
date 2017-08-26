@@ -1,6 +1,7 @@
 # JavaScript
 
 - [JS原型超详细讲解](JavaScript/JS原型超详细讲解.md)
+- [JavaScript API](JavaScript/JavaScript API.md)
 - [JavaScript中Object类详解](JavaScript/JavaScript中Object类详解.md)
 - [Lodash必备技巧](JavaScript/Lodash必备技巧.md)
 - [jQuery技巧](JavaScript/jQuery技巧.md)

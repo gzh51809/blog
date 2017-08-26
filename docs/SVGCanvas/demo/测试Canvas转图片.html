@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #img-container img /*#img-container canvas*/
+        {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="578" height="200" style="display:none;"></canvas>
+<img id="canvasImg">
+<img src="" alt="">
+
+<input id="upload" type="file"/>
+
+<img id="img" class="hidden"
+     src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495478525284&di=e1f76b3e86457a584ed340f4fddce42b&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F5%2F5514fb2764e7e.jpg"
+     alt="">
+
+<script>
+    let img = document.getElementById('img');
+    let file = document.getElementById('upload');
+    let imgSource = document.querySelector('#img-source');
+    let imgPreview = document.querySelector('#img-preview');
+    let canvas = document.querySelector('#canvas');
+    let log = console.log;
+
+    file.addEventListener('change', fileHandle)
+
+    /**
+     * File Handle
+     */
+    function fileHandle() {
+        for (var i = 0, l = this.files.length; i < l; i++) {
+            core(this.files[i], {maxByteSize: 512000})
+        }
+    }
+
+
+    /**
+     * Base Promise
+     * @param funcName
+     * @param file
+     * @returns {Promise}
+     */
+    function baseFrPromise(funcName, file) {
+        return new Promise((resolve, reject) => {
+            try {
+                fr[funcName](file);
+
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
+    /**
+     * Read base64
+     * @param file
+     * @returns {Promise}
+     */
+    function readAsBase64(file) {
+        return baseFrPromise('readAsDataURL', file)
+    }
+
+    /**
+     * Core handle method
+     * @param file
+     * @param opts
+     */
+    function core(file, opts) {
+
+        let fileSizeByte = file.size;
+        let fileSizeKb = fileSizeByte / 1024;
+        let ratio = fileSizeByte / opts.maxByteSize;
+
+        if (ratio > 1) {
+
+
+            readAsBase64(file)
+
+                .then(base64Url => {
+
+                    if (!base64Url) {
+                        return;
+                    }
+
+                    imgSource.setAttribute('src', base64Url)
+                    imgSource.onload = function () {
+
+                        let wh = getImgWH(imgSource);
+                        console.log(wh)
+                        if (!wh) {
+                            return;
+                        }
+
+                        log(`[LOG] width = ${wh[0]}px`);
+                        log(`[LOG] height = ${wh[1]}px`);
+
+                        let ratio = fileSizeByte / 512000;
+                        let nWidth = Math.floor(wh[0] / (ratio * 1.2));
+                        let nHeight = Math.floor(wh[1] / (ratio * 1.2));
+
+                        log(`[LOG] new width = ${nWidth}px`);
+                        log(`[LOG] new height = ${nHeight}px`);
+
+                        createCanvas(nWidth, nHeight, imgSource);
+                    }
+
+                })
+        }
+    }
+
+    function createImgElByBase64(file) {
+        let img = document.createElement('img')
+        img.src = file;
+        return img;
+    }
+
+    /**
+     *
+     * @param width
+     * @param height
+     * @param imgElement
+     */
+    function createCanvas(width, height, imgElement) {
+        canvas.setAttribute('width', width);
+        canvas.setAttribute('height', height);
+        let ctx = canvas.getContext('2d');
+        ctx.drawImage(imgElement, 0, 0, width, height);
+        let image = canvas.toDataURL("image/jpeg", 0.5);
+        window.location.href = image; // it will save locally
+    }
+
+    /**
+     * Get img's width and height
+     * @param img
+     * @param callback
+     * @returns {[*,*]}
+     */
+    function getImgWH(img, callback) {
+        var nWidth, nHeight
+        if (img.naturalWidth) { // 现代浏览器
+            nWidth = img.naturalWidth
+            nHeight = img.naturalHeight
+        } else { // IE6/7/8
+            var image = new Image();
+            image.src = img.src
+            image.onload = function () {
+                callback && callback(image.width, image.height)
+            }
+        }
+        return [nWidth, nHeight]
+    }
+
+</script>
+</body>
+</html>

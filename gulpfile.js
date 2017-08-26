@@ -28,12 +28,12 @@ gulp.task('lint', function (done) {
 // For Dev
 // ***************************************************
 gulp.task('docsify', done => {
-    return docsify.serve('./docs', true, 3000)
+    return docsify.serve('./docs', true, 3000);
 })
 
 gulp.task('watch', function () {
     return watch('workSpace/**', function () {
-        gulp.run('default')
+        gulp.run('default');
     })
 });
 
@@ -48,6 +48,6 @@ gulp.task('delSepc', function (done) {
     runSequence('basic', 'cleanAllSpecialFiles', done);
 })
 
-module.exports = runSequence.use(gulp)
+module.exports = runSequence.use(gulp);
 
 
