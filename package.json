@@ -1,5 +1,5 @@
 {
-  "name": "v2js",
+  "name": "blog",
   "version": "1.0.0",
   "description": "ulivz's blog",
   "main": "index.js",
@@ -7,18 +7,14 @@
     "doc": "docs"
   },
   "scripts": {
-    "compile": "gulp",
-    "dev": "gulp dev",
-    "commit": "gulp release:github"
   },
-  "precommit": "npm run compile",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/toxichl/FED-blog.git"
   },
   "keywords": [
     "blog",
-    "docsify"
+    "ulivz"
   ],
   "bin": {
     "mark": "bin.js"
@@ -29,20 +25,6 @@
     "url": "https://github.com/toxichl/FED-blog/issues"
   },
   "homepage": "https://github.com/toxichl/FED-blog#readme",
-  "devDependencies": {
-    "@types/fs-extra": "^3.0.3",
-    "docsify-cli": "^4.1.9",
-    "event-stream": "^3.3.4",
-    "gulp": "^3.9.1",
-    "gulp-util": "^3.0.8",
-    "gulp-watch": "^4.3.11",
-    "javascript-precommit": "0.0.8",
-    "require-dir": "^0.3.2",
-    "run-sequence": "^2.0.0",
-    "shelljs": "^0.7.8"
-  },
-  "dependencies": {
-    "fs-extra": "^4.0.0",
-    "yargs": "^8.0.2"
-  }
+  "devDependencies": {},
+  "dependencies": {}
 }
