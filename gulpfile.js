@@ -28,7 +28,7 @@ gulp.task('lint', function (done) {
 // For Dev
 // ***************************************************
 gulp.task('docsify', done => {
-    return docsify.serve('./docs', true, 3000);
+    return docsify.serve('./docs', true, 9000);
 })
 
 gulp.task('watch', function () {

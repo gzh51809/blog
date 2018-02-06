@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    // 最原始的设置默认值的方式
+    function log(x) {
+	    x = x || 'DEFAULT';
+	    return x
+    }
+
+    let testDataList = [
+    	    0,
+        1,
+        -1,
+        ~0, // -1 注意~运算符是取反再减一
+        ~1, // -1
+        ~-1, // 0
+        '',
+        new String(''),
+        'ulivz',
+        true,
+        false,
+        null,
+        undefined,
+        void 0, // void 0 ==(=) undefined
+        [],
+        {},
+
+    ]
+
+    function Test() {
+	    testDataList.forEach(item =>{
+		    console.log(`log(${item}) == ${log(item)}`)
+        });
+    }
+
+    Test()
+
+    // 缺陷在于，如果 if(y) 不成立，那么y的赋值将不生效！
+
+    // if(a) if在a为怎样的值时为false ?
+    // false/''/null/0
+
+
+</script>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 .idea
 .cache
 *.log
-workSpace
+docs
 node_modules
 .DS_Store

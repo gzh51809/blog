@@ -4,8 +4,7 @@
         "ignoreReg": "\\[[a-zA-Z0-9]*\\]"
     },
     "docs": {
-        "sourcePath": "workSpace",
-        "targetPath": "docs",
+        "path": "docs",
         "tag": [
             {
                 "name": "标签",

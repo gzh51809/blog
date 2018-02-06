@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.icono-caretUp {
+			position: relative;
+			width: 12px;
+			height: 20px;
+			margin: 7px 11px;
+		}
+
+		.icono-caretUp:before, .icono-caretUp:after {
+			content: '';
+			pointer-events: none;
+		}
+
+		.icono-caretUp:before {
+			top: 2px;
+			-webkit-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			transform: rotate(45deg);
+			width: 14px;
+			height: 2px;
+			position: absolute;
+			bottom: 0;
+			margin: auto 0;
+			right: 2px;
+			box-shadow: inset 0 0 0 32px;
+			-webkit-transform-origin: right;
+			-ms-transform-origin: right;
+			transform-origin: right;
+		}
+
+		.icono-caretUp:after {
+			top: 0;
+			-webkit-transform: rotate(-45deg);
+			-ms-transform: rotate(-45deg);
+			transform: rotate(-45deg);
+			width: 14px;
+			height: 2px;
+			position: absolute;
+			bottom: 0;
+			margin: auto 0;
+			right: 2px;
+			box-shadow: inset 0 0 0 32px;
+			-webkit-transform-origin: right;
+			-ms-transform-origin: right;
+			transform-origin: right;
+		}
+
+	</style>
+</head>
+<body>
+
+<i class="icono-caretUp">
+
+</i>
+
+</body>
+</html>

@@ -1,2 +1,0 @@
-- [Home](/视觉设计/)
-- [Sketch](视觉设计/Sketch.md)

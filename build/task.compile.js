@@ -18,10 +18,10 @@ module.exports = function (gulp, docs) {
     // ***************************************************
     // Add indent for Chiniese
     // ***************************************************
-    gulp.task('addIndentForChinese', done => {
+    gulp.task('add-indent-for-chinese-chars', done => {
         let tasks = [];
-        docs.filter(util.isDirectory).forEach(DIR => {
-            DIR.children.filter(item => !item.isDirectory).forEach(file => {
+        docs.filter(util.isDirectory).forEach(directory => {
+	        directory.children.filter(item => !item.isDirectory).forEach(file => {
                 // gutil.log(`${gutil.colors.cyan('Created: ')}${DIR.name}/${file.name}`)
                 let content = fs.readFileSync(file.absolutePath, 'utf-8')
                 content = content.replace(/^([\u4e00-\u9fa5\w…“])/gm, '&emsp;&emsp;$1')
@@ -30,49 +30,12 @@ module.exports = function (gulp, docs) {
         })
 
         return Promise.all(tasks).catch(err => {
-            throw new gutil.PluginError('generateSpecialFiles', err);
+            throw new gutil.PluginError('addIndentForChinese', err);
         })
     })
-
-    // Generate special files
-    gulp.task('generateSpecialFiles', (done) => {
-
-        let tasks = [];
-
-        docs.filter(util.isDirectory).forEach(DIR => {
-            DIR.specFiles.forEach(file => {
-                // gutil.log(`${gutil.colors.cyan('Created: ')}${DIR.name}/${file.name}`)
-                tasks.push(fs.outputFile(file.absolutePath, util.getSpecFileContent(DIR, file)))
-            })
-        })
-
-        return Promise.all(tasks).catch(err => {
-            throw new gutil.PluginError('generateSpecialFiles', err);
-        })
-    })
-
-    // ***************************************************
-    // Clean all special files
-    // ***************************************************
-    // gulp.task('cleanAllSpecialFiles', (done) => {
-    //     let tasks = [];
-    //     docs.filter(item => item.isDirectory)
-    //         .forEach(DIR => {
-    //             DIR.specFiles.forEach(file => {
-    //                 // gutil.log(`${gutil.colors.cyan('Remove: ')}${DIR.name}/${file.name}`)
-    //                 tasks.push(fs.remove(file.absolutePath))
-    //             })
-    //             // Should also
-    //             delete DIR.specFiles
-    //         })
-    //
-    //     return Promise.all(tasks).catch(err => {
-    //         throw new gutil.PluginError('cleanAllSpecialFiles', err);
-    //     })
-    // })
 
     // update README
-    gulp.task('updateREADME', () => {
+    gulp.task('update-readme', () => {
 
         let outputPath = path.resolve(config.docs.targetPath, config.project.README.path);
         let content = fs.readFileSync(outputPath, 'utf-8');
@@ -90,7 +53,7 @@ module.exports = function (gulp, docs) {
     // Main
     // ***************************************************
     gulp.task('compile', done => {
-        runSequence('updateREADME', 'generateSpecialFiles', done);
+        runSequence('update-readme', done);
     })
 
     return docs

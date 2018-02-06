@@ -1,3 +1,0 @@
-# 持续集成
-
-- [CircleCI](持续集成/CircleCI.md)

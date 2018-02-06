@@ -2,7 +2,7 @@
 
 - 标签： `JavaScript`
 - 时间： `2016-12-20`
-- 更新： `2016-3-12`
+- 更新： `2017-3-12`
 
 ---
 
@@ -361,10 +361,6 @@ console.log(person.prototype.constructor.prototype.constructor === person) //tru
 2. `__proto__`是原型链查找的起点。
 2. 执行B.a，若在B中找不到a，则会在`B.__proto__`中，也就是`A.prototype`中查找，若`A.prototype`中仍然没有，则会继续向上查找，最终，一定会找到`Object.prototype`,倘若还找不到，因为`Object.prototype.__proto__`指向`null`，因此会报`Type Error`；
 3. 为什么万物皆对象，还是那句话，原型链的顶端，一定有`Object.prototype ——> null`。
-
-
-
-
 
 ---
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		@keyframes slidein {
+			from {
+				transform: scaleX(0);
+			}
+			to {
+				transform: scaleX(1);
+			}
+		}
+
+		@keyframes filling {
+			from {
+				width: 0;
+			}
+			to {
+				width: 100%;
+			}
+		}
+
+		.scaleX, .width {
+			width: 100%;
+			height: 10px;
+			margin-bottom: 10px;
+			background-color: #333;
+			animation-duration: 2s;
+		}
+
+		.scaleX {
+			animation-name: slidein;
+		}
+
+		.width {
+			animation-name: filling;
+		}
+
+	</style>
+</head>
+<body>
+
+<div class="scaleX"></div>
+<div class="width"></div>
+
+</body>
+</html>
