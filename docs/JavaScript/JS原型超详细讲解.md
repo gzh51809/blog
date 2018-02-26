@@ -234,17 +234,18 @@ console.log(ulivz.getName(), ulivz.getAge()) /* 6 */
 console.log(ulivz.__proto__ === Function.prototype)
 ```
 
-<details>
-<summary>查看结果</summary>
-  false
-</details>
+  <details>
+  <summary>查看结果</summary>
+    false
+  </details>
 
-<br>
+  <br>
 
 2. `Person.__proto__` 和 `Person.prototype.__proto__` 分别指向何处？
 
-<details>
-<summary>查看分析</summary>
+  <details>
+  <summary>查看分析</summary>
+  <br>
 
   前面已经提到，在 `JavaScript` 中万物皆对象。`Person` 很明显是 `Function` 的实例，因此，`Person.__proto__` 指向 `Function.prototype`：
 
@@ -265,7 +266,7 @@ console.log(ulivz.__proto__ === Function.prototype)
   console.log(Person.prototype.__proto__ == Function.prototype) // false
   ```
 
-</details>
+  </details>
 
 
 <br>
