@@ -1,6 +1,5 @@
 .idea
 .cache
 *.log
-docs
 node_modules
 .DS_Store
