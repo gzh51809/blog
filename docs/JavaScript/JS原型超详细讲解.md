@@ -84,56 +84,62 @@ console.log(typeof fn3); // function
 | 普通对象(NO) | ×           | √           |
 | 函数对象(FO) | √           | √           |
 
-> 首先记住一点，只有函数对象具有 `prototype`。
+首先，我们先给出以下结论：
 
-关于`prototype` 你应该有所耳闻，意为`原型`，那 __proto__ 究竟是何方神圣呢？先说结论：这两个都是 `JavaScript` 在定义一个函数或对象时自动创建的 `预定义属性`。那么，两者究竟有何区别呢？
+1. 只有 `函数对象` 具有 `prototype` 这个属性；
+2. `prototype` 和 `__proto__` 都是 `JavaScript` 在定义一个函数或对象时自动创建的 `预定义属性`。
 
-首先，我们分析以下打印结果：
-
-```js
-function fn1() {}
-console.log(typeof fn1)  // function
-console.log(typeof fn1.__proto__); // function
-console.log(typeof fn1.prototype); // object
-```
-
-也就是说，`JavaScript` 在创建 `fn1` 的时候，预定义属性 `fn1.prototype` 和 `fn1.__proto__` 会被自动地创建：
-
-根据输出结果，我们可以看出：
-
-> 1. `fn1` 是一个函数对象，它的 `__proto__` 属性似乎指向 `Function.prototype`
-> 2. `fn1.prototype`是一个普通对象，实际上，它的 `__proto__` 属性似乎指向`Object.prototype`
-
-为了验证我们`似乎`的的正确性，特做以下验证：
+接下来，我们验证上述的两个结论：
 
 ```js
-console.log(fn1.__proto__ == Function.prototype); // true
-console.log(fn1.prototype.__proto__ == Object.prototype) //true
+function fn() {}
+console.log(typeof fn.__proto__); // function
+console.log(typeof fn.prototype); // object
+
+const ob = {}
+console.log(typeof ob.__proto__); // function
+console.log(typeof ob.prototype); // undefined，哇！果然普通对象没有 prototype
 ```
-验证通过，那么我们可以得出什么结论呢？我将结论总结在了表2：
 
-> 表2
+既然是语言层面的预置属性，那么两者究竟有何区别呢？我们依然从结论出发，给出以下两个结论：
 
-对象类型 | 作用 | 
---- | ---
-`prototype` | 被实例（new）对象的`__proto__`所指向（被动）
-`__proto__` | 指向构造函数对象的`prototype`（主动）
+1. `prototype` 被实例的 `__proto__` 所指向（被动）
+2. `__proto__` 指向构造函数的 `prototype`（主动）
 
-用代码来表达，也就是：
+哇，也就是说以下代码成立：
+
+```js
+console.log(fn.__proto__ === Function.prototype); // true
+console.log(ob.__proto__ === Object.prototype); // true
+```
+
+看起来很酷，结论瞬间被证明，感觉是不是很爽，那么问题来了：既然 `fn` 是一个函数对象，那么 `fn.prototype.__proto__` 到底等于什么？
+
+这是我尝试去解决这个问题的过程：
+
+1. 首先用 `typeof` 得到 `fn.prototype` 的类型：`"object"`
+2. 哇，既然是 `"object"`，那 `fn.prototype` 岂不是 Object 的实例？根据上述的结论，快速地写出验证代码：
+
+  ```js
+  console.log(fn.prototype.__proto__ === Object.prototype) // true
+  ```
+
+接下来，如果要你快速地写出，在创建一个函数时，`JavaScript`对该函数原型的初始化代码，你是不是也能快速地写出：
 
 ```js
 // 实际代码
 function fn1() {}
 
-// 自动执行
+// JavaScript 自动执行
 fn1.protptype = {
     constructor: fn1,
     __proto__: Object.prototype
 }
+
 fn1.__proto__ = Function.prototype
 ```
 
-如此一来，本节开篇提到的`普通对象没有 prototype 属性`的这个论点就很好证明了，因为普通对象就是通过函数对象实例化（`new`）得到的对象。不可能再进行实例化（new）让另一个普通对象的`__proto__`指向它。从上述的分析也可以看出，`fn1.protptype`是一个普通对象，它也不存在`protptype`属性。
+到这里，你是否有一丝恍然大悟的感觉？此外，因为普通对象就是通过 `函数对象` 实例化（`new`）得到的，一个实例不可能再进行实例化，也不会让另一个对象的 `__proto__` 指向它的  `prototype`， 因此本节一开始提到的 `普通对象没有 prototype 属性` 的这个结论似乎非常好理解了。从上述的分析，我们还可以看出，`fn1.protptype` 就是一个普通对象，它也不存在 `protptype` 属性。
 
 一般来说，对象的原型对象通常是普通对象，也就是说一个对象的 `__proto__` 属性指向`Object.prototype`,然而，也会有一个例外：
 
