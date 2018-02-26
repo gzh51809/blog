@@ -7,7 +7,7 @@
 
 ## 前言
 
-`ES6`的第一个版本发布于 `15` 年 `6` 月，本文创作于 `16` 年，那也是笔者从事前端的早期。在那个时候，`ES6` 的众多特性扔处于 `stage` 阶段，也远没有现在这么普及，为了更轻松地写`JavaScript`，笔者花费了整整一天，好好理解了一下原型——这个对于一个成熟的`JavaScript`开发者必须要跨越的大山。
+`ES6` 的第一个版本发布于 `15` 年 `6` 月，本文创作于 `16` 年，那也是笔者从事前端的早期。在那个时候，`ES6` 的众多特性仍处于 `stage` 阶段，也远没有现在这么普及，为了更轻松地写`JavaScript`，笔者花费了整整一天，好好理解了一下原型——这个对于一个成熟的`JavaScript`开发者必须要跨越的大山。
 
 `ES6`带来了太多的语法糖，其中箭头函数掩盖了 `this` 的神妙，而 `class` 也掩盖了本文要长篇谈论的 `原型`。
 
@@ -20,56 +20,50 @@
 - 更深入地了解 `JavaScript` 这门语言。
 
 
-## 1 引入：普通对象与函数对象
+## 引入：普通对象与函数对象
 
-在 `JavaScript` 中，一直有这么一种说法，万物皆对象。在此前，我对这句话总是半知半解，直到，我写完这篇文章。
+在 `JavaScript` 中，一直有这么一种说法，万物皆对象。事实上，在 `JavaScript` 中，对象也是有区别的，我们可以将其划分为 `普通对象` 和 `函数对象`。`Object` 和 `Function` 便是 `JavaScript` 自带的两个典型的 `函数对象`。而函数对象就是一个纯函数，所谓的 `函数对象`，其实就是使用 `JavaScript` 在 `模拟类`。
 
-事实上，在 `JavaScript` 中，对象也是有区别的，分为`普通对象`和`函数对象`。`Object`和`Function`便是`JavaScript`自带的两个典型的函数对象。
+那么，究竟什么是`普通对象`，什么又是`函数对象`呢？请看下方的例子：
 
-事实上，后面我们会了解到，所谓的 `函数对象`，便是使用 `JavaScript` 在 `模拟类`。
-
-请看下方的例子：
-
-首先，我们定了三个`Object`对象的实例：
+首先，我们创建了三个 `Function` 和 `Object` 的实例：
 
 ```js
-var ob1 = {};
-var ob2 = new Object();
-var ob3 = new f1();
-```
+function fn1() {}
+const fn2 = function() {}
+const fn3 = new Function('language', 'console.log(language)')
 
-接着，我们定了三个`Function`对象的实例：
-
-```js
- function fn1(){}
- var fn2 = function(){}
- var fn3 = new Function('language', 'console.log(language)');
+const ob1 = {}
+const ob2 = new Object()
+const ob3 = new fn1()
 ```
 
 打印以下结果，可以得到：
 
 ```js
-    console.log(typeof Object); // function
-    console.log(typeof Function); // function
-    console.log(typeof ob1); // object
-    console.log(typeof ob2); // object
-    console.log(typeof ob3); // object
-    console.log(typeof fn1); // function
-    console.log(typeof fn2); // function
-    console.log(typeof fn3); // function
+console.log(typeof Object); // function
+console.log(typeof Function); // function
+console.log(typeof ob1); // object
+console.log(typeof ob2); // object
+console.log(typeof ob3); // object
+console.log(typeof fn1); // function
+console.log(typeof fn2); // function
+console.log(typeof fn3); // function
 ```
 
-在上述的例子中，ob1、ob2、ob3为普通对象（通过`new Object()`得到），而fn1、fn2、fn3是通过 `new Function()` 创建，为函数对象。
+在上述的例子中，`ob1`、`ob2`、`ob3` 为普通对象（均为 `Object` 的实例），而 `fn1`、`fn2`、`fn3` 均是 `Function` 的实例，称之为 `函数对象`。
 
 如何区分呢？其实记住这句话就行了：
 
-> 凡是通过`new Function()`创建的对象都是函数对象。其他的都是普通对象。
+- _所有`Function`的实例都是`函数对象`，而其他的都是`普通对象`。_
 
-而 Function 和 Object 归根结底也是通过 **new Function()** 创建的，请看下图：
+说到这里，细心的同学会发表一个疑问，一开始，我们已经提到，`Object` 和 `Function` 均是 `函数对象`，而这里我们又说：所有`Function`的实例都是`函数对象`，难道 `Function` 也是  `Function` 的实例？
+
+没错，`Function` 也应该是 `Function` 的产物，后文我们会解释为什么。接下来，对这一节的内容做个总结：
 
 ![image_1b4867lll1fqfiqt14o17gccjb1m.png-58.3kB][2]
 
-从图中可以看出，对象本身的实现还是要依靠**构造函数**。那原型链到底是用来干嘛的呢？
+从图中可以看出，对象本身的实现还是要依靠**构造函数**。那 `原型链` 到底是用来干嘛的呢？
 
 众所周知，作为一门面向对象（Object Oriented）的语言，必定具有以下特征：
  
@@ -78,39 +72,37 @@ var ob3 = new f1();
 - 继承性
 - 多态性
  
-> 原型链最大的目的, 是为了实现`继承`。
+而原型链最大的目的, 就是为了实现`继承`。
 
 
-## 2 进阶：原型链与原型对象
+## 进阶：原型链与原型对象
 
-原型链是如何实现继承的呢？先看一张表：
+原型链究竟是如何实现继承的呢？首先，我们要引入介绍两兄弟：`prototype` 和 `__proto__`，这是在 `JavaScript` 中无处不在的两个变量（如果你经常调试的话），然而，这两个变量并不是在所有的对象上都存在，先看一张表：
 
-> 表1
+| 对象类型     | `prototype` | `__proto__` |
+|:-----------|:------------|:------------|
+| 普通对象(NO) | ×           | √           |
+| 函数对象(FO) | √           | √           |
 
-对象类型 |`prototype`| `__proto__`
---- | --- | ----
-普通对象(NO) | × | √
-函数对象(FO) | √ | √
+> 首先记住一点，只有函数对象具有 `prototype`。
 
-> 首先记住一点，只有函数对象具有 prototype。
-
-接下来讨论 **prototype**和 **__proto__** 。关于**prototype** 你应该早有耳闻，意为原型，那 **proto** 到底是什么呢？这两个都是`JavaScript`在定义一个函数或对象时自动创建的预定义属性。那么两者又有什么区别呢？
+关于`prototype` 你应该有所耳闻，意为`原型`，那 __proto__ 究竟是何方神圣呢？先说结论：这两个都是 `JavaScript` 在定义一个函数或对象时自动创建的 `预定义属性`。那么，两者究竟有何区别呢？
 
 首先，我们分析以下打印结果：
 
 ```js
 function fn1() {}
-console.log(fn1)  // function
-console.log(fn1.__proto__); // function
-console.log(fn1.prototype); // object
+console.log(typeof fn1)  // function
+console.log(typeof fn1.__proto__); // function
+console.log(typeof fn1.prototype); // object
 ```
 
 也就是说，`JavaScript` 在创建 `fn1` 的时候，预定义属性 `fn1.prototype` 和 `fn1.__proto__` 会被自动地创建：
 
 根据输出结果，我们可以看出：
 
-> 1. `fn1`是一个函数对象，实际上，它的`__proto__`属性似乎指向`Function.prototype`
-> 2. `fn1.prototype`是一个普通对象，实际上，它的`__proto__`属性似乎指向`Object.prototype`
+> 1. `fn1` 是一个函数对象，它的 `__proto__` 属性似乎指向 `Function.prototype`
+> 2. `fn1.prototype`是一个普通对象，实际上，它的 `__proto__` 属性似乎指向`Object.prototype`
 
 为了验证我们`似乎`的的正确性，特做以下验证：
 
