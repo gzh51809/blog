@@ -1,21 +1,3 @@
-# CSS3 实用技巧
-
-## CSS3基本特性
-
-> 选择器升级，如`tbody: nth-child(even), nth-child(odd)`
-> 选择器升级，如`tbody: nth-child(even), nth-child(odd)`
-
-```css
-p:nth-child(2){
-    background:#ff0000;
-}
-```
-
-![](CSS/img/SC.png)
-![](CSS/img/hshs.png)
-
-    1. 生效的条件是父元素的第二个子元素
-    2. 是P标签
 
 > @Font-face
 

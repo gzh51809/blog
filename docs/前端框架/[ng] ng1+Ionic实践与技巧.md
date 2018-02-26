@@ -1,7 +1,7 @@
 # AnguarJS 1.x & Ionic 实践与技巧
 
 - 标签： `AnguarJS`
-- 时间： `2016-1-1`
+- 时间： `2016-9-10`
 
 ---
 
@@ -10,11 +10,12 @@
 ---
 
 # 1 项目的基本结构
+
 ## 1.1 不采用路由的传统项目结构
 
 众所周知，不采用路由，也就是采用 `ng-app` 和 `ng-controller` 指令，来进行传统的页面编写，就会写成这种形式：
 
-```
+```html
 <div ng-app="myApp" ng-controller="myCtrl">
 
 名: <input type="text" ng-model="firstName"><br>

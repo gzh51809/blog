@@ -81,12 +81,13 @@ onSubmit|提交表单
 
 ## Less的安装
 
-```markdown
+```bash
 npm install --save-dev less-loader less
 ```
 
 webpack配置：
-```markdown
+
+```javascript
 module: {
         rules: [{
             test: /\.less$/,
@@ -100,13 +101,3 @@ module: {
         }]
     }
 ```
-
-
-
-
-
-
-
-
-
-
