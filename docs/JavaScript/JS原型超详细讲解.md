@@ -59,7 +59,7 @@ console.log(typeof fn3); // function
 
 说到这里，细心的同学会发表一个疑问，一开始，我们已经提到，`Object` 和 `Function` 均是 `函数对象`，而这里我们又说：所有`Function`的实例都是`函数对象`，难道 `Function` 也是  `Function` 的实例？
 
-没错，`Function` 也应该是 `Function` 的产物，后文我们会解释为什么。接下来，对这一节的内容做个总结：
+先保留这个疑问。接下来，对这一节的内容做个总结：
 
 ![image_1b4867lll1fqfiqt14o17gccjb1m.png-58.3kB][2]
 
@@ -141,9 +141,9 @@ fn1.__proto__ = Function.prototype
 
 到这里，你是否有一丝恍然大悟的感觉？此外，因为普通对象就是通过 `函数对象` 实例化（`new`）得到的，而一个实例不可能再次进行实例化，也就不会让另一个对象的 `__proto__` 指向它的  `prototype`， 因此本节一开始提到的 `普通对象没有 prototype 属性` 的这个结论似乎非常好理解了。从上述的分析，我们还可以看出，`fn1.protptype` 就是一个普通对象，它也不存在 `protptype` 属性。
 
-再回顾一下上一节，我们提到过一个结论：
+再回顾一下上一节，我们还遗留一个疑问：
 
-- `Function` 也应该是 `Function` 的产物
+- 难道 `Function` 也是 `Function` 的实例？
 
 是时候去掉`应该`让它成立了。那么此刻，Please show me your code！
 
@@ -155,103 +155,64 @@ console.log(Function.__proto__ === Function.prototype) // true
 ```
 
 </details>
+<br><br>
 
-
-
-一般来说，对象的 `prototype` 通常是一个普通对象，也就是说一个对象的 `prototype` 的 `__proto__` 属性一般会指向 `Object.prototype`, 然而，这里有一个例外：
-
-```js
-console.log(typeof Function.prototype)             // function
-console.log(typeof Object.prototype)               // object
-console.log(typeof Function.prototype.prototype)   // undefined，Function.prototype 不是一个函数对象
-```
-
-分析一下，我们会得到这样一个结论：
-
-- 具有`prototype`属性的对象一定是一个`函数对象`（Object、Function、Array等本身都是构造函数），其 `prototype` 的类型取决于其实例化后的对象类型。
-
-通常情况下，在 `JavaScript` 中，我们更习惯把具有 `prototype` 属性的对象叫做**函数对象**, 而`prototype`对象本身称作**原型对象**。
-
-> 而原型对象就是为了构造原型链而存在的。
 
 后面我们会提到，原型链的实现不仅仅依靠原型对象。
 
 
 ## 3 重点：原型链
 
+上一节我们详解了 `prototype` 和 `__proto__`，实际上，这两兄弟主要就是为了构造**原型链**而存在的。
+
 先上一段代码：
 
 ```js
-    const Person = function(name, age) {
-        this.name = name
-        this.age = age
-    } /* 1 */
+const Person = function(name, age) {
+    this.name = name
+    this.age = age
+} /* 1 */
 
-    Person.prototype.getName = function() {
-        return this.name
-    } /* 2 */
+Person.prototype.getName = function() {
+    return this.name
+} /* 2 */
 
-    Person.prototype.getAge = function() {
-        return this.age
-    } /* 3 */
+Person.prototype.getAge = function() {
+    return this.age
+} /* 3 */
 
-    const ulivz = new Person('ulivz', 24); /* 4 */
-    
-    console.log(ulivz) /* 5 */
-    console.log(ulivz.getName(), ulivz.getAge()) /* 6 */
-    
+const ulivz = new Person('ulivz', 24); /* 4 */
+
+console.log(ulivz) /* 5 */
+console.log(ulivz.getName(), ulivz.getAge()) /* 6 */
 ```
 
-简单解释一下，执行`1`，创建了一个构造函数 `Person`，要注意，前面已经提到，此时`Person.prototype`已经被自动创建，是一个 `Person` 的实例对象，它只具有 `2` 个属性（ `constructor` 和 `__proto__` ）
+解释一下执行细节：
 
-执行`2`，给对象 `Person.prototype` 增加了一个方法 `getName()`；
-执行`3`，给对象 `Person.prototype` 增加了一个方法 `getAge()`；
+1. 执行 `1`，创建了一个构造函数 `Person`，要注意，前面已经提到，此时 `Person.prototype` 已经被自动创建，它包含 `constructor` 和 `__proto__`这两个属性；
+2. 执行`2`，给对象 `Person.prototype` 增加了一个方法 `getName()`；
+3. 执行`3`，给对象 `Person.prototype` 增加了一个方法 `getAge()`；
+4. 执行`4`, 由构造函数 `Person` 创建了一个实例 `ulivz`，值得注意的是，一个构造函数在实例化时，一定会自动执行该构造函数。
+5. 在浏览器得到 `5` 的输出，即 `ulivz` 应该是：
 
-执行`4`, 实例化了构造函数`Person`，值得注意的是，实例一个构造函数时，一定会自动执行该构造函数。
+  ```js
+  {
+       name: 'ulivz',
+       age: 24
+       __proto__: Object // 实际上就是 `Person.prototype`
+  }
+  
+  ```
 
-因此，`5` 的输出，即`ulivz`应该是：
+  结合上一节的经验，以下等式成立：
 
-```js
-{
-     name: 'ulivz',
-     age: 24
-     __proto__: Object // 实际上就是 `Person.prototype`
-}
+  ```js
+      console.log(ulivz.__proto__ == Person.prototype)  // true
+  ```
 
-```
-可以验证：
+6. 执行`6`的时候，由于在 `ulivz` 中找不到 `getName()` 和 `getAge()` 这两个方法，就会继续朝着原型链向上查找，也就是通过 `__proto__` 向上查找，于是，很快在 `ulviz.__proto__` 中，即 `Person.prototype` 中找到了这两个方法，于是停止查找并执行得到结果。
 
-```js
-    console.log(ulivz.__proto__ == Person.prototype)  // true
-```
-
-执行`6`的时候，在 `ulivz` 中找不到 `getName()` 和 `getAge()` 这两个方法，就会朝着原型链向上查找，也就是通过 `__proto__` 向上查找，于是，很快在`ulviz.__proto__`中，即 `Person.prototype` 中找到了这两个方法，于是停止查找并执行得到结果。
-
-这便是 `JavaScript` 的原型继承。准确的说:
-
-- JavaScript的原型继承是通过 `__proto__` 并借助 `prototype` 来实现的。
-
-然后，这并不是原型链的全部，我们继续分析, 首先提个问题：
-
-- `Person.__proto__`和`Person.prototype.__proto__`分别指向何处？
-
-前面已经提到，在 `JavaScript` 中万物皆对象。`Person`很明显是由`new Function()`实例化得到，因此，`Person.__proto__`指向`Function.prototype`
-```js
-console.log(Person.__proto__ == Function.prototype)  // true
-```
-
-因为 `Person.prototype` 是一个普通对象，因此 `Person.prototype.__proto__` 指向`Object.prototype`
-
-```js
-console.log(Person.prototype.__proto__ == Object.prototype)  // true
-```
-
-为了验证 `Person.__proto__` 所在的原型链中没有 `Object`，以及 `Person.prototype.__proto__` 所在的原型链中没有 `Function`, 结合以下语句验证：
-
-```js
-console.log(Person.__proto__ === Object.prototype) //false
-console.log(Person.prototype.__proto__ == Function.prototype) //false
-```
+这便是 `JavaScript` 的原型继承。准确的说，`JavaScript` 的原型继承是通过 `__proto__` 并借助 `prototype` 来实现的。
 
 于是，我们可以作如下总结：
 
@@ -264,16 +225,47 @@ console.log(Person.prototype.__proto__ == Function.prototype) //false
 
     注：`instance`是由函数对象实例化得到的普通对象实例。
 
-为了检验你对上述总结的理解，请看下题：
+为了检验你对上述总结的理解，请分析下述两个问题：
+
+1. 以下代码的输出结果是？
 
 ```js
 console.log(ulivz.__proto__ === Function.prototype)
 ```
 
 <details>
-<summary>答案</summary>
-false。
+<summary>查看答案</summary>
+  false
 </details>
+
+2. `Person.__proto__` 和 `Person.prototype.__proto__` 分别指向何处？
+
+<details>
+<summary>查看答案</summary>
+
+  前面已经提到，在 `JavaScript` 中万物皆对象。`Person` 很明显是 `Function` 的实例，因此，`Person.__proto__` 指向 `Function.prototype`：
+
+  ```js
+  console.log(Person.__proto__ == Function.prototype)  // true
+  ```
+
+  因为 `Person.prototype` 是一个普通对象，因此 `Person.prototype.__proto__` 指向`Object.prototype`
+
+  ```js
+  console.log(Person.prototype.__proto__ == Object.prototype)  // true
+  ```
+
+  为了验证 `Person.__proto__` 所在的原型链中没有 `Object`，以及 `Person.prototype.__proto__` 所在的原型链中没有 `Function`, 结合以下语句验证：
+
+  ```js
+  console.log(Person.__proto__ === Object.prototype) // false
+  console.log(Person.prototype.__proto__ == Function.prototype) // false
+  ```
+
+</details>
+<br><br>
+
+
 
 
 ## 4 终极：原型链图
