@@ -75,6 +75,9 @@ console.log(typeof fn3); // function
 而原型链最大的目的, 就是为了实现`继承`。
 
 
+<br>
+
+
 ## 进阶：prototype 和 \_\_proto\_\_
 
 原型链究竟是如何实现继承的呢？首先，我们要引入介绍两兄弟：`prototype` 和 `__proto__`，这是在 `JavaScript` 中无处不在的两个变量（如果你经常调试的话），然而，这两个变量并不是在所有的对象上都存在，先看一张表：
@@ -155,10 +158,8 @@ console.log(Function.__proto__ === Function.prototype) // true
 ```
 
 </details>
-<br><br>
 
-
-后面我们会提到，原型链的实现不仅仅依靠原型对象。
+<br>
 
 
 ## 3 重点：原型链
@@ -234,14 +235,16 @@ console.log(ulivz.__proto__ === Function.prototype)
 ```
 
 <details>
-<summary>查看答案</summary>
+<summary>查看结果</summary>
   false
 </details>
+
+<br>
 
 2. `Person.__proto__` 和 `Person.prototype.__proto__` 分别指向何处？
 
 <details>
-<summary>查看答案</summary>
+<summary>查看分析</summary>
 
   前面已经提到，在 `JavaScript` 中万物皆对象。`Person` 很明显是 `Function` 的实例，因此，`Person.__proto__` 指向 `Function.prototype`：
 
@@ -263,9 +266,9 @@ console.log(ulivz.__proto__ === Function.prototype)
   ```
 
 </details>
-<br><br>
 
 
+<br>
 
 
 ## 4 终极：原型链图
@@ -301,7 +304,9 @@ console.log(ulivz.__proto__ === Function.prototype)
 
 与其说万物皆对象, **万物皆空**似乎更形象。（^ ^）
 
----
+
+<br>
+
 
 ## 5 调料：constructor
 
