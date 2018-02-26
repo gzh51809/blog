@@ -4,14 +4,13 @@
 - 时间： `2016-12-20`
 - 更新： `2017-3-12 | 2018-2-26`
 
-
 ## 前言
 
-`ES6` 的第一个版本发布于 `15` 年 `6` 月，本文创作于 `16` 年，那也是笔者从事前端的早期。在那个时候，`ES6` 的众多特性仍处于 `stage` 阶段，也远没有现在这么普及，为了更轻松地写`JavaScript`，笔者花费了整整一天，好好理解了一下原型——这个对于一个成熟的`JavaScript`开发者必须要跨越的大山。
+`ES6` 的第一个版本发布于 `15` 年 `6` 月，而本文最早创作于 `16` 年，那也是笔者从事前端的早期。在那个时候，`ES6` 的众多特性仍处于 `stage` 阶段，也远没有现在这么普及，为了更轻松地写`JavaScript`，笔者曾花费了整整一天，仔细理解了一下原型——这个对于一个成熟的`JavaScript`开发者必须要跨越的大山。
 
 `ES6`带来了太多的语法糖，其中箭头函数掩盖了 `this` 的神妙，而 `class` 也掩盖了本文要长篇谈论的 `原型`。
 
-通过本文，你将可以学到：
+最近，我重写了这篇文章，通过本文，你将可以学到：
 
 - 如何用 `ES5` 模拟类；
 - 理解 `prototype` 和 `__proto__`；
@@ -65,12 +64,12 @@ console.log(typeof fn3); // function
 从图中可以看出，对象本身的实现还是要依靠**构造函数**。那 `原型链` 到底是用来干嘛的呢？
 
 众所周知，作为一门面向对象（Object Oriented）的语言，必定具有以下特征：
- 
+
 - 对象唯一性
 - 抽象性
 - 继承性
 - 多态性
- 
+
 而原型链最大的目的, 就是为了实现`继承`。
 
 
@@ -147,7 +146,7 @@ fn1.__proto__ = Function.prototype
 
 - 难道 `Function` 也是 `Function` 的实例？
 
-是时候去掉`应该`让它成立了。那么此刻，Please show me your code！
+是时候去掉`应该`让它成立了。那么此刻，please show me your code！
 
 <details>
 <summary>查看答案</summary>
@@ -201,7 +200,6 @@ console.log(ulivz.getName(), ulivz.getAge()) /* 6 */
        age: 24
        __proto__: Object // 实际上就是 `Person.prototype`
   }
-  
   ```
 
   结合上一节的经验，以下等式成立：
@@ -247,13 +245,13 @@ console.log(ulivz.__proto__ === Function.prototype)
   前面已经提到，在 `JavaScript` 中万物皆对象。`Person` 很明显是 `Function` 的实例，因此，`Person.__proto__` 指向 `Function.prototype`：
 
   ```js
-  console.log(Person.__proto__ == Function.prototype)  // true
+  console.log(Person.__proto__ === Function.prototype)  // true
   ```
 
   因为 `Person.prototype` 是一个普通对象，因此 `Person.prototype.__proto__` 指向`Object.prototype`
 
   ```js
-  console.log(Person.prototype.__proto__ == Object.prototype)  // true
+  console.log(Person.prototype.__proto__ === Object.prototype)  // true
   ```
 
   为了验证 `Person.__proto__` 所在的原型链中没有 `Object`，以及 `Person.prototype.__proto__` 所在的原型链中没有 `Function`, 结合以下语句验证：
@@ -323,6 +321,8 @@ console.log(ulivz.getName(), ulivz.getAge()) /* 6 */
 
 ![原型链.png-41.2kB][4]
 
+<span style="color: #aaa; font-size: 12px">PS：手贱把chl（我的中文名缩写）改成了 ulivz（Github名），所以这张图中的chl实际上就是ulivz，画这张图的时候, 我还在用windows = =</span>
+
 画完这张图，基本上所有之前的疑问都可以解答了。
 
 与其说万物皆对象, 万物皆空似乎更形象。
@@ -331,7 +331,7 @@ console.log(ulivz.getName(), ulivz.getAge()) /* 6 */
 <br>
 
 
-## 5 调料：constructor
+## 调料：constructor
 
 前面已经有所提及，但只有原型对象才具有 `constructor` 这个属性，`constructor`用来指向引用它的函数对象。
 
@@ -342,6 +342,8 @@ console.log(Person.prototype.constructor.prototype.constructor === Person) //tru
 
 这是一种循环引用。当然你也可以在上一节的原型链图中画上去，这里就不赘述了。
 
+
+<br>
 
 
 ## 补充： JavaScript中的6大内置（函数）对象的原型继承
@@ -414,26 +416,28 @@ console.log(Person.prototype.constructor.prototype.constructor === Person) //tru
     console.log(String.prototype.__proto__== Object.prototype)  // true 
 ```
 
+<br>
+
 
 ## 总结
 
 来几句短总结：
 
-1. 若 `A` 通过new创建了B,则 `B.__proto__ = A.prototype`；
+1. 若 `A` 通过`new`创建了`B`,则 `B.__proto__ = A.prototype`；
 2. `__proto__`是原型链查找的起点；
-2. 执行`B.a`，若在B中找不到a，则会在`B.__proto__`中，也就是`A.prototype`中查找，若`A.prototype`中仍然没有，则会继续向上查找，最终，一定会找到`Object.prototype`,倘若还找不到，因为`Object.prototype.__proto__`指向`null`，因此会返回`undefined`；
-3. 为什么万物皆对象，还是那句话，原型链的顶端，一定有`Object.prototype ——> null`。
+2. 执行`B.a`，若在`B`中找不到`a`，则会在`B.__proto__`中，也就是`A.prototype`中查找，若`A.prototype`中仍然没有，则会继续向上查找，最终，一定会找到`Object.prototype`,倘若还找不到，因为`Object.prototype.__proto__`指向`null`，因此会返回`undefined`；
+3. 为什么万物皆空，还是那句话，原型链的顶端，一定有`Object.prototype ——> null`。
 
 最后，给你留下一个疑问：
 
 - 如何用 `JavaScript` 实现类的继承呢？
 
-以上，全文终。)
+以上，全文终。
 
-<span style="color: #aaa; font-size: 12px">注：本文属于个人总结，部分表达难免会有疏漏之处，如果你对本文观点有所看法，请放心大胆地给我提 <a href='https://github.com/ulivz/blog/issues'>issue</a>。</span>
+<span style="color: #aaa; font-size: 12px">注：本文属于个人总结，部分表达难免会有疏漏之处，如果您发现本文有所欠缺，为避免误人子弟，请放心大胆地给我提 <a href='https://github.com/ulivz/blog/issues'>issue</a>，谢谢~</span>
 
   [1]: http://static.zybuluo.com/a472590061/ktgirz4nkd2xuf4wu48t7rm9/QQ%E6%88%AA%E5%9B%BE20161218231142.png
-  [2]: http://static.zybuluo.com/a472590061/l37km8tuqc8taxb6gzmeg324/image_1b4867lll1fqfiqt14o17gccjb1m.png
+  [2]: https://user-gold-cdn.xitu.io/2018/2/27/161d355acfd4d6a5?w=1702&h=518&f=png&s=59722
   [3]: http://static.zybuluo.com/a472590061/0ys6e03xvfsuf48rpfnc2qyn/image_1b49af42d1c571be16eu1kn114rf9.png
-  [4]: http://static.zybuluo.com/a472590061/2t4dae8ubvmslbwce858y6du/%E5%8E%9F%E5%9E%8B%E9%93%BE.png
-  [5]: http://static.zybuluo.com/a472590061/wk5od98r3j42w1u22igoy9p6/image_1b496ie7el7m1rvltoi17he1b459.png
+  [4]: https://user-gold-cdn.xitu.io/2018/2/27/161d355ad49d78e2?w=1110&h=693&f=png&s=42164
+  [5]: https://user-gold-cdn.xitu.io/2018/2/27/161d355ad0b2e632?w=1404&h=721&f=png&s=53909
