@@ -75,7 +75,7 @@ console.log(typeof fn3); // function
 而原型链最大的目的, 就是为了实现`继承`。
 
 
-## 进阶：原型链与原型对象
+## 进阶：prototype 和 \_\_proto\_\_
 
 原型链究竟是如何实现继承的呢？首先，我们要引入介绍两兄弟：`prototype` 和 `__proto__`，这是在 `JavaScript` 中无处不在的两个变量（如果你经常调试的话），然而，这两个变量并不是在所有的对象上都存在，先看一张表：
 
@@ -139,14 +139,31 @@ fn1.protptype = {
 fn1.__proto__ = Function.prototype
 ```
 
-到这里，你是否有一丝恍然大悟的感觉？此外，因为普通对象就是通过 `函数对象` 实例化（`new`）得到的，一个实例不可能再进行实例化，也不会让另一个对象的 `__proto__` 指向它的  `prototype`， 因此本节一开始提到的 `普通对象没有 prototype 属性` 的这个结论似乎非常好理解了。从上述的分析，我们还可以看出，`fn1.protptype` 就是一个普通对象，它也不存在 `protptype` 属性。
+到这里，你是否有一丝恍然大悟的感觉？此外，因为普通对象就是通过 `函数对象` 实例化（`new`）得到的，而一个实例不可能再次进行实例化，也就不会让另一个对象的 `__proto__` 指向它的  `prototype`， 因此本节一开始提到的 `普通对象没有 prototype 属性` 的这个结论似乎非常好理解了。从上述的分析，我们还可以看出，`fn1.protptype` 就是一个普通对象，它也不存在 `protptype` 属性。
 
-一般来说，对象的原型对象通常是普通对象，也就是说一个对象的 `__proto__` 属性指向`Object.prototype`,然而，也会有一个例外：
+再回顾一下上一节，我们提到过一个结论：
+
+- `Function` 也应该是 `Function` 的产物
+
+是时候去掉`应该`让它成立了。那么此刻，Please show me your code！
+
+<details>
+<summary>查看答案</summary>
 
 ```js
- console.log(typeof Function.prototype)             // function
- console.log(typeof Object.prototype)               // object
- console.log(typeof Function.prototype.prototype)   // undefined，Function.prototype 不是一个函数对象
+console.log(Function.__proto__ === Function.prototype) // true
+```
+
+</details>
+
+
+
+一般来说，对象的 `prototype` 通常是一个普通对象，也就是说一个对象的 `prototype` 的 `__proto__` 属性一般会指向 `Object.prototype`, 然而，这里有一个例外：
+
+```js
+console.log(typeof Function.prototype)             // function
+console.log(typeof Object.prototype)               // object
+console.log(typeof Function.prototype.prototype)   // undefined，Function.prototype 不是一个函数对象
 ```
 
 分析一下，我们会得到这样一个结论：
