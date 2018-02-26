@@ -217,16 +217,14 @@ console.log(ulivz.getName(), ulivz.getAge()) /* 6 */
 
 于是，我们可以作如下总结：
 
+1. 函数对象的 `__proto__` 指向 `Function.prototype`；（复习）
+2. 函数对象的 `prototype` 指向 `instance.__proto__`；（复习）
+3. 普通对象的 `__proto__` 指向 `Object.prototype`；（复习）
+4. 普通对象没有 `prototype` 属性；（复习）
+5. 在访问一个对象的某个属性/方法时，若在当前对象上找不到，则会尝试访问 `ob.__proto__`, 也就是访问该对象的构造函数的原型 `obCtr.prototype`，若仍找不到，会继续查找 `obCtr.prototype.__proto__`，像依次查找下去。若在某一刻，找到了该属性，则会立刻返回值并停止对原型链的搜索，若找不到，则返回 `undefined`。
 
-> 1. 函数对象的 `__proto__` 指向 `Function.prototype`,
-> 2. 函数对象的 `prototype` 指向 `instance.__proto__`，
-> 3. 普通对象的 `__proto__` 指向 `Object.__proto__`，
-> 4. 普通对象没有 `prototype` 属性，
-> 5. `Object` 是由 `Function` 构造的，所以 `Object.__proto__`为`Function.prototype`。
 
-    注：`instance`是由函数对象实例化得到的普通对象实例。
-
-为了检验你对上述总结的理解，请分析下述两个问题：
+为了检验你对上述的理解，请分析下述两个问题：
 
 1. 以下代码的输出结果是？
 
@@ -272,38 +270,63 @@ console.log(ulivz.__proto__ === Function.prototype)
 <br>
 
 
-## 4 终极：原型链图
+## 终极：原型链图
 
-再回过头来看看前面的那段函数：
+上一节，我们实际上还遗留了一个疑问：
+
+- 原型链如果一个搜索下去，如果找不到，那何时停止呢？也就是说，原型链的尽头是哪里？
+
+我们可以快速地利用以下代码验证：
 
 ```js
-    const Person = function(name, age) {
-        this.name = name
-        this.age = age
-    } /* 1 */
-
-    Person.prototype.getName = function() {
-        return this.name
-    } /* 2 */
-
-    Person.prototype.getAge = function() {
-        return this.age
-    } /* 3 */
-
-    const ulivz = new Person('ulivz', 24); /* 4 */
-    
-    console.log(ulivz) /* 5 */
-    console.log(ulivz.getName(), ulivz.getAge()) /* 6 */
-    
+function Person() {}
+const ulivz = new Person()
+console.log(ulivz.name) 
 ```
 
-我们来画一个原型链图，或者说，原型链在内存中是如何表现的呢？请看下图：
+很显然，上述输出 `undefined`。下面简述查找过程：
+
+```js
+ulivz                       // 是一个对象，可以继续 
+ulivz['name']               // 不存在，继续查找 ulivz.__proto__
+ulivz.__proto__             // 是一个对象，可以继续
+ulivz.__proto__['name']     // 不存在，继续查找 ulivz.__proto__.__proto___
+ulivz.__proto__.__proto__   // 是一个对象，可以继续
+ulivz.__proto__.__proto__['name']   // 不存在, 继续
+ulivz.__proto__.__proto__.__proto__ // null !!!! 停止查找，返回 undefined
+```
+
+哇，原来路的尽头是一场空。
+
+最后，再回过头来看看上一节的那演示代码：
+
+```js
+const Person = function(name, age) {
+    this.name = name
+    this.age = age
+} /* 1 */
+
+Person.prototype.getName = function() {
+    return this.name
+} /* 2 */
+
+Person.prototype.getAge = function() {
+    return this.age
+} /* 3 */
+
+const ulivz = new Person('ulivz', 24); /* 4 */
+
+console.log(ulivz) /* 5 */
+console.log(ulivz.getName(), ulivz.getAge()) /* 6 */
+```
+
+我们来画一个原型链图，或者说，将其整个原型链图画出来？请看下图：
 
 ![原型链.png-41.2kB][4]
 
 画完这张图，基本上所有之前的疑问都可以解答了。
 
-与其说万物皆对象, **万物皆空**似乎更形象。（^ ^）
+与其说万物皆对象, 万物皆空似乎更形象。
 
 
 <br>
@@ -311,7 +334,7 @@ console.log(ulivz.__proto__ === Function.prototype)
 
 ## 5 调料：constructor
 
-前面已经有所提及，但只有原型对象才具有`constructor`这个属性，`constructor`用来指向引用它的函数对象。
+前面已经有所提及，但只有原型对象才具有 `constructor` 这个属性，`constructor`用来指向引用它的函数对象。
 
 ```js
 Person.prototype.constructor === Person //true
@@ -322,16 +345,17 @@ console.log(Person.prototype.constructor.prototype.constructor === Person) //tru
 
 
 
-## 6 补充： JavaScript中的6大内置（函数）对象的原型继承
+## 补充： JavaScript中的6大内置（函数）对象的原型继承
 
-通过前文的论述，结合相应的代码验证，整理出以下结论：
+通过前文的论述，结合相应的代码验证，整理出以下原型链图：
 
 ![image_1b496ie7el7m1rvltoi17he1b459.png-52.6kB][5]
+
 
 由此可见，我们更加强化了这两个观点：
 
 
->1. 任何内置函数对象本身的 `__proto__` 都指向 `Function` 的原型对象；
+>1. 任何内置函数对象（类）本身的 `__proto__` 都指向 `Function` 的原型对象；
 >2. 除了 `Oject` 的原型对象的 `__proto__` 指向 `null`，其他所有内置函数对象的原型对象的 `__proto__` 都指向 `object`。
 
 
@@ -392,47 +416,19 @@ console.log(Person.prototype.constructor.prototype.constructor === Person) //tru
 ```
 
 
-## 7 总结
+## 总结
 
-最后，来几句短句做总结：
+最后，来几句短总结：
 
-1. 若A通过new创建了B,则 `B.__proto__ = A.prototype`。
-2. `__proto__`是原型链查找的起点。
-2. 执行B.a，若在B中找不到a，则会在`B.__proto__`中，也就是`A.prototype`中查找，若`A.prototype`中仍然没有，则会继续向上查找，最终，一定会找到`Object.prototype`,倘若还找不到，因为`Object.prototype.__proto__`指向`null`，因此会报`Type Error`；
+1. 若 `A` 通过new创建了B,则 `B.__proto__ = A.prototype`；
+2. `__proto__`是原型链查找的起点；
+2. 执行`B.a`，若在B中找不到a，则会在`B.__proto__`中，也就是`A.prototype`中查找，若`A.prototype`中仍然没有，则会继续向上查找，最终，一定会找到`Object.prototype`,倘若还找不到，因为`Object.prototype.__proto__`指向`null`，因此会返回`undefined`；
 3. 为什么万物皆对象，还是那句话，原型链的顶端，一定有`Object.prototype ——> null`。
 
 
+以上，全文终。)
 
-
-
-
-> 结束语
-
-```markdown
-我
-想找到你
-在寂静而又漫长的深夜里
-在每一个十字路口的抉择里
-我都会格外犹豫
-但是
-不管你在哪里
-我都想找到你
-寒风刮不走我的心意
-黑夜吐不掉我的足迹
-虽不知何时能够找到你
-不知何时能够遇见你
-我只想拥抱你
-
-否则
-我就只能说
-Type Error...
-全文终~~~)
-逃)
-```
-
-
-> 本文属于个人总结，部分表达难免会有疏漏之处，如果你对本文观点有所看法，请提`issue`
-
+<span style="color: #aaa; font-size: 12px ">注：本文属于个人总结，部分表达难免会有疏漏之处，如果你对本文观点有所看法，请放心大胆地给我提 <a href='https://github.com/ulivz/blog/issues'>issue</a>。<span>
 
   [1]: http://static.zybuluo.com/a472590061/ktgirz4nkd2xuf4wu48t7rm9/QQ%E6%88%AA%E5%9B%BE20161218231142.png
   [2]: http://static.zybuluo.com/a472590061/l37km8tuqc8taxb6gzmeg324/image_1b4867lll1fqfiqt14o17gccjb1m.png
