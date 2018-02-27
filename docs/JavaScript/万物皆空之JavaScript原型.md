@@ -24,7 +24,7 @@
 
 那么，究竟什么是`普通对象`，什么又是`函数对象`呢？请看下方的例子：
 
-首先，我们创建了三个 `Function` 和 `Object` 的实例：
+首先，我们分别创建了三个 `Function` 和 `Object` 的实例：
 
 ```js
 function fn1() {}
@@ -160,7 +160,7 @@ console.log(Function.__proto__ === Function.prototype) // true
 <br>
 
 
-## 3 重点：原型链
+## 重点：原型链
 
 上一节我们详解了 `prototype` 和 `__proto__`，实际上，这两兄弟主要就是为了构造**原型链**而存在的。
 
@@ -426,7 +426,7 @@ console.log(Person.prototype.constructor.prototype.constructor === Person) //tru
 1. 若 `A` 通过`new`创建了`B`,则 `B.__proto__ = A.prototype`；
 2. `__proto__`是原型链查找的起点；
 2. 执行`B.a`，若在`B`中找不到`a`，则会在`B.__proto__`中，也就是`A.prototype`中查找，若`A.prototype`中仍然没有，则会继续向上查找，最终，一定会找到`Object.prototype`,倘若还找不到，因为`Object.prototype.__proto__`指向`null`，因此会返回`undefined`；
-3. 为什么万物皆空，还是那句话，原型链的顶端，一定有`Object.prototype ——> null`。
+3. 为什么万物皆空，还是那句话，原型链的顶端，一定有`Object.prototype.__proto__ ——> null`。
 
 最后，给你留下一个疑问：
 
