@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>构造函数式继承</title>
+</head>
+<body>
+<script>
+
+	function 父亲() {
+		this.money = 100
+	}
+
+	父亲.prototype.getMoney = function () {
+		return this.money;
+	}
+
+	function 儿子() {
+		父亲.call(this)
+		this.name = '儿子'
+	}
+
+	儿子.prototype.getName = function () {
+		return this.name;
+	}
+
+	const 儿子1 = new 儿子()
+	console.log(儿子1)
+
+	// 缺陷：不能继承父类原型上的方法
+</script>
+</body>
+</html>

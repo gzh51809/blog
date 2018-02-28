@@ -7122,7 +7122,7 @@ jQuery.extend( {
 			// but it would mean to define eight
 			// (for every problematic property) identical functions
 			if ( !support.clearCloneStyle && value === "" && name.indexOf( "background" ) === 0 ) {
-				style[ name ] = "inherit";
+				style[ name ] = "继承_构造函数式";
 			}
 
 			// If a hook was provided, use that value, otherwise just set the specified value
