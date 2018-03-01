@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Title</title>
+	<title>测试浏览器事件模型</title>
 </head>
 <body>
 
@@ -14,41 +14,47 @@
 <script src="//cdn.bootcss.com/lodash.js/4.17.4/lodash.js"></script>
 <script>
 
+	// 外观模式
 	function addEvent(el, type, fn) {
 		// 对于支持DOM2事件优先用DOM2
 		if (el.addEventListener) {
+			// false 代表只在冒泡阶段触发事件
 			el.addEventListener(type, fn, false)
-			// 对于不支持addEventListener但支持attachEvent的
+			// 对于不支持 addEventListener 但支持 attachEvent 的
 		} else if (el.attachEvent) {
 			el.attachEvent('on' + type, fn)
-			// 对于不支持addEventListener也不支持attachEvent的
+			// 对于不支持 addEventListener 也不支持 attachEvent 的
 		} else {
 			el['on' + type] = fn;
 		}
 	}
 
-	console.log(document.getElementsByTagName('body'))
-
 	// HTMLCollection
-	var body = document.getElementsByTagName('body')[0]
+	const body = document.getElementsByTagName('body')[0]
 	// HTMLDivElement - HTMLElement -  Element
-	var btnWrapper = document.getElementById('btn-wrapper')
-	var btn = document.getElementById('btn')
+	const btnWrapper = document.getElementById('btn-wrapper')
+	const btn = document.getElementById('btn')
 
 	function triggerEvent(event) {
-		var tagName = event.currentTarget.tagName
-		var stage = event.eventPhase
-		console.log(tagName)
-		console.log(stage)
+		console.log('this = ' + this.tagName)
+		console.log('event.target = ' + event.target.tagName)
+		const tagName = event.currentTarget.tagName
+		const stage = event.eventPhase
+		if (stage === 1) {
+			console.warn('捕获阶段： ' + tagName)
+		} else if (stage === 2) {
+			console.warn('目标阶段： ' + tagName)
+		} else if (stage === 3) {
+			console.warn('冒泡阶段： ' + tagName)
+		}
 		// 终止事件在传播过程的捕获、目标处理或起泡阶段进一步传播。
-		event.preventDefault()
+		// event.preventDefault()
 	}
 
 	addEvent(body, 'click', triggerEvent)
 	addEvent(btnWrapper, 'click', triggerEvent)
 	addEvent(btn, 'click', triggerEvent)
-
-
+	
 </script>
 
 </body>
