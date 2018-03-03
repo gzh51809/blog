@@ -1,12 +1,19 @@
 # 深入JavaScript继承原理
 
-`ES6`的`class`语法糖你是否已经用得是否炉火纯青呢？那如果回归到`ES5`呢？本文，将继续上一篇 [《万物皆空之 JavaScript 原型》](https://juejin.im/post/5a944f485188257a804aba6d) 篇尾提出的疑问来展开阐述：
 
-> 如何用 `JavaScript` 实现类的继承呢？
+`ES6`的`class`语法糖你是否已经用得是否炉火纯青呢？那如果回归到`ES5`呢？本文，将继续上一篇 [《万物皆空之 JavaScript 原型》](https://juejin.im/post/5a944f485188257a804aba6d) 篇尾提出的疑问`如何用 JavaScript 实现类的继承` 来展开阐述：
+
+通过本文，你将学到：
+
+1. 如何用`JavaScript`模拟类中的私有变量；
+2. 了解常见的几种`JavaScript`继承方法，原理及其优缺点；
+3. 实现一个较为`fancy`的`JavaScript`继承方法。
+
+此外，如果你完全明白了文末的`终极版继承`，你也就懂了这两篇所要讲的核心知识，同时，也能说明你拥有不错的`JavaScript`基础。
 
 ## 类
 
-我们来回顾一下`ES6 / TS / ES5`类的写法以作对比。首先，我们创建一个`GithubUser`类，它拥有一个`login`方法和一个静态方法`getPublicServices`, 用于获取公开的服务列表：
+我们来回顾一下`ES6 / TypeScript / ES5`类的写法以作对比。首先，我们创建一个`GithubUser`类，它拥有一个`login`方法，和一个静态方法`getPublicServices`, 用于获取`public`的方法列表：
 
 ```js
 class GithubUser {
@@ -97,7 +104,7 @@ function JuejinUser(username, password) {
 
 因为我们已经得知：
 
-> 若通过`new Parent()`创建了`Child`,则 `Child.__proto__ = Parent.prototype`，而原型链则是顺着`__proto__`依次向上查找。因为，可以通过修改子类的原型为父类的实例来实现继承。
+> 若通过`new Parent()`创建了`Child`,则 `Child.__proto__ = Parent.prototype`，而原型链则是顺着`__proto__`依次向上查找。因此，可以通过修改子类的原型为父类的实例来实现继承。
 
 第一直觉的实现如下：
 
@@ -163,7 +170,7 @@ Perfect！原型链已经出来，问题“好像”得到了完美解决！但�
 1. 在原型链上创建了属性（一般来说，这不是一种好的实践）
 2. 私自篡改`__proto__`，导致 `juejinUser1.__proto__ === JuejinUser.prototype` 不成立！从而导致 `juejinUser1 instanceof JuejinUser` 也不成立😂。这不应该发生！
 
-细心的同学会发现，造成这种问题的根本原因在于我们在实例化的时候动态修改了原型，那有没有一种方法可以在实例化之前就固定好类的原型的指针呢？
+细心的同学会发现，造成这种问题的根本原因在于我们在实例化的时候动态修改了原型，那有没有一种方法可以在实例化之前就固定好类的原型的`refernce`呢？
 
 事实上，我们可以考虑把类的原型的赋值挪出来：
 
@@ -394,11 +401,11 @@ function inherit(child, parent) {
 
 - The `Object.assign()` method is used to copy the values of all enumerable own properties from one or more source objects to a target object. It will return the target object.
 
-其中有个很关键的词：`enumerable`，这已经不是本节讨论的知识了，简答来说，上述的继承方法只适用于`copy`原型链上可枚举的方法，此外，如果子类本身已经继承自某个类，这便是一件很麻烦的事了。
+其中有个很关键的词：`enumerable`，这已经不是本节讨论的知识了，不熟悉的同学可以参考 [MDN - Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 补习。简答来说，上述的继承方法只适用于`copy`原型链上可枚举的方法，此外，如果子类本身已经继承自某个类，以上的继承将不能满足要求。
 
 ### 终极版继承
 
-为了让代码更清晰，我用`ES6`的一些API，写出了这个继承:
+为了让代码更清晰，我用`ES6`的一些API，写出了这个我所认为的最合理的继承方法:
 
 1. 用`Reflect`代替了`Object`；
 2. 用`Reflect.getPrototypeOf`来代替`ob.__ptoto__`;
@@ -406,70 +413,84 @@ function inherit(child, parent) {
 4. 用`Reflect.getOwnPropertyDescriptor`读取属性描述符;
 5. 用`Reflect.setPrototypeOf`来设置`__ptoto__`。
 
+源代码如下：
+
 ```js
-// 不同于object.assign, 该merge方法会复制所有的源键
-// 不管键名是 Symbol 或字符串，也不管是否可枚举。
+/*!
+ * fancy-inherit
+ * (c) 2016-2018 ULIVZ
+ */
+ 
+// 不同于object.assign, 该 merge方法会复制所有的源键
+// 不管键名是 Symbol 或字符串，也不管是否可枚举
 function fancyShadowMerge(target, source) {
-	for (const key of Reflect.ownKeys(source)) {
-		Reflect.defineProperty(target, key, Reflect.getOwnPropertyDescriptor(source, key))
-	}
-	return target
+    for (const key of Reflect.ownKeys(source)) {
+        Reflect.defineProperty(target, key, Reflect.getOwnPropertyDescriptor(source, key))
+    }
+    return target
 }
 
-// 终极版寄生组合式继承
+// Core
 function inherit(child, parent) {
-	const objectPrototype = Object.prototype
-	// 继承父类的原型
-	const parentPrototype = Object.create(parent.prototype)
-	let childPrototype = child.prototype
-	// 若子类没有继承任何类，直接合并子类原型和父类原型上的所有方法
-	// 包含可枚举/不可枚举的方法
-	if (Reflect.getPrototypeOf(childPrototype) === objectPrototype) {
-		child.prototype = fancyShadowMerge(parentPrototype, childPrototype)
-	} else {
-		while (Reflect.getPrototypeOf(childPrototype) !== objectPrototype) {
+    const objectPrototype = Object.prototype
+    // 继承父类的原型
+    const parentPrototype = Object.create(parent.prototype)
+    let childPrototype = child.prototype
+    // 若子类没有继承任何类，直接合并子类原型和父类原型上的所有方法
+    // 包含可枚举/不可枚举的方法
+    if (Reflect.getPrototypeOf(childPrototype) === objectPrototype) {
+        child.prototype = fancyShadowMerge(parentPrototype, childPrototype)
+    } else {
+        // 若子类已经继承子某个类
+        // 父类的原型将在子类原型链的尽头补全
+        while (Reflect.getPrototypeOf(childPrototype) !== objectPrototype) {
 			childPrototype = Reflect.getPrototypeOf(childPrototype)
-		}
+        }
 		Reflect.setPrototypeOf(childPrototype, parent.prototype)
-
-	}
-	// 重写被污染的子类的constructor
-	parentPrototype.constructor = child
+    }
+    // 重写被污染的子类的constructor
+    parentPrototype.constructor = child
 }
+```
 
+测试：
+
+```js
 // GithubUser
 function GithubUser(username, password) {
-	let _password = password
-	this.username = username
+    let _password = password
+    this.username = username
 }
 
 GithubUser.prototype.login = function () {
-	console.log(this.username + '要登录Github，密码是' + _password)
+    console.log(this.username + '要登录Github，密码是' + _password)
 }
 
 // JuejinUser
 function JuejinUser(username, password) {
-	GithubUser.call(this, username, password)
-	WeiboUser.call(this, username, password)
-	this.articles = 3
+    GithubUser.call(this, username, password)
+    WeiboUser.call(this, username, password)
+    this.articles = 3
 }
 
 JuejinUser.prototype.readArticle = function () {
-	console.log('Read article')
+    console.log('Read article')
 }
 
 // WeiboUser
 function WeiboUser(username, password) {
-	this.key = username + password
+    this.key = username + password
 }
 
 WeiboUser.prototype.compose = function () {
-	console.log('compose')
+    console.log('compose')
 }
 
-inherit(JuejinUser, GithubUser) // 先让 JuejinUser 继承 GithubUser
+// 先让 JuejinUser 继承 GithubUser，然后就可以用github登录掘金了
+inherit(JuejinUser, GithubUser) 
 
-inherit(JuejinUser, WeiboUser)  // 再让 JuejinUser 继承 WeiboUser
+// 再让 JuejinUser 继承 WeiboUser，然后就可以用weibo登录掘金了
+inherit(JuejinUser, WeiboUser)  
 
 const juejinUser1 = new JuejinUser('ulivz', 'xxx')
 
@@ -482,7 +503,7 @@ console.log(juejinUser1 instanceof WeiboUser) // true
 
 ![](https://user-gold-cdn.xitu.io/2018/3/3/161ebe21149f3778?w=1378&h=682&f=png&s=160763)
 
-现在提出一个作业：
+最后用一个问题来检验你对本文的理解：
 
 - 改写上述继承方法，让其支持`inherit(A, B, C ...)`, 实现类`A`依次继承后面所有的类，但除了`A`以外的类不产生继承关系。
 
@@ -497,10 +518,13 @@ console.log(juejinUser1 instanceof WeiboUser) // true
 
 最后放一个彩蛋，为什么我会在寄生组合式继承中尤其强调`enumerable`这个属性描述符呢，因为：
 
-- 在ES6中，所以类的方法是不可枚举的！
+- 在ES6中，默认所有类的方法是不可枚举的！😅
 
 
 以上，全文终）
+
+
+
 
 
 
