@@ -1,4 +1,4 @@
-# JavaScript：关于类与继承
+# 深入JavaScript继承原理
 
 `ES6`的`class`语法糖你是否已经用得是否炉火纯青呢？那如果回归到`ES5`呢？本文，将继续上一篇 [《万物皆空之 JavaScript 原型》](https://juejin.im/post/5a944f485188257a804aba6d) 篇尾提出的疑问来展开阐述：
 
@@ -84,12 +84,12 @@ function JuejinUser(username, password) {
 
 由于`ES6/TS`的继承太过直观，本节将忽略。首先概述一下本文将要讲解的几种继承方法：
 
-- 类式继承
-- 构造函数式继承
-- 组合式继承
-- 原型继承
-- 寄生式继承
-- 寄生组合式继承
+- [类式继承](#类式继承)
+- [构造函数式继承](#构造函数式继承)
+- [组合式继承](#组合式继承)
+- [原型继承](#原型继承)
+- [寄生式继承](#寄生式继承)
+- [寄生组合式继承](#寄生组合式继承)
 
 看起来很多，我们一一论述。
 
@@ -270,54 +270,47 @@ const juejinUser1 = new JuejinUser('ulivz', 'xxx')
 
 ### 原型继承
 
-原型继承实际上是对类似继承的一种封装，只不过其独特之处在于，定义了一个干净的中间类，如下：
+原型继承实际上是对`类式继承`的一种封装，只不过其独特之处在于，定义了一个干净的中间类，如下：
 
 ```js
-function prototypeInherit(o) {
-    function _F() {
-
+function createObject(o) {
+    // 创建临时类
+    function f() {
+        
     }
-    _F.prototype = o.prototype;
-    return new _F();
+    // 修改类的原型为o, 于是f的实例都将继承o上的方法
+    f.prototype = o
+    return new f()
 }
 ```
 
-有人可能会注意到这个很像`Object.create`, 特此声明，[Object.create](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create) 的`polyfill`长这样：
+熟悉`ES5`的同学，会注意到，这不就是 [**Object.create**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create) 吗？没错，你可以认为是如此。
+
+既然只是`类式继承`的一种封装，其使用方式自然如下：
 
 ```js
-if (typeof Object.create !== "function") {
-    Object.create = function (proto, propertiesObject) {
-        // 省略部分code...
-        function F() {}
-        F.prototype = proto; // 看请求
-        return new F();
-    };
-}
+JuejinUser.prototype = createObject(GithubUser)
 ```
 
-使用方式：
+也就仍然没有解决`类式继承`的一些问题。
 
-```
-
-```
-
-
+> PS：我个人觉得`原型继承`和`类式继承`应该直接归为一种继承！但无赖众多`JavaScript`书籍均是如此命名，算是`follow legacy`的标准吧。
 
 
 ### 寄生继承
 
-依托于一个对象而生的一种继承方式，谓之寄生。
+`寄生继承`是依托于一个对象而生的一种继承方式，因此称之为`寄生`。
 
 ```js
-var computer = {
-    cpu: 'i7 7700U',
-    ram: '32G'
+const juejinUserSample = {
+    username: 'ulivz',
+    password: 'xxx'
 }
 
-function CreateComputer(obj) {
-    var o = protoInherit(obj);
-     o.getCpu = function () {
-        return this.cpu;
+function JuejinUser(obj) {
+    var o = Object.create(obj)
+     o.prototype.readArticle = function () {
+        console.log('Read article')
     }
     return o;
 }
@@ -325,61 +318,191 @@ function CreateComputer(obj) {
 var myComputer = new CreateComputer(computer);
 ```
 
-### 寄生组合
+由于实际生产中，继承一个单例对象的场景实在是太少，因此，我们仍然没有找到最佳的继承方法。
+
+### 寄生组合式继承
+
+看起来很玄乎，先上代码：
 
 ```js
-// 原型继承
-function protoInherit(object) {
-    function p() {}
-    p.prototype = object;
-    return new p();
-}
+// 寄生组合式继承的核心方法
 function inherit(child, parent) {
     // 继承父类的原型
-    var p = protoInherit(parent.prototype);
+    const p = Object.create(parent.prototype)
     // 重写子类的原型
-    child.prototype = p;
+    child.prototype = p
     // 重写被污染的子类的constructor
-    p.constructor = child;
+    p.constructor = child
+}
+
+// GithubUser, 父类
+function GithubUser(username, password) {
+    let _password = password 
+    this.username = username 
+}
+
+GithubUser.prototype.login = function () {
+    console.log(this.username + '要登录Github，密码是' + _password)
+}
+
+// GithubUser, 子类
+function JuejinUser(username, password) {
+    GithubUser.call(this, username, password) // 继承属性
+    this.articles = 3 // 文章数量
+}
+
+// 实现原型上的方法
+inherit(JuejinUser, GithubUser)
+
+// 在原型上添加新方法
+JuejinUser.prototype.readArticle = function () {
+    console.log('Read article')
+}
+
+const juejinUser1 = new JuejinUser('ulivz', 'xxx')
+console.log(juejinUser1)
+```
+
+来浏览器中查看结果：
+
+![](https://user-gold-cdn.xitu.io/2018/3/3/161eba345865705c?w=1212&h=496&f=png&s=108052)
+
+简单说明一下：
+
+1. 子类继承了父类的属性和方法，同时，属性没有被创建在原型链上，因此多个子类不会共享同一个属性。
+2. 子类可以传递动态参数给父类！
+3. 父类的构造函数只执行了一次！
+
+Nice！这才是我们想要的继承方法。然而，仍然存在一个美中不足的问题：
+
+- 子类想要在原型上添加方法，必须在继承之后添加，否则将覆盖掉原有原型上的方法。这样的话 若是已经存在的两个类，就不好办了。
+
+所以，我们可以将其优化一下：
+
+```js
+function inherit(child, parent) {
+    // 继承父类的原型
+    const parentPrototype = Object.create(parent.prototype)
+    // 将父类原型和子类原型合并，并赋值给子类的原型
+    child.prototype = Object.assign(parentPrototype, child.prototype)
+    // 重写被污染的子类的constructor
+    p.constructor = child
 }
 ```
 
-!> 寄生组合式继承仍然需要结合构造函数式继承。
+但实际上，使用`Object.assign`来进行`copy`仍然不是最好的方法，根据[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)的描述：
 
+- The `Object.assign()` method is used to copy the values of all enumerable own properties from one or more source objects to a target object. It will return the target object.
 
-## ES6的继承
+其中有个很关键的词：`enumerable`，这已经不是本节讨论的知识了，简答来说，上述的继承方法只适用于`copy`原型链上可枚举的方法，此外，如果子类本身已经继承自某个类，这便是一件很麻烦的事了。
 
-ES6 class 可以继承静态方法和属性。
+### 终极版继承
 
+为了让代码更清晰，我用`ES6`的一些API，写出了这个继承:
 
-## TS的继承
-
-
-### 寄生组合
+1. 用`Reflect`代替了`Object`；
+2. 用`Reflect.getPrototypeOf`来代替`ob.__ptoto__`;
+3. 用`Reflect.ownKeys`来读取所有可枚举/不可枚举/Symbol的属性;
+4. 用`Reflect.getOwnPropertyDescriptor`读取属性描述符;
+5. 用`Reflect.setPrototypeOf`来设置`__ptoto__`。
 
 ```js
-// 原型继承
-function protoInherit(object) {
-    function p() {}
-    p.prototype = object;
-    return new p();
+// 不同于object.assign, 该merge方法会复制所有的源键
+// 不管键名是 Symbol 或字符串，也不管是否可枚举。
+function fancyShadowMerge(target, source) {
+	for (const key of Reflect.ownKeys(source)) {
+		Reflect.defineProperty(target, key, Reflect.getOwnPropertyDescriptor(source, key))
+	}
+	return target
 }
+
+// 终极版寄生组合式继承
 function inherit(child, parent) {
-    // 继承父类的原型
-    var p = protoInherit(parent.prototype);
-    // 重写子类的原型
-    child.prototype = p;
-    // 重写被污染的子类的constructor
-    p.constructor = child;
+	const objectPrototype = Object.prototype
+	// 继承父类的原型
+	const parentPrototype = Object.create(parent.prototype)
+	let childPrototype = child.prototype
+	// 若子类没有继承任何类，直接合并子类原型和父类原型上的所有方法
+	// 包含可枚举/不可枚举的方法
+	if (Reflect.getPrototypeOf(childPrototype) === objectPrototype) {
+		child.prototype = fancyShadowMerge(parentPrototype, childPrototype)
+	} else {
+		while (Reflect.getPrototypeOf(childPrototype) !== objectPrototype) {
+			childPrototype = Reflect.getPrototypeOf(childPrototype)
+		}
+		Reflect.setPrototypeOf(childPrototype, parent.prototype)
+
+	}
+	// 重写被污染的子类的constructor
+	parentPrototype.constructor = child
 }
+
+// GithubUser
+function GithubUser(username, password) {
+	let _password = password
+	this.username = username
+}
+
+GithubUser.prototype.login = function () {
+	console.log(this.username + '要登录Github，密码是' + _password)
+}
+
+// JuejinUser
+function JuejinUser(username, password) {
+	GithubUser.call(this, username, password)
+	WeiboUser.call(this, username, password)
+	this.articles = 3
+}
+
+JuejinUser.prototype.readArticle = function () {
+	console.log('Read article')
+}
+
+// WeiboUser
+function WeiboUser(username, password) {
+	this.key = username + password
+}
+
+WeiboUser.prototype.compose = function () {
+	console.log('compose')
+}
+
+inherit(JuejinUser, GithubUser) // 先让 JuejinUser 继承 GithubUser
+
+inherit(JuejinUser, WeiboUser)  // 再让 JuejinUser 继承 WeiboUser
+
+const juejinUser1 = new JuejinUser('ulivz', 'xxx')
+
+console.log(juejinUser1)
+
+console.log(juejinUser1 instanceof GithubUser) // true
+console.log(juejinUser1 instanceof WeiboUser) // true
 ```
 
-!> 寄生组合式继承仍然需要结合构造函数式继承。
+
+![](https://user-gold-cdn.xitu.io/2018/3/3/161ebe21149f3778?w=1378&h=682&f=png&s=160763)
+
+现在提出一个作业：
+
+- 改写上述继承方法，让其支持`inherit(A, B, C ...)`, 实现类`A`依次继承后面所有的类，但除了`A`以外的类不产生继承关系。
+
+## 总结
+
+1. 我们可以使用`function`来模拟一个类；
+2. `JavaScript`类的继承是基于原型的, 一个完善的继承方法，其继承过程是相当复杂的；
+3. 虽然建议实际生产中直接使用`ES6`的继承，但仍建议深入了解内部继承机制。
 
 
-## ES6的继承
+## 题外话
 
-ES6 class 可以继承静态方法和属性。
+最后放一个彩蛋，为什么我会在寄生组合式继承中尤其强调`enumerable`这个属性描述符呢，因为：
+
+- 在ES6中，所以类的方法是不可枚举的！
 
 
-## TS的继承
+以上，全文终）
+
+
+
+
+
