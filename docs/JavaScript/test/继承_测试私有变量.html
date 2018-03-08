@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	function Class(argu) {
+		var _ = argu['private'] || {};
+		eval('var obj = ' + (argu['initialize'] || function () {
+				}).toString());
+		for (var p in argu) {
+			if (p == 'initialize' || p == 'private')
+				continue;
+			if (typeof argu[p] == 'function')
+				eval('obj.prototype[p] = ' + argu[p].toString());
+			else
+				obj.prototype[p] = argu[p];
+		}
+		return obj;
+	}
+
+	var Person = new Class({
+		private: {
+			height: 160,
+			weight: 50
+		},
+		initialize: function (name, height, weight) {
+			this.name = name;
+			_.height = height || _.height;
+			_.weight = weight || _.weight;
+		},
+		show: function () {
+			alert('Name:' + this.name + '/nheight:' + _.height + '/nweight:' + _.weight);
+		}
+	});
+
+	var my = new Person("Zh");
+	my.show();
+	console.log(my)
+</script>
+</body>
+</html>
