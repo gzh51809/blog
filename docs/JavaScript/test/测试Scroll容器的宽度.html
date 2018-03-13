@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>测试Scroll容器的宽度</title>
+	<style>
+		.container {
+			position: relative;
+			height: 300px;
+		}
+
+		img {
+			height: 100%;
+		}
+
+		.track {
+			height: 100%;
+			width: 100vw;
+			white-space: nowrap;
+			overflow-x: scroll;
+			overflow-y: hidden;
+		}
+
+		.animating {
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container">
+	<div id="track" class="track animating">
+		<img src="http://bjcache.house.sina.com.cn/gongzhang/image/20151208/20151208141943_44148.jpg" alt="">
+		<img src="http://www.decorreport.com/images/zh/2033.jpg" alt="">
+		<img
+			src="http://img11.soufunimg.com/zxb/2017_08/16/M07/0D/95/ChCE4FmUB6WIGA89AAUDkTnTLAAAAq1rgEDGJsABQOp978.jpg"
+			alt="">
+		<img src="http://bjcache.house.sina.com.cn/gongzhang/image/20151208/20151208141943_44148.jpg" alt="">
+		<img src="http://www.decorreport.com/images/zh/2033.jpg" alt="">
+		<img
+			src="http://img11.soufunimg.com/zxb/2017_08/16/M07/0D/95/ChCE4FmUB6WIGA89AAUDkTnTLAAAAq1rgEDGJsABQOp978.jpg"
+			alt="">
+		<img src="http://bjcache.house.sina.com.cn/gongzhang/image/20151208/20151208141943_44148.jpg" alt="">
+		<img src="http://www.decorreport.com/images/zh/2033.jpg" alt="">
+		<img
+			src="http://img11.soufunimg.com/zxb/2017_08/16/M07/0D/95/ChCE4FmUB6WIGA89AAUDkTnTLAAAAq1rgEDGJsABQOp978.jpg"
+			alt="">
+	</div>
+</div>
+
+<button class="prev switch"><</button>
+<button class="next switch">></button>
+
+<script src="http://unpkg.com/jquery"></script>
+<script>
+	function getSlickTrackWidth() {
+		return [...$('img').map((idx, el) => $(el).width())].reduce((prev, next) => prev + next, 0);
+	}
+	setTimeout(()=>{
+		$('.track').append('<img src="http://bjcache.house.sina.com.cn/gongzhang/image/20151208/20151208141943_44148.jpg" alt="">')
+	}, 500)
+	$('.track').on('resize', () => {
+		console.log("RESIZE! width = " + $('.track').width())
+	})
+	console.log($('.track'))
+	console.log("getSlickTrackWidth() = " + getSlickTrackWidth())
+	console.log("$('.track').width() = " + $('.track').width())
+	console.log("$('.track').innerWidth() = " + $('.track').innerWidth())
+	console.log("$('.track')[0].scrollWidth = " + $('.track')[0].scrollWidth)
+	console.log("$('.track').get(0).scrollWidth = " + $('.track').get(0).scrollWidth)
+	console.log("$('#track').get(0).scrollWidth = " + $('#track').get(0).scrollWidth)
+	$('.track').scroll(() => {
+		console.log("$(window).width() = " + $(window).width())
+		console.log("$('.track').scrollLeft() = " + $('.track').scrollLeft())
+	})
+
+</script>
+</body>
+</html>

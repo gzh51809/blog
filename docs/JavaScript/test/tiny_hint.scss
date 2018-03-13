@@ -1,0 +1,254 @@
+// BOLT Hint Tooltip
+
+// Defines the basic styling for the tooltip.
+// Each tooltip is made of 2 parts:
+// 	1) body (:after)
+// 	2) arrow (:before)
+
+[class*="hint--"] {
+	position: relative;
+	display: inline-block;
+}
+
+[class*="hint--"]:before, [class*="hint--"]:after {
+	position: absolute;
+	transform: translate3d(0, 0, 0);
+	visibility: hidden;
+	opacity: 0;
+	z-index: 1000000;
+	pointer-events: none;
+	transition: 0.3s ease;
+	transition-delay: 0ms;
+}
+
+[class*="hint--"]:hover:before, [class*="hint--"]:hover:after {
+	visibility: visible;
+	opacity: 1;
+}
+
+[class*="hint--"]:hover:before, [class*="hint--"]:hover:after {
+	transition-delay: 100ms;
+}
+
+[class*="hint--"]:before {
+	content: '';
+	position: absolute;
+	background: transparent;
+	border: 6px solid transparent;
+	z-index: 1000001;
+}
+
+[class*="hint--"]:after {
+	background: $hint-bg-color;
+	color: white;
+	padding: 8px 10px;
+	font-size: 12px;
+	line-height: 12px;
+	white-space: nowrap;
+	border-radius: 14px;
+}
+
+[class*="hint--"][aria-label]:after {
+	content: attr(aria-label);
+}
+
+[class*="hint--"][data-hint]:after {
+	content: attr(data-hint);
+}
+
+[aria-label='']:before, [aria-label='']:after,
+[data-hint='']:before,
+[data-hint='']:after {
+	display: none !important;
+}
+
+//
+// Defines the positoning logic for the tooltips.
+//
+
+//
+// top tooltip
+//
+.hint--top:before {
+	border-top-color: $hint-bg-color;
+}
+
+.hint--bottom:before {
+	border-bottom-color: $hint-bg-color;
+}
+
+.hint--left:before {
+	border-left-color: $hint-bg-color;
+}
+
+.hint--right:before {
+	border-right-color: $hint-bg-color;
+}
+
+//
+// top tooltip
+//
+.hint--top:before {
+	margin-bottom: -11px;
+}
+
+.hint--top:before, .hint--top:after {
+	bottom: 100%;
+	left: 50%;
+}
+
+.hint--top:before {
+	left: calc(50% - 6px);
+}
+
+.hint--top:after {
+	transform: translateX(-50%);
+}
+
+.hint--top:hover:before {
+	transform: translateY(-8px);
+}
+
+.hint--top:hover:after {
+	transform: translateX(-50%) translateY(-8px);
+}
+
+//
+// bottom tooltip
+//
+.hint--bottom:before {
+	margin-top: -11px;
+}
+
+.hint--bottom:before, .hint--bottom:after {
+	top: 100%;
+	left: 50%;
+}
+
+.hint--bottom:before {
+	left: calc(50% - 6px);
+}
+
+.hint--bottom:after {
+	transform: translateX(-50%);
+}
+
+.hint--bottom:hover:before {
+	transform: translateY(8px);
+}
+
+.hint--bottom:hover:after {
+	transform: translateX(-50%) translateY(8px);
+}
+
+//
+// right tooltip
+//
+.hint--right:before {
+	margin-left: -11px;
+	margin-bottom: -6px;
+}
+
+.hint--right:after {
+	margin-bottom: -14px;
+}
+
+.hint--right:before, .hint--right:after {
+	left: 100%;
+	bottom: 50%;
+}
+
+.hint--right:hover:before {
+	transform: translateX(8px);
+}
+
+.hint--right:hover:after {
+	transform: translateX(8px);
+}
+
+//
+// left tooltip
+//
+.hint--left:before {
+	margin-right: -11px;
+	margin-bottom: -6px;
+}
+
+.hint--left:after {
+	margin-bottom: -14px;
+}
+
+.hint--left:before, .hint--left:after {
+	right: 100%;
+	bottom: 50%;
+}
+
+.hint--left:hover:before {
+	transform: translateX(-8px);
+}
+
+.hint--left:hover:after {
+	transform: translateX(-8px);
+}
+
+//
+// Defines width restricted tooltips that can span
+// across multiple lines.
+//
+.hint--small:after,
+.hint--medium:after,
+.hint--large:after {
+	white-space: normal;
+	line-height: 1.4em;
+	word-wrap: break-word;
+}
+
+.hint--small:after {
+	width: 80px;
+}
+
+.hint--medium:after {
+	width: 150px;
+}
+
+.hint--large:after {
+	width: 300px;
+}
+
+// Defines a persisted tooltip which shows always.
+   .hint--always:after, .hint--always:before {
+	   opacity: 1;
+	   visibility: visible;
+   }
+
+.hint--always.hint--top:before {
+	transform: translateY(-8px);
+}
+
+.hint--always.hint--top:after {
+	transform: translateX(-50%) translateY(-8px);
+}
+
+.hint--always.hint--bottom:before {
+	transform: translateY(8px);
+}
+
+.hint--always.hint--bottom:after {
+	transform: translateX(-50%) translateY(8px);
+}
+
+.hint--always.hint--left:before {
+	transform: translateX(-8px);
+}
+
+.hint--always.hint--left:after {
+	transform: translateX(-8px);
+}
+
+.hint--always.hint--right:before {
+	transform: translateX(8px);
+}
+
+.hint--always.hint--right:after {
+	transform: translateX(8px);
+}

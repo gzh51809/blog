@@ -432,6 +432,8 @@ console.log(Person.prototype.constructor.prototype.constructor === Person) //tru
 
 - 如何用 `JavaScript` 实现类的继承呢？
 
+请看我的原型系列的下一篇[《深入JavaScript继承原理》](https://juejin.im/post/5a96d78ef265da4e9311b4d8) 分晓。
+
 以上，全文终。
 
 <span style="color: #aaa; font-size: 12px">注：本文属于个人总结，部分表达难免会有疏漏之处，如果您发现本文有所欠缺，为避免误人子弟，请放心大胆地给我提 <a href='https://github.com/ulivz/blog/issues'>issue</a>，谢谢~</span>
