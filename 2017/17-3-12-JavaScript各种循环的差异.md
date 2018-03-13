@@ -1,9 +1,11 @@
-# forEach循环的一些黑点
+# JavaScript各种循环的差异
 
-## forEach
+## 能不能break？
+
+### forEach
 
 ```js
-var flagArray = [
+const flagArray = [
   false,
   null,
   0,
@@ -11,23 +13,15 @@ var flagArray = [
   false
 ]
 
-var check = function(arr) {
-  
+const check = function(arr) {
   arr.forEach(function(item, index) {
-    
     console.log(index)
-    
   if(item){
-    
     console.log('enter, index = ' + index)
-    
     return true
   }
-    
 })
-  
-  return false
-  
+  return false 
 }
 
 
@@ -43,7 +37,7 @@ console.log('result: ' + check(flagArray))
 ```
 
 
-## for循环
+### for
 
 ```js
 var flagArray = [
@@ -55,23 +49,14 @@ var flagArray = [
 ]
 
 var check = function(arr) {
-  
   for(var i = 0, l = arr.length; i < l; i++){
-    
    console.log(i)
-   
    if(arr[i]){
-    
     console.log('enter, index = ' + i)
-    
     return true
-    
   }
-    
  }
-
 }
-
 
 console.log(check(flagArray))
 
@@ -84,11 +69,10 @@ console.log(check(flagArray))
 ```
 
 
-
-## for...in
+### for...in
 
 ```js
-var flagArray = [
+const flagArray = [
   false,
   null,
   0,
@@ -96,24 +80,15 @@ var flagArray = [
   undefined
 ]
 
-var check = function(arr) {
-  
+const check = function(arr) {
   for(var key in arr){
-       
    console.log(arr[key]); 
-   
    if(arr[key]){
-    
     console.log('enter, index = ' + arr[key])
-    
     return true
-    
-  }
-    
+  } 
  }
-
 }
-
 
 console.log('result: ' + check(flagArray))
 
@@ -125,10 +100,10 @@ console.log('result: ' + check(flagArray))
 // "result: true"
 ```
 
-## ES6 - for...of
+### for...of
 
 ```js
-var flagArray = [
+const flagArray = [
   false,
   null,
   0,
@@ -136,14 +111,9 @@ var flagArray = [
   false
 ]
 
-
-
-var check = function(arr) {
-
+const check = function(arr) {
     for (var flag of arr) {
-
         console.log(flag)
-
         if (flag) { 
             console.log('enter, value = ' + flag)      
             return true;
@@ -164,6 +134,8 @@ console.log('result: ' + check(flagArray))
 // result: true
 ```
 
+综合以上测试结果，得出结论：
 
-## 结论
+1. forEach 无法 break 出当前循环，也就说：在 return 之后仍然会继续执行剩下的所有循环，这实际上和 forEach 的实现机制有关。
+2. for, for...in, for...of 均能 break 出当前循环。
 
