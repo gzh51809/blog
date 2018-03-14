@@ -1,8 +1,6 @@
+# CSS3 知识点
 
-> @Font-face
-
-[CSS3 @font-face](http://www.w3cplus.com/content/css3-font-face)
-[Google Fonts](https://fonts.google.com)
+## 基础
 
 - 多栏布局（column-count、column-gap、column-rule、column-width）
 - @Font-face
@@ -15,6 +13,11 @@
 - Transitions
 - Transforms
 - Animation（@keyframes）
+
+## @Font-face
+
+[CSS3 @font-face](http://www.w3cplus.com/content/css3-font-face)
+[Google Fonts](https://fonts.google.com)
 
 ## CSS中级应用技巧
 
