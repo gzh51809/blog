@@ -67,7 +67,7 @@ app.listen(9000)
 2. 谁先加载谁先执行
 3. 大多数情况下，每个中间件相对来说都是独立的
 
-对于第三点，我们可以举一个例子：	`cookie` 和 `cookieSession` 这两个中间件的顺序必须是`cookie`在前。
+对于第三点，我们可以举一个例子：`cookie` 和 `cookieSession` 这两个中间件的顺序必须是`cookie`在前。
 
 ## express的中间件
 

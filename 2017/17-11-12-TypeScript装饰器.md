@@ -127,13 +127,6 @@ f(): called
 
 属性装饰器不能用在声明文件中（.d.ts），或者任何外部上下文（比如 declare的类）里。
 
-
-
-
-
-
-
-
 ## 参考文档
 
 - [从C#到TypeScript - 装饰器](https://www.cnblogs.com/brookshi/p/6417914.html)
