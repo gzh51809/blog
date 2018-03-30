@@ -44,87 +44,11 @@
 	</div>
 </div>
 <script src="http://unpkg.com/jquery"></script>
+<script src="./tiny-slick.js"></script>
 <script>
-  const track = $('#track')
-
-  let touching = false
-  let currentX = 0
-  let initX = 0
-  let startX
-  let endX
-  let breakpoint = 0.2
-
-  function touchstart(e) {
-    console.warn('touchstart')
-    touching = true
-    var events = event.touches[0] || event;
-    startX = events.pageX
-  }
-
-  function touchmove(e) {
-    console.warn('touchmove')
-    var events = event.touches[0] || event;
-    endX = events.pageX
-    let diff = endX - startX
-    startX = endX
-    currentX = currentX + diff
-    track.css('transform', `translate3d(${currentX}px, 0, 0)`)
-  }
-
-  function touchend() {
-    let windowWidth = $(window).width()
-//    console.log('windowWidth = ' + windowWidth)
-//    console.log('initX = ' + initX)
-//    console.log('currentX = ' + currentX)
-
-    let gain = Math.abs(currentX) / windowWidth
-    let diff = (currentX - initX) / windowWidth
-
-    let maxGain = Math.ceil(gain)
-    let minGain = Math.floor(gain)
-    let shouldSwitch = Math.abs(diff) > breakpoint
-
-//    console.log('gain = ' + gain)
-//    console.log('diff = ' + diff)
-//    console.log('Should switch: ' + (shouldSwitch))
-
-    if (diff > 0) {
-      currentX = -windowWidth * (shouldSwitch ? minGain : maxGain)
-    } else {
-      currentX = -windowWidth * (shouldSwitch ? maxGain : minGain)
-    }
-
-    let max = 0
-    let min = windowWidth - track.width()
-
-    if (currentX < min) {
-      currentX = min
-    } else if (currentX > max) {
-      currentX = max
-    }
-
-    initX = currentX
-
-    track.off('touchmove', touchmove)
-    track.css({
-      transition: `transform 0.5s`,
-      transform: `translate3d(${currentX}px, 0, 0)`
-    })
-    setTimeout(() => {
-      track.on('touchmove', touchmove)
-      track.css({
-        transition: ''
-      })
-    }, 500)
-  }
-
-  track.on({
-    touchmove,
-    touchstart,
-    touchend
+  tinySlick($('#track'), {
+    breakpoint: 0.2
   })
-
-
 </script>
 </body>
 </html>
