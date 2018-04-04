@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>测试popmotion转换SVG</title>
+	<style>
+		body {
+			--pink: #FF1C68;
+			--green: #14D790;
+			--blue: #198FE3;
+			--white: #fff;
+			background: var(--white);
+			font-family: 'Source Sans Pro', sans-serif;
+			height: 100vh;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.pen {
+			flex: 1 1 100%;
+		}
+
+		#shape-defs {
+			display: none;
+		}
+
+		#container {
+			height: 400px;
+			width: 400px;
+			cursor: pointer;
+		}
+
+		path {
+			/*fill: var(--pink);*/
+		}
+
+		.created-by {
+			flex: 0 0 50px;
+			background: #fff;
+			color: #222;
+			text-decoration: none;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			padding-right: 30px;
+		}
+
+		.logo {
+			margin-left: 10px;
+		}
+
+		.pen {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.box {
+			width: 100px;
+			height: 100px;
+			background: var(--blue);
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+<div id="app">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+	<div class="pen" id="copy">
+		<svg id="container" viewBox="0 0 1024 1024">
+			<path id="target" d="M766.00433,765.975609 L766.00433,821.314714 C766.00433,883.531731 715.557361,933.97561 653.336771,933.97561 L202.667559,933.975609 C140.447993,933.975609 90,883.53173 90,821.314713 L90,370.662943 C90,308.445926 140.446969,258 202.667559,258 L259.00185,258 L259.00185,259 L314.668385,259 L314.668385,653.31369 C314.668385,684.422198 339.89187,709.645673 371.002676,709.645673 L651,709.645673 L651,765.975609 L371.002676,765.975609 C308.78311,765.975609 258.336141,715.530707 258.336141,653.312666 L258.336141,314.33096 L202.667559,314.33096 C171.557775,314.330961 146.334291,339.554435 146.334291,370.662943 L146.334291,821.314714 C146.334291,852.422199 171.557776,877.645674 202.667559,877.645674 L653.336771,877.645674 C684.446554,877.645674 709.671062,852.423223 709.671062,821.314714 L709.671062,764.982731 L710,764.982731 L710,709.645673 L821.672911,709.645673 C852.781671,709.645673 878.006179,684.423222 878.006179,653.31369 L878.006179,202.662943 L878.005155,202.662943 C878.005155,171.554435 852.78167,146.331983 821.671887,146.331983 L371.002676,146.331983 C340.114183,146.331983 315.027537,171.196885 314.672207,202 L258.338051,202 C258.694885,140.087976 309.004249,90 371.002676,90 L821.672911,90 C883.892477,90 934.339446,140.444902 934.339446,202.662943 L934.339446,653.31369 C934.338423,715.530706 883.891454,765.975609 821.671888,765.975609 L766.00433,765.975609 Z"/>
+		</svg>
+	</div>
+</div>
+
+<script src="https://unpkg.com/flubber@0.3.0"></script>
+<script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
+<script>
+  const { styler, tween, easing } = window.popmotion;
+
+  const source = 'M766.00433,765.975609 L766.00433,821.314714 C766.00433,883.531731 715.557361,933.97561 653.336771,933.97561 L202.667559,933.975609 C140.447993,933.975609 90,883.53173 90,821.314713 L90,370.662943 C90,308.445926 140.446969,258 202.667559,258 L259.00185,258 L259.00185,259 L314.668385,259 L314.668385,653.31369 C314.668385,684.422198 339.89187,709.645673 371.002676,709.645673 L651,709.645673 L651,765.975609 L371.002676,765.975609 C308.78311,765.975609 258.336141,715.530707 258.336141,653.312666 L258.336141,314.33096 L202.667559,314.33096 C171.557775,314.330961 146.334291,339.554435 146.334291,370.662943 L146.334291,821.314714 C146.334291,852.422199 171.557776,877.645674 202.667559,877.645674 L653.336771,877.645674 C684.446554,877.645674 709.671062,852.423223 709.671062,821.314714 L709.671062,764.982731 L710,764.982731 L710,709.645673 L821.672911,709.645673 C852.781671,709.645673 878.006179,684.423222 878.006179,653.31369 L878.006179,202.662943 L878.005155,202.662943 C878.005155,171.554435 852.78167,146.331983 821.671887,146.331983 L371.002676,146.331983 C340.114183,146.331983 315.027537,171.196885 314.672207,202 L258.338051,202 C258.694885,140.087976 309.004249,90 371.002676,90 L821.672911,90 C883.892477,90 934.339446,140.444902 934.339446,202.662943 L934.339446,653.31369 C934.338423,715.530706 883.891454,765.975609 821.671888,765.975609 L766.00433,765.975609 Z';
+
+  const target = 'M345.815587,850.531528 C363.423369,874.059428 394.423474,875.303906 413.461748,853.135475 L961.09317,215.465778 C973.216167,201.34959 972.927669,178.789078 960.448793,165.075465 C947.969914,151.36185 928.026155,151.688202 915.903157,165.804389 L368.271735,803.474086 C375.191666,795.416422 387.486757,795.91 393.901804,804.481925 L110.545587,425.855183 C99.3042754,410.834297 79.426924,408.966017 66.1482825,421.682263 C52.8696401,434.39851 51.2180585,456.8839 62.4593711,471.904786 L345.815587,850.531528 Z'
+
+  class MorphSVG {
+    constructor(svg, { source, target, duration }) {
+      this.svg = svg
+      this.styler = styler(svg)
+
+      this.source = source
+      this.target = target
+      this.duration = duration
+      this.positive = true
+    }
+
+    morph(direction) {
+      this.direction = direction
+      let transformer = direction
+          ? flubber.interpolate(this.source, this.target, { maxSegmentLength: 2 })
+          : flubber.interpolate(this.target, this.source, { maxSegmentLength: 2 })
+
+      return new Promise((resolve) => {
+        tween({ duration: this.duration, ease: easing.easeInOut, flip: 0 })
+            .pipe(transformer)
+            .start(this.styler.set('d'))
+
+        setTimeout(resolve, this.duration)
+      })
+    }
+
+    toggle() {
+      return this.morph(this.direction = !this.direction)
+    }
+
+    normal() {
+      return this.morph(this.direction = true)
+    }
+
+    reverse() {
+      return this.morph(this.direction = false)
+    }
+  }
+
+  const morph = new MorphSVG(
+      document.querySelector('#target'),
+      { source, target, duration: 300 }
+  )
+
+  document.querySelector('#copy').addEventListener('click', () => {
+    morph.toggle()
+  })
+</script>
+</body>
+</html>
