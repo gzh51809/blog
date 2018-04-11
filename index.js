@@ -26,7 +26,7 @@ function generateString(blogs) {
     const blogs = columns[column]
     str += `\n# ${column}\n\n`
     str += blogs.map(({ title, url, isSuggested }) => {
-          if (isSuggested) title = title + '🆙'  // 🏆 🎖 🏅 ❤️ 🆙  Which one? 😂
+          if (isSuggested) title = title + ' ❤'  // 🏆 🎖 🏅 ❤️ 🆙  Which one? 😂
           return `- [**${title}**](${url})`
         }).join('\n') + '\n'
   }
