@@ -42,7 +42,7 @@
 
 > 本目录由这段可爱的 [脚本](./index.js) 生成。
 
-
+<br>
 
 ## 关于我
 
@@ -54,6 +54,7 @@
 
 怎么找到我：
 
+- **邮箱**：chl814@foxmail.com
 - **知乎**：[@ulivz](https://www.zhihu.com/people/chen-hao-li-3/activities)
 - **专栏**：[**《ULVZ的前端进阶周刊》**](https://zhuanlan.zhihu.com/c_170301607)
 - **推特**: @_ulivz

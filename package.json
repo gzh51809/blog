@@ -6,8 +6,7 @@
   "directories": {
     "doc": "docs"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/toxichl/FED-blog.git"
@@ -26,5 +25,8 @@
   },
   "homepage": "https://github.com/toxichl/FED-blog#readme",
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "circular-json": "^0.5.1",
+    "github-api": "^3.0.0"
+  }
 }
