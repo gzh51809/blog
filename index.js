@@ -5,10 +5,10 @@ const gh = new GitHub()
 const issue = gh.getIssues('ulivz', 'blog')
 
 function getBlogs(blogs) {
-  return blogs.map(({ title, url, labels }) => {
+  return blogs.map(({ title, html_url, labels }) => {
     const isSuggested = labels.some(label => label.name === '精华')
     const label = labels.find(label => label.name !== '精华').name
-    return { title, url, isSuggested, label }
+    return { url: html_url, title, isSuggested, label }
   })
 }
 

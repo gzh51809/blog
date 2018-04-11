@@ -4,37 +4,37 @@
 
 ### _Node.js_
 
-- [**如何开发一个可爱的CLI（二） ❤**](https://api.github.com/repos/ulivz/blog/issues/18)
-- [**如何开发一个可爱的CLI（一） ❤**](https://api.github.com/repos/ulivz/blog/issues/17)
+- [**如何开发一个可爱的CLI（二） ❤**](https://github.com/ulivz/blog/issues/18)
+- [**如何开发一个可爱的CLI（一） ❤**](https://github.com/ulivz/blog/issues/17)
 
 ### _JavaScript_
 
-- [**深入JavaScript继承原理 ❤**](https://api.github.com/repos/ulivz/blog/issues/16)
-- [**ES6 Class 和 Function Class**](https://api.github.com/repos/ulivz/blog/issues/15)
-- [**JavaScript的函数声明和函数表达式**](https://api.github.com/repos/ulivz/blog/issues/14)
-- [**实现jQuery的$(document).ready**](https://api.github.com/repos/ulivz/blog/issues/13)
-- [**JavaScript中的引用类型**](https://api.github.com/repos/ulivz/blog/issues/12)
-- [**浅谈JavaScript遍历数组的几种方法**](https://api.github.com/repos/ulivz/blog/issues/11)
-- [**万物皆空之 JavaScript 原型 ❤**](https://api.github.com/repos/ulivz/blog/issues/10)
-- [**详解JavaScript闭包**](https://api.github.com/repos/ulivz/blog/issues/7)
+- [**深入JavaScript继承原理 ❤**](https://github.com/ulivz/blog/issues/16)
+- [**ES6 Class 和 Function Class**](https://github.com/ulivz/blog/issues/15)
+- [**JavaScript的函数声明和函数表达式**](https://github.com/ulivz/blog/issues/14)
+- [**实现jQuery的$(document).ready**](https://github.com/ulivz/blog/issues/13)
+- [**JavaScript中的引用类型**](https://github.com/ulivz/blog/issues/12)
+- [**浅谈JavaScript遍历数组的几种方法**](https://github.com/ulivz/blog/issues/11)
+- [**万物皆空之 JavaScript 原型 ❤**](https://github.com/ulivz/blog/issues/10)
+- [**详解JavaScript闭包**](https://github.com/ulivz/blog/issues/7)
 
 ### _DOM_
 
-- [**详解DOM事件绑定和事件冒泡**](https://api.github.com/repos/ulivz/blog/issues/9)
+- [**详解DOM事件绑定和事件冒泡**](https://github.com/ulivz/blog/issues/9)
 
 ### _RegExp_
 
-- [**一个使用正则表达式的小例子**](https://api.github.com/repos/ulivz/blog/issues/8)
+- [**一个使用正则表达式的小例子**](https://github.com/ulivz/blog/issues/8)
 
 ### _AngualrJS_
 
-- [**AnguarJS 1.x & Ionic 实践与技巧**](https://api.github.com/repos/ulivz/blog/issues/6)
+- [**AnguarJS 1.x & Ionic 实践与技巧**](https://github.com/ulivz/blog/issues/6)
 
 ### _Linux/Shell_
 
-- [**Grep 指令的前后匹配**](https://api.github.com/repos/ulivz/blog/issues/5)
-- [**Mac下如何查看文件树**](https://api.github.com/repos/ulivz/blog/issues/4)
-- [**Shell知识点汇总**](https://api.github.com/repos/ulivz/blog/issues/3)
+- [**Grep 指令的前后匹配**](https://github.com/ulivz/blog/issues/5)
+- [**Mac下如何查看文件树**](https://github.com/ulivz/blog/issues/4)
+- [**Shell知识点汇总**](https://github.com/ulivz/blog/issues/3)
 
 <!--END-->
 
