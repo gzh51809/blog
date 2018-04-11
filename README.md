@@ -68,7 +68,7 @@
 
 ## 关于这个仓库
 
-最早，我是用 [Jekyll](https://github.com/jekyll/jekyll) 来创建我的博客，后来，我又换成用了 [hexo](https://github.com/hexojs/hexo)，再到后来，也就是大约一年前，我基于清v的 [docsify](https://github.com/QingWei-Li/docsify) 写了一堆庞大的自动构建博客的脚本来维护我的博客。后来有一天，我决定删除这些“臃肿”的 Gulp 构建脚本（[commit](https://github.com/ulivz/blog/commit/d0d5bdf916aa59df8df1f7c07b97198385371013))，回归到纯Markdown，再到后来，也就是现在的 issue 方式了，不知道是返璞归真，还是爱折腾😂。
+最早，我是用 [Jekyll](https://github.com/jekyll/jekyll) 来创建我的博客，后来，我又换成用了 [hexo](https://github.com/hexojs/hexo)，再到后来，也就是大约一年前，我基于清v的 [docsify](https://github.com/QingWei-Li/docsify) 写了一堆庞大的自动构建博客的脚本来维护我的博客。后来有一天，我决定删除这些“臃肿”的 Gulp 构建脚本（[commit](https://github.com/ulivz/blog/commit/d0d5bdf916aa59df8df1f7c07b97198385371013))，回归到 Markdown 裸奔，再到后来，也就是现在的 issue 方式了，不知道是返璞归真，还是爱瞎折腾😂。
 
 这个仓库存放的主要是个人长期更新的博文、知识碎片和一些测试文件，所有正式的博文都已经列在这个 README 中了，当然，如果你有兴趣，也可以打开这个仓库，打开那些并没有公开的写到一半的博文和那些有趣的测试，此外，README中 标有爱心的也都同步在了我的知乎和掘金专栏上，欢迎关注。
 
