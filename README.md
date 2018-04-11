@@ -4,7 +4,39 @@
 
 <!--START-->
 
+# Node.js
 
+- [**如何开发一个可爱的CLI（二）🆙**](https://api.github.com/repos/ulivz/blog/issues/18)
+- [**如何开发一个可爱的CLI（一）🆙**](https://api.github.com/repos/ulivz/blog/issues/17)
+
+# JavaScript
+
+- [**深入JavaScript继承原理🆙**](https://api.github.com/repos/ulivz/blog/issues/16)
+- [**ES6 Class 和 Function Class**](https://api.github.com/repos/ulivz/blog/issues/15)
+- [**JavaScript的函数声明和函数表达式**](https://api.github.com/repos/ulivz/blog/issues/14)
+- [**实现jQuery的$(document).ready**](https://api.github.com/repos/ulivz/blog/issues/13)
+- [**JavaScript中的引用类型**](https://api.github.com/repos/ulivz/blog/issues/12)
+- [**浅谈JavaScript遍历数组的几种方法**](https://api.github.com/repos/ulivz/blog/issues/11)
+- [**万物皆空之 JavaScript 原型🆙**](https://api.github.com/repos/ulivz/blog/issues/10)
+- [**详解JavaScript闭包**](https://api.github.com/repos/ulivz/blog/issues/7)
+
+# DOM
+
+- [**详解DOM事件绑定和事件冒泡**](https://api.github.com/repos/ulivz/blog/issues/9)
+
+# RegExp
+
+- [**一个使用正则表达式的小例子**](https://api.github.com/repos/ulivz/blog/issues/8)
+
+# AngualrJS
+
+- [**AnguarJS 1.x & Ionic 实践与技巧**](https://api.github.com/repos/ulivz/blog/issues/6)
+
+# Linux/Shell
+
+- [**Grep 指令的前后匹配**](https://api.github.com/repos/ulivz/blog/issues/5)
+- [**Mac下如何查看文件树**](https://api.github.com/repos/ulivz/blog/issues/4)
+- [**Shell知识点汇总**](https://api.github.com/repos/ulivz/blog/issues/3)
 
 <!--END-->
 
