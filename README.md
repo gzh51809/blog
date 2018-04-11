@@ -64,6 +64,7 @@
 2. [**w7**](https://github.com/ulivz/w7) 一个 serve 纯 HTML 的 devServer，支持生成Vue、React等常见的样本文件，可用于快速原型测试；
 3. [**dmo**](https://github.com/ulivz/dmo) 用一个纯HTML，快速生成一个可用的REPL；
 4. [**awesome-front-end**](https://github.com/ulivz/awesome-front-end) 不断更新的前端高质量资料库；
+[more...](https://github.com/ulivz?tab=repositories)
 
 ## 关于这个仓库
 
