@@ -24,7 +24,7 @@ function generateString(blogs) {
   let str = ''
   for (const column of Object.keys(columns)) {
     const blogs = columns[column]
-    str += `\n# ${column}\n\n`
+    str += `\n### _${column}_\n\n`
     str += blogs.map(({ title, url, isSuggested }) => {
           if (isSuggested) title = title + ' ❤'  // 🏆 🎖 🏅 ❤️ 🆙  Which one? 😂
           return `- [**${title}**](${url})`
@@ -36,11 +36,9 @@ function generateString(blogs) {
 
 function updateREADME(content) {
   let readme = fs.readFileSync('./README.md', 'utf-8')
-  console.log(readme)
   readme = readme.replace(/(<!--START-->)[^]*(<!--END-->)/, (match, start, end) => {
     return start + '\n' + content + '\n' + end
   })
-  console.log(readme)
   fs.writeFileSync('./README.md', readme, 'utf-8')
 }
 
