@@ -32,7 +32,7 @@
 
 ### _Linux/Shell_
 
-- [**Grep 指令的前后匹配**](https://github.com/ulivz/blog/issues/5)
+- [**Shell 常用指令**](https://github.com/ulivz/blog/issues/5)
 - [**Mac下如何查看文件树**](https://github.com/ulivz/blog/issues/4)
 - [**Shell知识点汇总**](https://github.com/ulivz/blog/issues/3)
 
