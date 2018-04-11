@@ -6,7 +6,9 @@
   "directories": {
     "doc": "docs"
   },
-  "scripts": {},
+  "scripts": {
+    "update": "node ./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/toxichl/FED-blog.git"
