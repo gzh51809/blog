@@ -2,6 +2,10 @@
 
 <!--START-->
 
+### _Git_
+
+- [**当你决定去 revert 一个merge commit**](https://github.com/ulivz/blog/issues/19)
+
 ### _Node.js_
 
 - [**如何开发一个可爱的CLI（二） ❤**](https://github.com/ulivz/blog/issues/18)
