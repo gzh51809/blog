@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>测试 iframe API</title>
+</head>
+<body>
+
+<div id="app">
+  <iframe src="" frameborder="0"></iframe>
+</div>
+<script src="http://unpkg.com/jquery"></script>
+<script>
+  const iframe = $('#app').children('iframe').get(0)
+  const iframeDocuement = iframe.contentWindow.document // 访问 iframe 的文档对象
+  $(iframeDocuement).find('body').append('<h1 class="title">APP</h1>')
+  const iframeBlock = $(iframe).find('.title')
+  console.log(iframeBlock)
+  
+</script>
+</body>
+</html>
