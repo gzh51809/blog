@@ -62,7 +62,7 @@
 - **推特**: @_ulivz
 - **掘金**: [@ULIVZ](https://juejin.im/user/58d75f5b61ff4b006ccd9b83)
 
-随手推荐一些我的一些对你可能有用的`repo`：
+目前主要专注于维护 [vuepress](https://github.com/vuejs/vuepress)，同时随手推荐一些我的对你可能有用的 `repo`：
 
 1. [**alphax**](https://github.com/ulivz/alphax) 脚手架原子工具，可用于开发脚手架，目前在建的 [poz](https://github.com/ulivz/poz) 便是基于它开发的；
 2. [**w7**](https://github.com/ulivz/w7) 一个 serve 纯 HTML 的 devServer，支持生成Vue、React等常见的样本文件，可用于快速原型测试；
@@ -72,10 +72,10 @@
 
 ## 关于这个仓库
 
-最早，我是用 [Jekyll](https://github.com/jekyll/jekyll) 来创建我的博客，后来，我又换成用了 [hexo](https://github.com/hexojs/hexo)，再到后来，也就是大约一年前，我基于清v的 [docsify](https://github.com/QingWei-Li/docsify) 写了一堆庞大的自动构建博客的脚本来维护我的博客。后来有一天，我决定删除这些“臃肿”的 Gulp 构建脚本（[commit](https://github.com/ulivz/blog/commit/d0d5bdf916aa59df8df1f7c07b97198385371013))，回归到 Markdown 裸奔，再到后来，也就是现在的 issue 方式了，不知道是返璞归真，还是爱瞎折腾😂。
+最早，我是用 [Jekyll](https://github.com/jekyll/jekyll) 来创建我的博客，后来，我又换成用了 [Hexo](https://github.com/hexojs/hexo)，再到后来，也就是大约一年前，我基于清v的 [docsify](https://github.com/QingWei-Li/docsify) 写了一堆庞大的自动构建博客的脚本来维护我的博客。突然有一天，我决定删除这些“臃肿”的 Gulp 构建脚本（[commit](https://github.com/ulivz/blog/commit/d0d5bdf916aa59df8df1f7c07b97198385371013))，回归到 Markdown 裸奔，最后，也就是现在的 issue 方式了，不知道是返璞归真，还是爱瞎折腾——不过我坚信，这不是终点。
 
-这个仓库存放的主要是个人长期更新的博文、知识碎片和一些测试文件，所有正式的博文都已经列在这个 README 中了，当然，如果你有兴趣，也可以打开这个仓库，打开那些并没有公开的写到一半的博文和那些有趣的测试，此外，README中 标有爱心的也都同步在了我的知乎和掘金专栏上，欢迎关注。
+这个仓库存放的主要是个人长期更新的博文、知识碎片和一些测试文件，所有正式的博文都已经列在这个 README 中了，当然，如果你有兴趣，也可以打开这个仓库，打开那些并没有公开的写到一半的博文和那些有趣的测试，此外，README 中标有爱心的也都同步在了我的知乎和掘金专栏上，欢迎关注。
 
-既然决定长期写博文，我的第一原则便是要避免误人子弟，如果你发现了博文中的任何错误，非常欢迎能够在 issue 中指出，感激不尽！
+既然决定长期写博文，我的第一原则便是要避免误人子弟，如果你发现了博文中的任何错误，非常欢迎能够在文章中指出，感激不尽！
 
 也欢迎你的 fxxk 😉 ~
