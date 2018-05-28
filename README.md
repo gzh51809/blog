@@ -44,6 +44,6 @@
 
 > 本目录由这段可爱的 [脚本](./index.js) 生成。如果你发现了博文中的任何错误，请不要吝啬你的 comment，感激不尽！
 
-## LICENSE
+## License
 
 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
