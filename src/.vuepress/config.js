@@ -15,6 +15,12 @@ module.exports = {
         },
       }
       blogPlugnOptions.directories.push(writingDirectoryClassifier)
+
+      const archiveDirectoryClassifierIndex = blogPlugnOptions.directories.findIndex(d => d.id === 'archive')
+      blogPlugnOptions.directories.splice(archiveDirectoryClassifierIndex, 1)
+
+      console.log(blogPlugnOptions)
+
       return blogPlugnOptions
     },
     nav: [
