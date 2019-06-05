@@ -10,7 +10,7 @@
     "build": "vuepress build src --temp src/.temp"
   },
   "dependencies": {
-    "@vuepress/theme-blog": "1.0.0-alpha.49",
+    "@vuepress/theme-blog": "latest",
     "vuepress": "next"
   }
 }
