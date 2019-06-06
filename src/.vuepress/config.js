@@ -36,6 +36,10 @@ module.exports = {
         text: 'Tags',
         link: '/tag/',
       },
+      {
+        text: 'About Me',
+        link: '/me/',
+      },
     ],
     footer: {
       contact: [
@@ -50,11 +54,7 @@ module.exports = {
       ],
       copyright: [
         {
-          text: 'Privacy Policy',
-          link: 'https://policies.google.com/privacy?hl=en-US',
-        },
-        {
-          text: 'MIT Licensed | Copyright © 2018-present Vue.js',
+          text: 'Powered by VuePress | ULIVZ © 2018-present',
           link: '',
         },
       ],
