@@ -60,7 +60,7 @@ module.exports = {
       ],
       copyright: [
         {
-          text: 'Powered by VuePress | ULIVZ © 2018-present',
+          text: 'Powered by VuePress | ULIVZ © 1994-present',
           link: '',
         },
       ],
