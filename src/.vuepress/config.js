@@ -39,7 +39,7 @@ module.exports = {
         link: '/tag/',
       },
       {
-        text: 'About Me',
+        text: 'About',
         link: '/me/',
       },
       {
