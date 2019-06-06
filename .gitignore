@@ -1,5 +1,5 @@
 .idea
-,temp
+.temp
 .cache
 *.log
 node_modules
