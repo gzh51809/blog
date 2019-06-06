@@ -19,10 +19,12 @@ module.exports = {
       const archiveDirectoryClassifierIndex = blogPlugnOptions.directories.findIndex(d => d.id === 'archive')
       blogPlugnOptions.directories.splice(archiveDirectoryClassifierIndex, 1)
 
-      console.log(blogPlugnOptions)
-
       return blogPlugnOptions
     },
+    
+    // See: https://vuepress-theme-blog.ulivz.com/#summarylength
+    summaryLength: 100,
+    
     nav: [
       {
         text: 'Blog',
@@ -39,6 +41,10 @@ module.exports = {
       {
         text: 'About Me',
         link: '/me/',
+      },
+      {
+        text: 'Github',
+        link: 'https://github.com/ulivz/',
       },
     ],
     footer: {
