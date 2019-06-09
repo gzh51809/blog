@@ -9,20 +9,23 @@ location: Shanghai
 # Intro to VuePress 1.x
 
 > 本文为 2019 年 6 月 8 日我在
-> [3th VueConf Shanghai](https://vue.w3ctech.com/)
-> 上发表的同名演讲实录。Slides 可以在 <a href="/intro-to-vuepres-1.x.key"
-> target="_blank">这里</a> 获取到。
+> [3th VueConf Shanghai](https://vue.w3ctech.com/) 上发表的同名演讲实录。
+
+<!-- Slides 可以在 <a href="/intro-to-vuepres-1.x.key"
+> target="_blank">这里</a> 获取到。 -->
 
 ---
 
 ## 引言
 
-大家下午好，我是来自蚂蚁金服微贷前端团队的真山，t今天我给大家带来的主题是 Intro to
+大家下午好，我是来自蚂蚁金服微贷前端团队的真山，今天我给大家带来的主题是 Intro to
 VuePress Next，也就是即将发布的 1.0 版本。
 
 ![](./images/intro-to-vuepres-1.x.001.png)
 
-首先，我们来看一些来自社区的作品，这里要特别要特别感谢 [@vicberquist](https://github.com/vicbergquist) 在收集优质的 VuePress 站点上做出的贡献。
+首先，我们来看一些来自社区的 VuePress 作品，这里要特别要特别感谢
+[@vicberquist](https://github.com/vicbergquist) 在收集优质的 VuePress
+站点上做出的贡献。
 
 ![](./images/intro-to-vuepres-1.x.003.png)
 
@@ -43,7 +46,7 @@ VuePress Next，也就是即将发布的 1.0 版本。
 
 ![](./images/intro-to-vuepres-1.x.007.png)
 
-如果你想要找到更多的案例，可以在会后拿到 Slide 后在下面的链接中继续查看。
+如果你想要找到更多的案例，可以在拿到 Slide 后在下面的链接中继续查看。
 
 - [vuepress.gallery](https://vuepress.gallery/)
 - [awesome-vuepress](https://github.com/ulivz/awesome-vuepress)
@@ -58,39 +61,52 @@ VuePress？
 
 ![](./images/intro-to-vuepres-1.x.011.png)
 
-在座可能有很多同学都没有用过 VuePress，所以我们首先来看一看 VuePress
-最早的模样。也就是 VuePres 0.x。
+可能有很多同学都没有用过 VuePress，所以我们先来看一看 VuePress
+最早的模样，也就是 VuePres 0.x。
 
 首先，VuePress 是一个静态网站生成器。之所以叫
-VuePress，最重要的不同在于它天然就支持 [在 Markdown 中使用
-Vue](https://v1.vuepress.vuejs.org/guide/using-vue.html) 。在核心代码里，我们还是一个简单的主题系统，同时，又借助了这个主题系统内置了一个用于写文档的 [默认主题](https://v1.vuepress.vuejs.org/theme/default-theme-config.html) ，除此之外，还支持了一个 [布局系统](https://v1.vuepress.vuejs.org/theme/default-theme-config.html#custom-layout-for-specific-pages) ，方便让用户动态指定布局组件。
+VuePress，最重要的一点在于它天然就支持
+[在 Markdown 中使用
+Vue](https://v1.vuepress.vuejs.org/guide/using-vue.html)
+。在核心代码中，我们还有一个简单的主题系统，同时，又借助了这个主题系统内置了一个用于写文档的
+[默认主题](https://v1.vuepress.vuejs.org/theme/default-theme-config.html)
+，除此之外，还支持了一个
+[布局系统](https://v1.vuepress.vuejs.org/theme/default-theme-config.html#custom-layout-for-specific-pages)
+，方便让用户动态指定布局组件。
 
 ![](./images/intro-to-vuepres-1.x.018.png)
 
-在这样的背景下，得益于其轻量且容易上手，我们很快地吸引了大量的用户。但随着时间的推移，迭代的增长，核心代码越来越多，似乎，慢慢开始变得难以维护，与此同时，在用户提出的众多
+在这样的背景下，得益于其轻量且容易上手，我们很快地吸引了大量的用户。但随着时间的推移，迭代的增长，核心代码越来越多，似乎慢慢开始变得难以维护，与此同时，在用户提出的众多
 feature request
-中，有一些确实有价值的功能并不适宜写在核心代码中。所以，我在想，有没有一种办法，可以在避免主仓库代码无止境增长的前提下，又能够实现不限制新特性的增加呢？于是，我们就开始了
+中，有一些确实有价值的功能似乎也不太适合放在核心代码中。所以，我们在想，有没有一种办法，可以在避免主仓库代码无止境增长的前提下，又能够实现不限制新特性的增加呢？
+
+于是，我们就开始了
 1.x， VuePress 也在过去几个月，慢慢演变了成了接下来的这个样子。
 
 ![](./images/intro-to-vuepres-1.x.020.png)
 
 首先，关于“主题”，我们从 “简单的主题系统” 演变成了 “主题系统”，也就是说，一个
 VuePress 主题，将不再仅仅是一个
-SFC，它可能还包含自己的样式、配置，以及我们接下来会聊到的插件。同时，我们新增了一个官方主题，博客主题。此外，布局系统从默认主题中抽离出来，这个非常
-facny 的特性，实现了跨主题间复用。
+SFC，它可能还包含自己的样式、配置，以及我们接下来会聊到的插件。同时，我们新增了一个
+[官方博客主题](https://github.com/ulivz/vuepress-theme-blog)
+。此外，布局系统从默认主题中被抽离出来，这个非常 facny
+的特性，也实现了跨主题间复用。
 
 除此之外，可能是 1.x 最大的更改，就是我们新增了
 [插件系统](https://v1.vuepress.vuejs.org/plugin/) ，1.x
 的内部在某些核心功能上用插件 API
 进行了实现，同时沉淀了出了大量可复用的插件。在这样的架构下，除了解决 0.x
-存在的问题，我们还做到了，将 基础核心 和 业务需求 解耦，很多功能（如
-[pwa](https://v1.vuepress.vuejs.org/plugin/official/plugin-pwa.html) 、 [search](http://localhost:8080/2019/06/09/intro-to-vuepress-1-x/) ）实现了在跨主题之间完美复用。
+存在的问题，我们还做到了，将 “基础核心” 和 “业务需求” 解耦，很多功能（如
+[pwa](https://v1.vuepress.vuejs.org/plugin/official/plugin-pwa.html) 、
+[search](http://localhost:8080/2019/06/09/intro-to-vuepress-1-x/)
+）实现了在跨主题之间完美复用。
 
-想了解更多 1.x 的设计理念，可以查看我贴在下面的这个 [链接](https://v1.vuepress.vuejs.org/zh/miscellaneous/design-concepts.html) 。
+想了解更多 1.x 的设计理念，可以移步这个
+[链接](https://v1.vuepress.vuejs.org/zh/miscellaneous/design-concepts.html)。
 
 ## 快速上手
 
-既然知道了 VuePress 是什么，那么我们是否应该来上手一下。
+既然知道了 VuePress 是什么，那么我们是否应该来上手一下：
 
 ![](./images/intro-to-vuepres-1.x.021.png)
 
@@ -107,17 +123,19 @@ facny 的特性，实现了跨主题间复用。
 
 ![](./images/intro-to-vuepres-1.x.035.png)
 
-接下来，我们来看看，这个网站的项目结构到底长什么样子。首先，你能看按到你的 docs
-目录，里面有很多 markdown 文件，这些文件会根据它目录转换成对应的
-url。最后这个约定的 `.vuepress`，它存放着 vuepress
-所有的配置、约定的文件等。好，那我们来看下， 这的文件里面究竟有什么？
+接下来，我们来看看，这个网站的项目结构到底长什么样子。
+
+首先，你能看按到你的 docs 目录，里面有很多 markdown
+文件，这些文件会根据它目录转换成对应的 url。最后这个约定的 `.vuepress`，它存放着
+VuePress 所有的配置、约定的文件等。好，那我们来看下， 这的文件里面究竟有什么？
 
 首先，是一个 components 目录，这个目录下的所有 Vue 组件都可以直接在 markdown
 中直接使用。接下来的 `styles`，你可以在
 [index.styl](https://v1.vuepress.vuejs.org/config/#index-styl)
 中书写自定义样式，以及在
 [palette.styl](https://v1.vuepress.vuejs.org/config/#palette-styl)
-中进行全局调色。最后这个 config.js，也就是 vuepress 约定的 [配置文件](https://v1.vuepress.vuejs.org/zh/config) 。
+中进行全局调色。最后这个 config.js，也就是 vuepress 约定的
+[配置文件](https://v1.vuepress.vuejs.org/zh/config) 。
 
 ![](./images/intro-to-vuepres-1.x.040.png)
 
@@ -125,7 +143,7 @@ url。最后这个约定的 `.vuepress`，它存放着 vuepress
 
 ![](./images/intro-to-vuepres-1.x.041.png)
 
-你还有一选择 ——
+没关系，你还有一个选择 ——
 [codesandbox](https://codesandbox.io/s/)，同样是来自
 [@vicberquist](https://github.com/vicbergquist) 的精彩贡献！
 
@@ -157,10 +175,13 @@ MR~
 ![](./images/intro-to-vuepres-1.x.050.png)
 
 
-恩，那就换个主题吧，社区里还有很多优质的主题可以直接使用。接下来，我会列举几个比较有风格的主题，让大家看一下。
+恩，那就换个主题吧，社区里还有很多优质的主题可以直接使用。接下来，我会列举几个比较有特色的主题，让大家看一下。 
+
+第一个，另一个文档主题：
 
 - [vuepress-theme-bulma](https://github.com/nakorndev/vuepress-theme-bulma),
-  by [@nakorndev](https://github.com/nakorndev)
+  by
+  [@nakorndev](https://github.com/nakorndev)
 
 ![](./images/intro-to-vuepres-1.x.051.png)
 
@@ -195,7 +216,7 @@ MR~
 
 有这么多好看的主题，那我究竟该如何使用它们呢？
 
-你只需要将你找到的主题名，配置在配置文件的
+你只需要将的主题在 npm 发布的名字，配置在配置文件的
 [theme](https://v1.vuepress.vuejs.org/config/#theme)
 字段中即可，如果你使用的主题还接受一些配置，那么你传入
 [themeConfig](https://v1.vuepress.vuejs.org/config/#themeconfig) 中即可。
@@ -232,16 +253,17 @@ MR~
 
 ![](./images/intro-to-vuepres-1.x.065.png)
 
-第一个， [PWA 插件](https://v1.vuepress.vuejs.org/plugin/official/plugin-pwa.html) ，说白了，它就是让你的网站更快。大家可以看到，如果你访问过
-vuepress 的官网，你会发现，下次你会非常快，因为这些请求都直接从 Service Worker
-的 cache 取了。此外，我们还提供了一个 Popup。在 Service Worker
-有更新的时候会自动弹出来。
+第一个，
+[PWA 插件](https://v1.vuepress.vuejs.org/plugin/official/plugin-pwa.html)
+，说白了，它就是让你的网站更快。大家可以看到，如果你访问过 VuePress
+的官网，你会发现，下次你会非常快，因为这些请求都直接从 Service Worker 的 cache
+取了。此外，我们还提供了一个 Popup。在 Service Worker 有更新的时候会自动弹出来。
 
 ![](./images/intro-to-vuepres-1.x.069.png)
 
 我们来简单看一下这个插件做的实现。
 
-首先，用户在第一个访问一个开启了 PWA 的 vuepress 站点时，VuePress
+首先，用户在第一个访问一个开启了 PWA 的 VuePress 站点时，VuePress
 会帮我们自动注册 Service Worker；在用户第二次访问的时候呢，Service Worker
 会劫持客户端请求，直接返回 cache 的结果，当你下一次重新部署了你的站点，Service
 Worker 会在后台默默地安装，等安装好后，它会从 Worker 进程 emit 一个 update
@@ -276,8 +298,8 @@ skipWating，从而实现 refresh。 由于 pwa
 [应用元数据](https://v1.vuepress.vuejs.org/theme/writing-a-theme.html#site-and-page-metadata)
 中去查找匹配结果，如果找到了，就将这个匹配结果渲染给用户。
 
-在这个搜索插件中，最关键的在于，用户交互层的搜索体验，以及底层的搜索匹配算法。如果你有兴趣，可以来优化内置的搜索算法，VuePress
-的搜索目前还不支持分词搜索。
+在这个搜索插件中，最关键的在于，用户交互层的搜索体验，以及底层的搜索匹配算法。如果你有兴趣，可以提交
+MR 来优化内置的搜索算法，VuePress 的搜索目前还不支持分词搜索。
 
 ![](./images/intro-to-vuepres-1.x.078.png)
 
@@ -285,7 +307,7 @@ skipWating，从而实现 refresh。 由于 pwa
 由于页面都是异步加载的，那我们应该如何实现开箱即用的全文搜索呢？
 
 这个问题我至今还没有想到最好的解决方案，我曾想过可以通过 Service Worker
-来实现，但是未能有机会去尝试。有想到解决办法的同学可以告诉我。
+来实现，但是未能有机会去尝试。如果有想到解决办法的同学，我们可以会后交流一下。
 
 ![](./images/intro-to-vuepres-1.x.079.png)
 
@@ -297,10 +319,10 @@ skipWating，从而实现 refresh。 由于 pwa
 
 ![](./images/intro-to-vuepres-1.x.082.png)
 
-这个博客插件的设计理念在于：对于博客主题开发者，我们应该更关注主题本身的交互体验，而非哪些看不到、用户也并不关注的分类、分页等逻辑。
+这个博客插件的设计理念在于：我们希望，对于博客主题开发者，我们应该更关注主题本身的交互体验，而非哪些看不到、用户也并不关注的分类、分页等逻辑。
 
-那这个插件到底能够如何简化你开发一个博客主题的生产力呢？我为了准备了一个例子，它只用
-70 行代码来实现一个功能基本合格的博客主题。
+那这个插件到底能够如何简化你开发一个博客主题的生产力呢？我准备了一个例子，它只用了
+70 行代码，就实现了一个功能基本合格的博客主题。
 
 - [70-lines-of-vuepress-blog-theme](https://github.com/ulivz/70-lines-of-vuepress-blog-theme)
 
@@ -312,20 +334,21 @@ skipWating，从而实现 refresh。 由于 pwa
 
 你只需要一个语雀 Repo，就能得到一个 VuePress 站点。
 
-- Input：https://www.yuque.com/vuepress/vuepress-plugin-yuque
-- Output：https://github.com/ulivz/vuepress-plugin-yuque
+- Input：[https://www.yuque.com/vuepress/vuepress-plugin-yuque](https://www.yuque.com/vuepress/vuepress-plugin-yuque)
+- Output：[https://github.com/ulivz/vuepress-plugin-yuque](https://github.com/ulivz/vuepress-plugin-yuque)
 
 ![](./images/intro-to-vuepres-1.x.089.png)
 
-那这个插件到底如何使用呢？你只需要在插件的配置中，配置一个 [repoUrl](https://vuepress-plugin-yuque.ulivz.com/config.html#repourl)
+那这个插件到底如何使用呢？你只需要在插件的配置中，配置一个
+[repoUrl](https://vuepress-plugin-yuque.ulivz.com/config.html#repourl)
 ，插件就能帮你完成所有的转换工作。
+
+![](./images/intro-to-vuepres-1.x.091.png)
 
 当然，这里要提及一下，实际上，由于语雀是一个富文本编辑器，通过其 Open API
 获取的页面数据可能会丢失某些信息（如 Video），
 同时，由于语雀存在一些的自定义样式，因此语雀并不能算是一个最佳的可能和 VuePress
 链接的数据源。
-
-![](./images/intro-to-vuepres-1.x.091.png)
 
 所以，只要你愿意，你可能将任意的数据源，连接到 VuePress。
 
@@ -335,7 +358,7 @@ skipWating，从而实现 refresh。 由于 pwa
 
 首先，我们来看看这张在 VuePress 的 [插件文档](https://v1.vuepress.vuejs.org/plugin/) 首页的架构图：
 
-先从底部开始看：我们有两个主要的项目概念，用户项目和主题的项目。
+先从底部开始看：我们有两个主要的项目概念，用户端和主题端。
 
 两者相同的地方在于，用户端和主题端都能有自己的配置，可以应用一些插件。不同的地方在于，用户端最重要的文件在于一个个的
 Markdown 文件，而对于一个主题来说，最重要的是其提供的布局组件。
@@ -345,10 +368,11 @@ Markdown 文件，而对于一个主题来说，最重要的是其提供的布�
 ![](./images/intro-to-vuepres-1.x.096.png)
 
 再回到上面的部分。我们知道，VuePress 有一个基于 Webpack
-的构建流程，在这其中，插件 API 可以在 dev server
+的构建流程，在这其中，插件 API 可以让你在 dev server
 的前后做一些事，也可以应用一些额外的 Webpack 插件或
-Loader，同时，插件也可以拓展内部的 Markdown Compiler, 即 [markdown-it](https://github.com/markdown-it/markdown-it)
-的实例。同时，也可以生成一些 Dynamic Modules，供客户端消费。
+Loader，同时，插件也可以拓展内部的 Markdown Compiler, 即
+[markdown-it](https://github.com/markdown-it/markdown-it)；同时，你也可以生成一些
+Dynamic Modules，供客户端消费。
 
 ![](./images/intro-to-vuepres-1.x.097.png)
 
