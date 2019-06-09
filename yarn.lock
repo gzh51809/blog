@@ -784,6 +784,11 @@
   dependencies:
     lodash.throttle "^4.1.1"
 
+"@vuepress/plugin-blog@latest":
+  version "1.0.0-alpha.50"
+  resolved "https://registry.yarnpkg.com/@vuepress/plugin-blog/-/plugin-blog-1.0.0-alpha.50.tgz#126226ad27db1a009763829e6083b0e26e173830"
+  integrity sha512-LzH1HDevbouMcA0uoCWNlfFlej755qfEELn4ytIS3qRQejk7uiEJftFmVYVNM2pLXv3SzmFK8p3wsFVQQqQSAg==
+
 "@vuepress/plugin-last-updated@^1.0.0-alpha.48":
   version "1.0.0-alpha.48"
   resolved "https://registry.yarnpkg.com/@vuepress/plugin-last-updated/-/plugin-last-updated-1.0.0-alpha.48.tgz#dd9f5fdb2f4994f71bd47ae4dd4ca4885d346347"
@@ -834,16 +839,18 @@
     semver "^6.0.0"
     upath "^1.1.0"
 
-"@vuepress/theme-blog@1.0.0-alpha.49":
-  version "1.0.0-alpha.49"
-  resolved "https://registry.yarnpkg.com/@vuepress/theme-blog/-/theme-blog-1.0.0-alpha.49.tgz#0c52697b265d49b1a5f71603f177502c38ca00ea"
+"@vuepress/theme-blog@latest":
+  version "1.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@vuepress/theme-blog/-/theme-blog-1.0.0-beta.6.tgz#73f05ba7a8f13fe50783125c484cee86eb96ce4b"
+  integrity sha512-RE4ZqIzq0/2dx/yg4lStdNfshkMJ5+utswdj9Ieq07HzQs51quegFVDEGUmXeO/BS/v/tbmN7n6ZNhpN49Y28Q==
   dependencies:
+    "@vuepress/plugin-blog" latest
     "@vuepress/plugin-medium-zoom" next
     "@vuepress/plugin-nprogress" next
     "@vuepress/plugin-pwa" next
     "@vuepress/plugin-search" next
+    remove-markdown "^0.3.0"
     vue-feather-icons "^4.21.0"
-    vuepress-plugin-blog latest
 
 "@vuepress/theme-default@^1.0.0-alpha.48":
   version "1.0.0-alpha.48"
@@ -5103,6 +5110,11 @@ relateurl@0.2.x:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
 
+remove-markdown@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/remove-markdown/-/remove-markdown-0.3.0.tgz#5e4b667493a93579728f3d52ecc1db9ca505dc98"
+  integrity sha1-XktmdJOpNXlyjz1S7MHbnKUF3Jg=
+
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
@@ -6157,10 +6169,6 @@ vuepress-html-webpack-plugin@^3.2.0:
     tapable "^1.0.0"
     toposort "^1.0.0"
     util.promisify "1.0.0"
-
-vuepress-plugin-blog@latest:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/vuepress-plugin-blog/-/vuepress-plugin-blog-0.0.2.tgz#32fb19c8632f95968e4fe92b68763de5014decb8"
 
 vuepress-plugin-container@^2.0.0:
   version "2.0.1"
