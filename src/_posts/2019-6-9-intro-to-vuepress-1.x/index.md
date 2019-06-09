@@ -230,7 +230,7 @@ MR~
 
 同样的惯例，我们先来看看有哪些插件。
 
-![](./images/intro-to-vuepres-1.x.0645png)
+![](./images/intro-to-vuepres-1.x.065.png)
 
 第一个， [PWA 插件](https://v1.vuepress.vuejs.org/plugin/official/plugin-pwa.html) ，说白了，它就是让你的网站更快。大家可以看到，如果你访问过
 vuepress 的官网，你会发现，下次你会非常快，因为这些请求都直接从 Service Worker
