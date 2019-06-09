@@ -334,8 +334,8 @@ MR 来优化内置的搜索算法，VuePress 的搜索目前还不支持分词�
 
 你只需要一个语雀 Repo，就能得到一个 VuePress 站点。
 
-- Input：[https://www.yuque.com/vuepress/vuepress-plugin-yuque](https://www.yuque.com/vuepress/vuepress-plugin-yuque)
-- Output：[https://github.com/ulivz/vuepress-plugin-yuque](https://github.com/ulivz/vuepress-plugin-yuque)
+- [Input](https://www.yuque.com/vuepress/vuepress-plugin-yuque)
+- [Output](https://github.com/ulivz/vuepress-plugin-yuque)
 
 ![](./images/intro-to-vuepres-1.x.089.png)
 
